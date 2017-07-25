@@ -16,7 +16,8 @@
     "buildall": "npm run build:aot",
     "buildall:yarn": "yarn run build:aot && yarn run sw",
     "buildrun:yarn": "yarn run buildall:yarn && yarn run serve:cli",
-    "buildrun": "npm run buildall && npm run serve:cli"
+    "buildrun": "npm run buildall && npm run serve:cli",
+    "buildgh": "ng build --aot --prod --progress false --base-href \"https://wickeyware.github.io/was-tutorial/\""
   },
   "private": true,
   "dependencies": {
