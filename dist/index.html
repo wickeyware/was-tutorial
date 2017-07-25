@@ -1,0 +1,43 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>WasTutorial</title><meta name="description" content="WickeyAppStore tutorial PWA."/><base href="/"><meta name="viewport" content="width=device-width,initial-scale=1"><!-- FAVICONS --><link rel="icon" type="image/x-icon" href="assets/favicon.ico"><link rel="icon" type="image/png" href="assets/favicon-32x32.png" sizes="32x32"><link rel="icon" type="image/png" href="assets/favicon-16x16.png" sizes="16x16"><!-- MANIFEST --><link rel="manifest" href="assets/manifest.json"><!-- WINDOWS --><meta name="msapplication-config" content="assets/IEconfig.xml"/><!-- APPLE --><!-- https://developer.apple.com/library/content/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html --><link rel="apple-touch-icon" sizes="180x180" href="https://i.imgur.com/EzDFIrg.png"><link rel="apple-touch-startup-image" href="https://i.imgur.com/EzDFIrg.png"><meta name="apple-mobile-web-app-title" content="WickeyAppStore Tutorial"><link rel="mask-icon" href="assets/safari-pinned-tab.svg" color="#da532c"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="theme-color" content="#dcedc8"><!-- BOOTSTRAP 4 CSS (required by wickeyappstore) --><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"><!-- FAST CLICK --><script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script><!-- WICKEYAPPSTORE --><link rel="stylesheet" href="https://unpkg.com/wickeyappstore@0.4.1/styles.css"><link href="styles.d41d8cd98f00b204e980.bundle.css" rel="stylesheet"/></head><body><app-root><!-- https://www.bennadel.com/blog/3105-creating-a-pre-bootstrap-loading-screen-in-angular-2-rc-1.htm --><style type="text/css">#pre-bootstrap {
+          background-color: #262626 ;
+          bottom: 0px ;
+          left: 0px ;
+          position: fixed ;
+          right: 0px ;
+          top: 0px ;
+          z-index: 999999 ;
+      }
+      #pre-bootstrap div.messaging {
+          color: #FFFFFF ;
+          font-family: monospace ;
+          left: 0px ;
+          margin-top: -37px ;
+          position: absolute ;
+          right: 0px ;
+          text-align: center ;
+          top: 50% ;
+      }
+      #pre-bootstrap h1 {
+          font-size: 26px ;
+          line-height: 35px ;
+          margin: 0px 0px 20px 0px ;
+      }
+      #pre-bootstrap p {
+          font-size: 18px ;
+          line-height: 14px ;
+          margin: 0px 0px 0px 0px ;
+      }</style><div id="pre-bootstrap"><div class="messaging"><h1>WickeyAppStore Tutorial is loading...</h1><p>Please stand by!</p></div></div></app-root><script type="text/javascript" src="inline.eacb7fc016e34267fc0f.bundle.js"></script><script type="text/javascript" src="polyfills.71b130084c52939ca448.bundle.js"></script><script type="text/javascript" src="vendor.b1c09b1454f5d51d873a.bundle.js"></script><script type="text/javascript" src="main.dc16de5767ea21d239e7.bundle.js"></script></body><script>// <!-- TEST FAST CLICK -->
+  if ('addEventListener' in document) {
+    document.addEventListener('DOMContentLoaded', function() {
+      FastClick.attach(document.body);
+      }, false);
+      }
+  // INSTALL SERVICE WORKER //
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js')
+      .then(function(reg){
+        console.log("registered service worker");
+      }).catch(function(err) {
+        console.log("service worker register error: ", err)
+      });
+  }</script></html>
