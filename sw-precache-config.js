@@ -5,6 +5,11 @@ module.exports = {
   staticFileGlobs: [
     'dist/index.html',
     'dist/**.js',
+    'dist/assets/**.*',
     'dist/**.css'
-  ]
+  ],
+  runtimeCaching: [{
+    urlPattern: '*',
+    handler: 'networkFirst'
+  }]
 };

@@ -10,6 +10,7 @@
       "assets": [
         "assets",
         "favicon.ico",
+        "service-worker-registration.js",
         "service-worker.js"
       ],
       "index": "index.html",
