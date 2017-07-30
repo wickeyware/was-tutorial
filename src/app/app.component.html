@@ -6,6 +6,10 @@
     <ui-popover-account-info [isModal]="true" [user]="user" (signout)="logoutUser($event)"></ui-popover-account-info>
     <ui-popover-login [user]="user" (close)="closeOnboardScreen($event)"></ui-popover-login>
   </div> -->
+  <div class="d-flex justify-content-around" style="width:100%">
+    <was-popover-login [user]="user" (close)="closeLoginScreen($event)"></was-popover-login>
+    <was-popover-account-info [isModal]="true" [user]="user" (signout)="logoutUser($event)"></was-popover-account-info>
+  </div>
   <wickey-appstore (close)="onWASClose($event)"></wickey-appstore>
 </div>
 <div class="content-group">
@@ -33,8 +37,6 @@
   <br>
   <!-- <button class="btn btn-primary" (click)="loadUser(true)" alt="Get User">Get User</button>
   <button class="btn btn-primary" (click)="testAlertBox()" alt="Test Alert">Test Alert</button> -->
-  <was-popover-account-info [isModal]="true" [user]="user" (signout)="logoutUser($event)"></was-popover-account-info>
-  <was-popover-login [user]="user" (close)="closeLoginScreen($event)"></was-popover-login>
 
 </div>
 

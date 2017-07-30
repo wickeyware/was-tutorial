@@ -4,7 +4,7 @@ li {
 wickey-appstore {
   position: fixed;
   left: 0px;
-  bottom: 10px;
+  bottom: 0px;
   display: inline-block;
 }
 .was-npm-btn {
@@ -22,14 +22,12 @@ wickey-appstore {
 }
 
 was-popover-account-info {
-  position: fixed;
-  left: 75px;
-  bottom: 0px;
+  position: relative;
   display: inline-block;
+  color: #888;
 }
 was-popover-login {
-  position: fixed;
-  right: 75px;
-  bottom: 0px;
+  position: relative;
   display: inline-block;
+  color: #888;
 }
