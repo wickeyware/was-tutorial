@@ -15,19 +15,20 @@ wickey-appstore {
   display: inline-block;
   height: 40px;
   width: 70px;
+  color: black;
   border-radius: 50%;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
   /* border: 1px solid gray; */
-  background-color: #29B6F6;
+  background-color: #5d99c6; /*#29B6F6;*/
 }
 
 was-popover-account-info {
   position: relative;
   display: inline-block;
-  color: #888;
+  color: #000000;
 }
 was-popover-login {
   position: relative;
   display: inline-block;
-  color: #888;
+  color: #000000;
 }

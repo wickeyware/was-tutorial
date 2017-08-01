@@ -20,7 +20,7 @@ body {
   margin: auto;
   font-size:100%;
   min-width: 300px;
-  background-color: rgb(235,240,242);
+  background-color: #E1E4E6; /*#90caf9;*/
   overflow: auto;
 }
 p {
@@ -28,7 +28,7 @@ p {
   line-height: 1em;  /* This keeps the line height proportional to the font size */
 }
 body, input[text], button {
-  color: #888;
+  color: #000000;
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
 }
 /* Don't allow text selection in buttons:
@@ -76,7 +76,7 @@ input {
   height: 50px;
   color: white;
   font-size: medium;
-  background-color: lightsteelblue;
+  background-color: #5d99c6;
   z-index: 17; /* Sit on top */
   /*no select text/*
   -webkit-touch-callout: none; /* iOS Safari */
@@ -108,12 +108,17 @@ input {
   -webkit-margin-after: 0em;
 }
 
+.btn-info {
+  color: black;
+  background-color: #5d99c6;
+}
+
 .content-group {
   margin-top: 100px;
   display: block;
   /*visibility: hidden;*/
   position: relative;
-  background-color: rgb(235,240,242);
+  background-color: #E1E4E6; /*#90caf9;*/
   /*left: 0;*/
   height: 100%;
   width: 100%;
