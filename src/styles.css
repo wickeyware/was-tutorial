@@ -123,3 +123,21 @@ input {
   height: 100%;
   width: 100%;
 }
+
+.signon-h1 {
+    color: #525f7f;
+    display: block;
+    text-align: center;
+    /* color: #6b7c93; */
+    font-weight: 700;
+    font-size: 16px;
+    text-transform: none;
+    padding-top: 8px;
+    margin-left: 40px;
+}
+.signon-info-popover {
+    display: inline-block;
+    margin-left: -20px;
+    z-index: 4; /*make info popovers show higher*/
+    position: relative;
+}

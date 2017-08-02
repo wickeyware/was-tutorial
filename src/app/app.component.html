@@ -2,17 +2,21 @@
 <div class="titlebar">
   <h3 class="titletext">{{title}}</h3>
   <div class="titlebottom"></div>
-  <!-- <div class="d-flex justify-content-center" style="width: 100%">
-    <ui-popover-account-info [isModal]="true" [user]="user" (signout)="logoutUser($event)"></ui-popover-account-info>
-    <ui-popover-login [user]="user" (close)="closeOnboardScreen($event)"></ui-popover-login>
-  </div> -->
-  <div class="d-flex justify-content-around" style="width:100%">
-    <was-popover-login [user]="user" (close)="closeLoginScreen($event)"></was-popover-login>
-    <was-popover-account-info [isModal]="true" [user]="user" (signout)="logoutUser($event)"></was-popover-account-info>
+  <div class="d-flex justify-content-end" style="width:100%">
+    <!-- add to the home screen and make invisible [hidden]="true" -->
+    <was-popover-login *ngIf="user" #loginpopover [user]="user" (close)="closeLoginScreen($event)"></was-popover-login>
+    <!-- <was-popover-account-info [isModal]="true" [user]="user" (signout)="loginpopover.buttonClick()"></was-popover-account-info> -->
   </div>
-  <wickey-appstore (close)="onWASClose($event)"></wickey-appstore>
+  <wickey-appstore (close)="onWASClose($event)" (update)="wasUpdate($event)"></wickey-appstore>
 </div>
 <div class="content-group">
+  <div class="signon-h1">Welcome {{userMessage}}
+    <span class="signon-info-popover">
+    <was-popover-base type='info' [isModal]="true" html='<div class="popover-title">WickeyAppStore SSO</div>
+      <div class="popover-body">To securely access your saved account from any device using your email to get a token or by entering your pin number, <b>tap the SSO button</b>.</div>'>
+      </was-popover-base>
+    </span>
+  </div>
   <form (ngSubmit)="onSubmit()" #userForm="ngForm">
     <div class="form-group">
       <label for="user_id">user_id</label>

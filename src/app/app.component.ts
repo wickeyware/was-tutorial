@@ -12,6 +12,8 @@ export class AppComponent implements OnInit {
   public user: any;
   public error_message: any;
   private test_alert = 0;
+  public userMessage = '';
+  public verifiedUser = false;
 
   constructor(
     private apiConnectionService: ApiConnectionService,
@@ -27,6 +29,11 @@ export class AppComponent implements OnInit {
       .then((value: any): void => {
         if (typeof value !== 'undefined') {
           this.user = value;
+          if (this.user.email) {
+            this.userMessage = 'verified user';
+          } else {
+            this.userMessage = '*unverified*';
+          }
           // normal load
           console.log('load user from db', this.user);
           if (show_alert) {
@@ -39,6 +46,7 @@ export class AppComponent implements OnInit {
             };
           }
         } else {
+          this.userMessage = '*unverified*';
           // create new user
           console.log('ngOnInit create new user');
           if (show_alert) {
@@ -54,6 +62,14 @@ export class AppComponent implements OnInit {
       }
       ).then(() => console.log('WASTutorial AppComponent: db', this.user))
       .catch(this.handleError);
+  }
+  wasUpdate(_loc_key: any) {
+    if (_loc_key === 'was-user') {
+      console.log('wasUpdate: ', _loc_key);
+      this.loadUser(false);
+    } else {
+      console.log('wasUpdate: ', _loc_key);
+    }
   }
   private handleError(error: any): Promise<any> {
     // .catch(this.handleError);
@@ -180,6 +196,7 @@ export class AppComponent implements OnInit {
   closeLoginScreen(_data?: any) {
     if (_data) {
       console.log('closeLoginScreen', _data);
+      this.loadUser(true);
     } else {
       console.log('closeLoginScreen');
     }
