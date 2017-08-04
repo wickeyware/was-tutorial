@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 // import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 // import {BusyModule} from 'angular2-busy';
 import { WickeyAppStoreModule, ApiConnectionService, LocalStorageService } from 'wickeyappstore';
+import { UserService } from './user.service';
 
 import { AppComponent } from './app.component';
 
@@ -17,7 +18,7 @@ import { AppComponent } from './app.component';
     FormsModule,
     WickeyAppStoreModule
   ],
-  providers: [ApiConnectionService, LocalStorageService],
+  providers: [ApiConnectionService, LocalStorageService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
