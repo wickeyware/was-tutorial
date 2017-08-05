@@ -5,7 +5,7 @@
   <div class="titlebottom"></div>
   <div class="d-flex justify-content-center" style="width:100%">
     <!-- add to the home screen and make invisible [hidden]="true" -->
-    <was-popover-login *ngIf="userService.user | async as userobj" #loginpopover (close)="closeLoginScreen($event)"></was-popover-login>
+    <was-popover-login #loginpopover (close)="closeLoginScreen($event)"></was-popover-login>
     <!-- <was-popover-account-info [isModal]="true" (signout)="loginpopover.buttonClick()"></was-popover-account-info> -->
   </div>
   <wickey-appstore (close)="onWASClose($event)" (update)="wasUpdate($event)"></wickey-appstore>

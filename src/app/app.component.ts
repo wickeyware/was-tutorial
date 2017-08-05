@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log('WASTutorial AppComponent: ngOnInit');
+    console.log('WASTutorial ngOnInit:');
   }
 
   get displayMessage() {
@@ -36,7 +36,11 @@ export class AppComponent implements OnInit {
   playGame(_lessThan: boolean) {
     // This gets a random integer and compares it to last value
     const newVal = Math.round(Math.random() * 100);
-    const _app_data = JSON.parse(this.userService.data);
+    let _app_data = JSON.parse(this.userService.data);
+    if (!_app_data) {
+      console.log('WASTutorial playGame: Set initial game value');
+    _app_data = {'score': Math.round(Math.random() * 100)};
+    }
     if (newVal < _app_data.score) {
       let titleMsg = 'Uhoh you lost...';
       if (_lessThan === true) {
