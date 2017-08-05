@@ -1,8 +1,9 @@
 <!--The content below is only a placeholder and can be replaced.-->
+<router-outlet></router-outlet>
 <div class="titlebar">
   <h3 class="titletext">{{title}}</h3>
   <div class="titlebottom"></div>
-  <div class="d-flex justify-content-end" style="width:100%">
+  <div class="d-flex justify-content-center" style="width:100%">
     <!-- add to the home screen and make invisible [hidden]="true" -->
     <was-popover-login *ngIf="userService.user | async as userobj" #loginpopover (close)="closeLoginScreen($event)"></was-popover-login>
     <!-- <was-popover-account-info [isModal]="true" (signout)="loginpopover.buttonClick()"></was-popover-account-info> -->

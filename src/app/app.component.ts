@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { WASAlertPopupComponent } from 'wickeyappstore';
-import { UserService, User } from './user.service';
+import { WASAlertPopupComponent, UserService, User, UserParams } from 'wickeyappstore';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [UserService]
 })
 export class AppComponent implements OnInit {
   title = 'WickeyAppStore Tutorial';
@@ -67,7 +65,7 @@ export class AppComponent implements OnInit {
       };
     }
     _app_data.score = newVal;
-    this.userService.updateUser(this.userService.coins, JSON.stringify(_app_data));
+    this.userService.updateUser({'coins': this.userService.coins, 'data': JSON.stringify(_app_data)});
   }
   wasUpdate(_loc_key: any) {
     if (_loc_key === 'was-user') {
@@ -88,7 +86,7 @@ export class AppComponent implements OnInit {
   }
   updateUser(app_coins?: number, app_data?: string): void {
     console.log('WASTutorial updateUser:');
-    this.userService.updateUser(app_coins, app_data)
+    this.userService.updateUser({'coins': app_coins, 'data': app_data})
       .subscribe((usr) => {
         // Handle results
         console.log('WASTutorial updateUser: RETURN:', usr);
