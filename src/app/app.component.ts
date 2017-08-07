@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
   public verifiedUser = false;
 
   constructor(
-    private userService: UserService
+    public userService: UserService
   ) { }
 
   ngOnInit(): void {
@@ -69,7 +69,7 @@ export class AppComponent implements OnInit {
       };
     }
     _app_data.score = newVal;
-    this.userService.updateUser({'coins': this.userService.coins, 'data': JSON.stringify(_app_data)});
+    this.updateUser(this.userService.coins, JSON.stringify(_app_data));
   }
   wasUpdate(_loc_key: any) {
     if (_loc_key === 'was-user') {
@@ -92,8 +92,8 @@ export class AppComponent implements OnInit {
     console.log('WASTutorial updateUser:');
     this.userService.updateUser({'coins': app_coins, 'data': app_data})
       .subscribe((usr) => {
-        // Handle results
         console.log('WASTutorial updateUser: RETURN:', usr);
+        // NOTE: all user APIS can return a `special_message`
         if (usr.special_message) {
           this.error_message = {
             title: usr.special_message.title, message: usr.special_message.message,
@@ -106,6 +106,8 @@ export class AppComponent implements OnInit {
         // Raven.setUserContext({email: usr.email, id: usr.user_id});
       }, (error) => {
         // <any>error | this casts error to be any
+        // NOTE: Can handle error return messages
+        console.log('WASTutorial updateUser: RETURN ERROR:', error);
         this.error_message = {
           title: 'Attention!',
           message: error,

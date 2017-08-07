@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 // import { HttpClientModule } from '@angular/common/http';
 // import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 // import {BusyModule} from 'angular2-busy';
-import { WickeyAppStoreModule, ApiConnectionService, LocalStorageService, UserService } from 'wickeyappstore';
+import { WickeyAppStoreModule } from 'wickeyappstore';
 
 import { AppComponent } from './app.component';
 
@@ -19,7 +19,7 @@ import { AppComponent } from './app.component';
     RouterModule,
     WickeyAppStoreModule
   ],
-  providers: [ApiConnectionService, LocalStorageService, UserService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
