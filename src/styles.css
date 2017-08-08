@@ -73,7 +73,7 @@ input {
   top: 0; /* Position the navbar at the top of the page */
   display: block;
   width: 100%;
-  height: 50px;
+  height: 60px;
   color: white;
   font-size: medium;
   background-color: #5d99c6;
@@ -102,7 +102,7 @@ input {
   font-weight: 300;
   text-shadow: 0 2px 0 darkslateblue;
   /*vertical-align: middle;*/
-  line-height: 50px;       /* the same as your div height */
+  line-height: 60px;       /* the same as your div height */
   /* This dictates the margin above and below the h3 tag, default is 1em and 0 for left/right */
   -webkit-margin-before: 0em;
   -webkit-margin-after: 0em;
@@ -114,7 +114,7 @@ input {
 }
 
 .content-group {
-  margin-top: 100px;
+  margin-top: 60px;
   display: block;
   /*visibility: hidden;*/
   position: relative;
@@ -122,6 +122,9 @@ input {
   /*left: 0;*/
   height: 100%;
   width: 100%;
+  height: -webkit-calc(100% - 100px);
+  height:    -moz-calc(100% - 100px);
+  height:         calc(100% - 100px);
 }
 
 .signon-h1 {

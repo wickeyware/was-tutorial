@@ -3,6 +3,7 @@ li {
 }
 wickey-appstore {
   position: fixed;
+  z-index: 20;
   left: 0px;
   bottom: 0px;
   display: inline-block;
@@ -28,7 +29,9 @@ was-popover-account-info {
   color: #000000;
 }
 was-popover-login {
-  position: relative;
+  position: fixed;
   display: inline-block;
   color: #000000;
+  top: 0;
+  right: 0;
 }

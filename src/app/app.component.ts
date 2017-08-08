@@ -7,7 +7,7 @@ import { WASAlertPopupComponent, UserService, User, UserParams } from 'wickeyapp
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  title = 'WickeyAppStore Tutorial';
+  title = 'WAS Tutorial';
   public error_message: any;
   private test_alert = 0;
   public userMessage = '';
