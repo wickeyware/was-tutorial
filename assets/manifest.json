@@ -60,7 +60,7 @@
   ],
   "theme_color": "#dcedc8",
   "background_color": "#aabb97",
-  "start_url": "/index.html",
+  "start_url": "/was-tutorial/index.html",
   "display": "standalone",
   "orientation": "portrait"
 }
