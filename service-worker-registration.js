@@ -26,7 +26,9 @@ if ('serviceWorker' in navigator) {
     // It won't be able to control pages unless it's located at the same level or higher than them.
     // *Don't* register service worker file in, e.g., a scripts/ sub-directory!
     // See https://github.com/slightlyoff/ServiceWorker/issues/468
-    navigator.serviceWorker.register('service-worker.js').then(function(reg) {
+    // useCache: https://github.com/w3c/ServiceWorker/issues/893#issuecomment-248252956
+    // other help: https://developers.google.com/web/ilt/pwa/using-sw-precache-and-sw-toolbox
+    navigator.serviceWorker.register('service-worker.js', {useCache: true}).then(function(reg) {
       // updatefound is fired if service-worker.js changes.
       reg.onupdatefound = function() {
         // The updatefound event implies that reg.installing is set; see
@@ -41,8 +43,11 @@ if ('serviceWorker' in navigator) {
                 // have been added to the cache.
                 // It's the perfect time to display a "New content is available; please refresh."
                 // message in the page's interface.
-                console.log('New or updated content is available.');
-                alert('New or updated content is available.');
+                console.log('New or updated content is available! Please refresh your page.');
+                var confirmbox = confirm("New or updated content is available! Please refresh your page.");
+                if (confirmbox == true) {
+                  location.reload(true);
+                }
               } else {
                 // At this point, everything has been precached.
                 // It's the perfect time to display a "Content is cached for offline use." message.
