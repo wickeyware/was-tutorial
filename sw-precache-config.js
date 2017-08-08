@@ -22,5 +22,4 @@ module.exports = {
     urlPattern: /^https:\/\/unpkg\.com\/wickeyappstore@0\.5\.2\/styles\.css/,
     handler: 'cacheFirst'
   }],
-  navigateFallback: '/index.html',
 };
