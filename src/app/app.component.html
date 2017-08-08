@@ -1,48 +1,51 @@
 <!--The content below is only a placeholder and can be replaced.-->
+<router-outlet></router-outlet>
+<wickey-appstore (close)="onWASClose($event)" (update)="wasUpdate($event)"></wickey-appstore>
 <div class="titlebar">
   <h3 class="titletext">{{title}}</h3>
+  <was-popover-login #loginpopover (close)="closeLoginScreen($event)"></was-popover-login>
   <div class="titlebottom"></div>
-  <div class="d-flex justify-content-end" style="width:100%">
-    <!-- add to the home screen and make invisible [hidden]="true" -->
-    <was-popover-login *ngIf="user" #loginpopover [user]="user" (close)="closeLoginScreen($event)"></was-popover-login>
-    <!-- <was-popover-account-info [isModal]="true" [user]="user" (signout)="loginpopover.buttonClick()"></was-popover-account-info> -->
-  </div>
-  <wickey-appstore (close)="onWASClose($event)" (update)="wasUpdate($event)"></wickey-appstore>
 </div>
 <div class="content-group">
-  <div class="signon-h1">Welcome {{userMessage}}
+  <div class="signon-h1">Welcome {{displayMessage | async}}
     <span class="signon-info-popover">
     <was-popover-base type='info' [isModal]="true" html='<div class="popover-title">WickeyAppStore SSO</div>
       <div class="popover-body">To securely access your saved account from any device using your email to get a token or by entering your pin number, <b>tap the SSO button</b>.</div>'>
       </was-popover-base>
     </span>
   </div>
-  <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+  <form *ngIf="userService.user | async as userobj" (ngSubmit)="onSubmit()" #userForm="ngForm">
     <div class="form-group">
       <label for="user_id">user_id</label>
-      <input *ngIf="user" type="text" class="form-control" id="user_id" readonly
-             [(ngModel)]="user.user_id" name="user_id"
+      <input type="text" class="form-control" id="user_id" readonly
+             [(ngModel)]="userobj.user_id" name="user_id"
              #userIdInput="ngModel">
     </div>
     <div class="form-group">
       <label for="coins">coins</label>
-      <input *ngIf="user" type="number" class="form-control" id="coins"
-             [(ngModel)]="user.coins" name="coins"
+      <input type="number" class="form-control" id="coins"
+             [(ngModel)]="userobj.coins" name="coins"
              #coinsInput="ngModel">
     </div>
     <div class="form-group">
       <label for="app_data">any string data (e.g. JSON)</label>
-      <input *ngIf="user" type="text" class="form-control" id="app_data"
-             [(ngModel)]="user.data" name="app_data"
+      <input type="text" class="form-control" id="app_data" readonly
+             [(ngModel)]="userobj.data" name="app_data"
              #dataInput="ngModel">
     </div>
     <button type="submit" class="btn btn-info" [disabled]="!userForm.form.valid">Save</button>
   </form>
   <br>
+  <p class="game-text">Will the next value (0-100) be < or >= than last score?</p>
+  <div class="d-flex justify-content-around" style="width:100%">
+    <button class="btn btn-primary" (click)="playGame(true)" alt="Less Than"><</button>
+    <button class="btn btn-primary" (click)="playGame(false)" alt="Greater or equal Than">>=</button>
+  </div>
   <!-- <button class="btn btn-primary" (click)="loadUser(true)" alt="Get User">Get User</button>
   <button class="btn btn-primary" (click)="testAlertBox()" alt="Test Alert">Test Alert</button> -->
 
 </div>
 
 <a class="btn was-npm-btn" target="WAS_npm" href="https://www.npmjs.com/package/wickeyappstore">NPM</a>
+<!-- TODO: Possibly bind to userService.messages-->
 <was-alert-popup [alert_table]="error_message" (close)="onAlertClose($event)"></was-alert-popup>

@@ -1,72 +1,79 @@
 import { Component, OnInit } from '@angular/core';
-import { LocalStorageService, ApiConnectionService, WASAlertPopupComponent } from 'wickeyappstore';
+import { WASAlertPopupComponent, UserService, User, UserParams } from 'wickeyappstore';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [LocalStorageService, ApiConnectionService]
 })
 export class AppComponent implements OnInit {
-  title = 'WickeyAppStore Tutorial';
-  public user: any;
+  title = 'WAS Tutorial';
   public error_message: any;
   private test_alert = 0;
   public userMessage = '';
   public verifiedUser = false;
 
   constructor(
-    private apiConnectionService: ApiConnectionService,
-    private localStorageService: LocalStorageService
+    public userService: UserService
   ) { }
 
   ngOnInit(): void {
-    console.log('AppComponent: ngOnInit');
-    this.loadUser(false);
+    console.log('WASTutorial ngOnInit:');
   }
-  loadUser(show_alert: boolean) {
-    this.localStorageService.get('was-user')
-      .then((value: any): void => {
-        if (typeof value !== 'undefined') {
-          this.user = value;
-          if (this.user.email) {
-            this.userMessage = 'verified user';
-          } else {
-            this.userMessage = '*unverified*';
-          }
-          // normal load
-          console.log('load user from db', this.user);
-          if (show_alert) {
-            this.error_message = {
-              title: 'User Object',
-              message: `user_id: ${this.user.user_id}, coins: ${this.user.coins}, data: ${this.user.data}`,
-              header_bg: '#29B6F6', header_color: 'black', button_type: 'btn-info',
-              helpmessage: [],
-              randcookie: `${Math.random()}${Math.random()}${Math.random()}`,
-            };
-          }
+
+  get displayMessage() {
+    return this.userService.user.map((usr: User) => {
+      let _displayMsg = '';
+      if (usr.email) {
+          _displayMsg = 'verified user';
         } else {
-          this.userMessage = '*unverified*';
-          // create new user
-          console.log('ngOnInit create new user');
-          if (show_alert) {
-            this.error_message = {
-              title: 'Hi',
-              message: 'User not yet created, try again',
-              header_bg: '#FFA726', header_color: 'black', button_type: 'btn-warning',
-              helpmessage: [],
-              randcookie: `${Math.random()}${Math.random()}${Math.random()}`,
-            };
-          }
+          _displayMsg = '*unverified*';
         }
+      return _displayMsg;
+    });
+  }
+
+  playGame(_lessThan: boolean) {
+    // This gets a random integer and compares it to last value
+    const newVal = Math.round(Math.random() * 100);
+    let _app_data = JSON.parse(this.userService.data);
+    if (!_app_data) {
+      console.log('WASTutorial playGame: Set initial game value');
+    _app_data = {'score': Math.round(Math.random() * 100)};
+    }
+    if (newVal < _app_data.score) {
+      let titleMsg = 'Uhoh you lost...';
+      if (_lessThan === true) {
+        titleMsg = 'WIN!';
       }
-      ).then(() => console.log('WASTutorial AppComponent: db', this.user))
-      .catch(this.handleError);
+      // SHOW RESULTS IN POPUP
+      this.error_message = {
+        title: titleMsg,
+        message: `New random value ${newVal} < current ${_app_data.score}`,
+        header_bg: '#29B6F6', header_color: 'black', button_type: 'btn-info',
+        helpmessage: [],
+        randcookie: `${Math.random()}${Math.random()}${Math.random()}`,
+      };
+    } else {
+      let titleMsg = 'Uhoh you lost...';
+      if (_lessThan === false) {
+        titleMsg = 'WIN!';
+      }
+      // SHOW RESULTS IN POPUP
+      this.error_message = {
+        title: titleMsg,
+        message: `New random value ${newVal} >= current ${_app_data.score}`,
+        header_bg: '#29B6F6', header_color: 'black', button_type: 'btn-info',
+        helpmessage: [],
+        randcookie: `${Math.random()}${Math.random()}${Math.random()}`,
+      };
+    }
+    _app_data.score = newVal;
+    this.updateUser(this.userService.coins, JSON.stringify(_app_data));
   }
   wasUpdate(_loc_key: any) {
     if (_loc_key === 'was-user') {
       console.log('wasUpdate: ', _loc_key);
-      this.loadUser(false);
     } else {
       console.log('wasUpdate: ', _loc_key);
     }
@@ -78,64 +85,29 @@ export class AppComponent implements OnInit {
   }
   onSubmit() {
     console.log('onSubmit: Save user locally and to server');
-    // TODO: Call WAS save user function, this saves locally and to server
+    // Call WAS save user function, this saves locally and to server
     this.updateUser();
   }
-  updateUser(): void {
-    console.log('==============\nUPDATE USER\n==============');
-    console.log(this.user);
-    const apiobject = {user_id: this.user.user_id, email: this.user.email, version: .1, standalone: false,
-    app_coins: this.user.coins, app_data: this.user.data};
-    this.apiConnectionService
-      .createPerson(apiobject)
-      .subscribe((res) => {
-        // Handle results
-        // Standard return: signature, paypal, allow_reward_push, next_reward, coins, isPro, user_id
-        // PLUS: freebie_used, settings, inapps, rated_app
-        if (res.status === 201) {
-          console.log('updateUser: NEW RETURN:', res);
-          // On new user/recover
-          // TODO: Add more of a verification
-          this.user = res;
-        } else {
-          console.log('updateUser: RETURN:', res);
-          // NOTE: If a user has an email, the account was either verified by token or doesn't belong to someone else.
-          if (res.email && res.user_id) {
-            this.user.user_id = res.user_id;
-          }
-          this.user.email = res.email;
-          if (res.coins) {
-            this.user.coins = res.coins;
-          }
-          if (res.data) {
-            this.user.data = res.data;
-          }
-          this.user.created_time = res.created_time;
-          this.user.freebie_used = res.freebie_used;
-          this.user.settings = res.settings;
-        }
-        // UPDATE USER //
-        this.localStorageService.set('user', this.user).then(() => {
+  updateUser(app_coins?: number, app_data?: string): void {
+    console.log('WASTutorial updateUser:');
+    this.userService.updateUser({'coins': app_coins, 'data': app_data})
+      .subscribe((usr) => {
+        console.log('WASTutorial updateUser: RETURN:', usr);
+        // NOTE: all user APIS can return a `special_message`
+        if (usr.special_message) {
           this.error_message = {
-              title: 'Saved User',
-              message: `user_id: ${this.user.user_id}, coins: ${this.user.coins}, data: ${this.user.data}`,
-              header_bg: '#29B6F6', header_color: 'black', button_type: 'btn-info',
-              helpmessage: [],
-              randcookie: `${Math.random()}${Math.random()}${Math.random()}`,
-            };
-        });
-        if (res.special_message) {
-          this.error_message = {
-            title: res.special_message.title, message: res.special_message.message,
+            title: usr.special_message.title, message: usr.special_message.message,
             button_type: 'btn-info', header_bg: '#29B6F6', header_color: 'black',
             helpmessage: [],
             randcookie: `${Math.random()}${Math.random()}${Math.random()}`
           };
         }
         // Add user context in sentry
-        // Raven.setUserContext({email: this.user.email, id: this.user.user_id});
+        // Raven.setUserContext({email: usr.email, id: usr.user_id});
       }, (error) => {
         // <any>error | this casts error to be any
+        // NOTE: Can handle error return messages
+        console.log('WASTutorial updateUser: RETURN ERROR:', error);
         this.error_message = {
           title: 'Attention!',
           message: error,
@@ -196,7 +168,6 @@ export class AppComponent implements OnInit {
   closeLoginScreen(_data?: any) {
     if (_data) {
       console.log('closeLoginScreen', _data);
-      this.loadUser(true);
     } else {
       console.log('closeLoginScreen');
     }
