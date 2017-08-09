@@ -5459,9 +5459,9 @@ which@1, which@^1.2.1, which@^1.2.9:
   dependencies:
     isexe "^2.0.0"
 
-wickeyappstore@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/wickeyappstore/-/wickeyappstore-1.1.2.tgz#851d4a1ae15161b87eac1938f46bc9b310644c49"
+wickeyappstore@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/wickeyappstore/-/wickeyappstore-1.2.0.tgz#b3d1b81ce13d95f265c21adc415cb847a0be33ec"
 
 wide-align@^1.1.0:
   version "1.1.2"
