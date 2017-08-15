@@ -22,19 +22,19 @@
              #userIdInput="ngModel">
     </div>
     <div class="form-group">
-      <label for="coins">coins</label>
-      <input type="number" class="form-control" id="coins"
-             [(ngModel)]="userobj.coins" name="coins"
-             #coinsInput="ngModel">
+      <label for="review">review</label>
+      <input type="text" class="form-control" id="review"
+             [(ngModel)]="reviewText" name="review"
+             #reviewInput="ngModel">
     </div>
-    <div class="form-group">
-      <label for="app_data">any string data (e.g. JSON)</label>
-      <input type="text" class="form-control" id="app_data" readonly
-             [(ngModel)]="userobj.data" name="app_data"
-             #dataInput="ngModel">
-    </div>
-    <button type="submit" class="btn btn-info" [disabled]="!userForm.form.valid">Save</button>
+    <button type="submit" class="btn btn-info" [disabled]="!userForm.form.valid">Leave Review</button>
   </form>
+  <div *ngIf="userService.user | async as userobj" class="form-group">
+    <label for="app_data">any string data (e.g. JSON)</label>
+    <input type="text" class="form-control" id="app_data" readonly
+           [(ngModel)]="userobj.data" name="app_data"
+           #dataInput="ngModel">
+  </div>
   <br>
   <p class="game-text">Will the next value (0-100) be < or >= than last score?</p>
   <div class="d-flex justify-content-around" style="width:100%">

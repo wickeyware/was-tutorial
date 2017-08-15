@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { WASAlertPopupComponent, UserService, User, UserParams } from 'wickeyappstore';
+import { WASAlertPopupComponent, UserService, ApiConnectionService, User, UserParams } from 'wickeyappstore';
 
 @Component({
   selector: 'app-root',
@@ -12,13 +12,21 @@ export class AppComponent implements OnInit {
   private test_alert = 0;
   public userMessage = '';
   public verifiedUser = false;
+  public reviewText = '';
 
   constructor(
-    public userService: UserService
+    public userService: UserService,
+    public apiConnectionService: ApiConnectionService
   ) { }
 
   ngOnInit(): void {
     console.log('WASTutorial ngOnInit:');
+    const tempSub = this.userService.user.subscribe((usr: User) => {
+      if (usr.user_id) {
+        this.loadReview(usr.user_id);
+        tempSub.unsubscribe();
+      }
+    });
   }
 
   get displayMessage() {
@@ -36,10 +44,12 @@ export class AppComponent implements OnInit {
   playGame(_lessThan: boolean) {
     // This gets a random integer and compares it to last value
     const newVal = Math.round(Math.random() * 100);
-    let _app_data = JSON.parse(this.userService.data);
-    if (!_app_data) {
+    let _app_data;
+    try {
+      _app_data = JSON.parse(this.userService.data);
+    } catch (error) {
       console.log('WASTutorial playGame: Set initial game value');
-    _app_data = {'score': Math.round(Math.random() * 100)};
+      _app_data = {'score': Math.round(Math.random() * 100)};
     }
     if (newVal < _app_data.score) {
       let titleMsg = 'Uhoh you lost...';
@@ -86,8 +96,58 @@ export class AppComponent implements OnInit {
   onSubmit() {
     console.log('onSubmit: Save user locally and to server');
     // Call WAS save user function, this saves locally and to server
-    this.updateUser();
+    // this.updateUser();
+    this.leaveReview();
   }
+
+  loadReview(_user_id) {
+    this.apiConnectionService.getReviews(
+      {'storeapp_id': 23, 'user_id': _user_id}
+    ).subscribe((_reviews: any) => {
+      console.log('WAStutorial loadReview', _reviews);
+      try {
+        this.reviewText = _reviews[0].text;
+      } catch (error) { }
+    });
+  }
+
+  leaveReview() {
+    console.log('WAStutorial leaveReview');
+    const _rand_int = Math.round(Math.random() * 100);
+    const _title = `Awesome work * ${_rand_int}!`;
+    if (this.reviewText.length < 2) {
+      this.reviewText = 'This is the type of tutorial one can only hope for, simply the best!';
+    }
+    const _text = this.reviewText;
+    const _rating = 5;
+    this.userService.createReview(_title, _text, _rating)
+    .subscribe((usr) => {
+      console.log('WASTutorial leaveReview: RETURN:', usr);
+      // NOTE: all user APIS can return a `special_message`
+      if (usr.special_message) {
+        this.error_message = {
+          title: usr.special_message.title, message: usr.special_message.message,
+          button_type: 'btn-info', header_bg: '#29B6F6', header_color: 'black',
+          helpmessage: [],
+          randcookie: `${Math.random()}${Math.random()}${Math.random()}`
+        };
+      }
+      // Add user context in sentry
+      // Raven.setUserContext({email: usr.email, id: usr.user_id});
+    }, (error) => {
+      // <any>error | this casts error to be any
+      // NOTE: Can handle error return messages
+      console.log('WASTutorial leaveReview: RETURN ERROR:', error);
+      this.error_message = {
+        title: 'Attention!',
+        message: error,
+        header_bg: '#F44336', header_color: 'black', button_type: 'btn-danger',
+        helpmessage: [],
+        randcookie: `${Math.random()}${Math.random()}${Math.random()}`,
+      };
+    });
+  }
+
   updateUser(app_coins?: number, app_data?: string): void {
     console.log('WASTutorial updateUser:');
     this.userService.updateUser({'coins': app_coins, 'data': app_data})
