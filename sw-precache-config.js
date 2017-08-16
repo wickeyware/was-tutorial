@@ -16,10 +16,10 @@ module.exports = {
     urlPattern: /^https:\/\/maxcdn\.bootstrapcdn\.com\//,
     handler: 'cacheFirst'
   }, {
-    urlPattern: /^https:\/\/cdnjs\.cloudflare\.com\/ajax\/libs\/fastclick\/1\.0\.6\/fastclick\.min\.js/,
+    urlPattern: /^https:\/\/unpkg\.com\//,
     handler: 'cacheFirst'
   }, {
-    urlPattern: /^https:\/\/unpkg\.com\/wickeyappstore@0\.5\.2\/styles\.css/,
+    urlPattern: /^https:\/\/cdnjs\.cloudflare\.com\//,
     handler: 'cacheFirst'
   }],
 };
