@@ -37,7 +37,7 @@
 /* eslint-disable indent, no-unused-vars, no-multiple-empty-lines, max-nested-callbacks, space-before-function-paren, quotes, comma-spacing */
 'use strict';
 
-var precacheConfig = [["/was-tutorial/assets/IEconfig.xml","d2b556ea28025785d368c00b5fdb7943"],["/was-tutorial/assets/favicon-16x16.png","4b2b62eb6f48e2c5a1f418803f9bdbec"],["/was-tutorial/assets/favicon-32x32.png","aac129d682aa40928f8245ffd633dc24"],["/was-tutorial/assets/favicon.ico","a80d55341ce0104f821424491bfa823a"],["/was-tutorial/assets/manifest.json","3f23cf066d79828977cc72a4cc8d96b8"],["/was-tutorial/assets/safari-pinned-tab.svg","b822a20bd6bc6cab636efc352b944f48"],["/was-tutorial/index.html","19326e8c0fa50d2ee4443ac4f551cb93"],["/was-tutorial/inline.4adf23fb4c128b3fa76d.bundle.js","f765940ee3d875044cf7cb3111942c3e"],["/was-tutorial/main.d9eee127b14db3d828dc.bundle.js","b4a3cab44fb4ad7d65677b1a9fb38c71"],["/was-tutorial/polyfills.a51efe1f055038baa1f0.bundle.js","e937dce3065c3212663388d09c158d97"],["/was-tutorial/service-worker-registration.js","0c38cb5302a3f766468a8920fc400f27"],["/was-tutorial/styles.a29b02517ce06161a8b6.bundle.css","a29b02517ce06161a8b69b0c1921f677"],["/was-tutorial/vendor.8d09af2509c275092f88.bundle.js","6d3396123b3ba83d0ea59bbb7bd39fa9"]];
+var precacheConfig = [["/was-tutorial/assets/IEconfig.xml","d2b556ea28025785d368c00b5fdb7943"],["/was-tutorial/assets/favicon-16x16.png","4b2b62eb6f48e2c5a1f418803f9bdbec"],["/was-tutorial/assets/favicon-32x32.png","aac129d682aa40928f8245ffd633dc24"],["/was-tutorial/assets/favicon.ico","a80d55341ce0104f821424491bfa823a"],["/was-tutorial/assets/manifest.json","3f23cf066d79828977cc72a4cc8d96b8"],["/was-tutorial/assets/safari-pinned-tab.svg","b822a20bd6bc6cab636efc352b944f48"],["/was-tutorial/index.html","61294002d0a110bf29d7c4ce3dfdbb7b"],["/was-tutorial/inline.2236ce6ec8e1d8d56afb.bundle.js","2d2997d286f4daa951808fd416ab6c80"],["/was-tutorial/main.3cf3af4b72142397d59e.bundle.js","1b95b1524d01e484f7128548b4b7da74"],["/was-tutorial/polyfills.e60b08dbd7fdc28045c2.bundle.js","b7391d6839910c4f4c946be9102b7dfd"],["/was-tutorial/service-worker-registration.js","0c38cb5302a3f766468a8920fc400f27"],["/was-tutorial/styles.a29b02517ce06161a8b6.bundle.css","a29b02517ce06161a8b69b0c1921f677"],["/was-tutorial/vendor.20205616fcaf9c25d08d.bundle.js","c46cc95f57eda8c3265b64fc32810593"]];
 var cacheName = 'sw-precache-v3-sw-precache-' + (self.registration ? self.registration.scope : '');
 
 
@@ -287,8 +287,8 @@ self.addEventListener('fetch', function(event) {
 
 toolbox.router.get(/^https:\/\/api\.wickeyappstore\.com\//, toolbox.networkFirst, {});
 toolbox.router.get(/^https:\/\/maxcdn\.bootstrapcdn\.com\//, toolbox.cacheFirst, {});
-toolbox.router.get(/^https:\/\/cdnjs\.cloudflare\.com\/ajax\/libs\/fastclick\/1\.0\.6\/fastclick\.min\.js/, toolbox.cacheFirst, {});
-toolbox.router.get(/^https:\/\/unpkg\.com\/wickeyappstore@0\.5\.2\/styles\.css/, toolbox.cacheFirst, {});
+toolbox.router.get(/^https:\/\/unpkg\.com\//, toolbox.cacheFirst, {});
+toolbox.router.get(/^https:\/\/cdnjs\.cloudflare\.com\//, toolbox.cacheFirst, {});
 
 
 
