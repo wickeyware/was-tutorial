@@ -1,5 +1,6 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <router-outlet></router-outlet>
+<was-spinner [busy]="busy" [message]='"Please wait.."'></was-spinner>
 <wickey-appstore (close)="onWASClose($event)" (update)="wasUpdate($event)"></wickey-appstore>
 <div class="titlebar">
   <h3 class="titletext">{{title}}</h3>
@@ -21,13 +22,6 @@
              [(ngModel)]="userobj.user_id" name="user_id"
              #userIdInput="ngModel">
     </div>
-    <div class="form-group">
-      <label for="review">review</label>
-      <input type="text" class="form-control" id="review"
-             [(ngModel)]="reviewText" name="review"
-             #reviewInput="ngModel">
-    </div>
-    <button type="submit" class="btn btn-info" [disabled]="!userForm.form.valid">Leave Review</button>
   </form>
   <div *ngIf="userService.user | async as userobj" class="form-group">
     <label for="app_data">any string data (e.g. JSON)</label>
