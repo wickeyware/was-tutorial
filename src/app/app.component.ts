@@ -14,6 +14,34 @@ export class AppComponent implements OnInit {
   private test_alert = 0;
   public userMessage = '';
   public verifiedUser = false;
+  public options = {
+    radius: 260,
+    defaultPosition: 'bottomRight',
+    buttonOpacity: 0.85,
+    defaultOpen: false,
+    spinable: false,
+  };
+  public wings = [
+    {
+        'title': 'Add Review',
+        'color': '#ea2a29',
+        'icon': {'name': 'fa fa-tablet'},
+        'name': 'review'
+    }, {
+        'title': 'App Store',
+        'color': '#f16729',
+        'icon': {'name': 'fa fa-laptop'},
+        'name': 'store'
+    }
+  ];
+  public gutter = { top: 30, left: 10, right: 10, bottom: 30 };
+
+  public startAngles = {
+    topLeft: 20,
+    topRight: 130,
+    bottomRight: 186,
+    bottomLeft: 324
+  };
 
   constructor(
     public userService: UserService
@@ -21,6 +49,14 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('WASTutorial ngOnInit:');
+  }
+  public WASMenuClick(open: any) {
+    // returns true or false
+    console.log('WASMenuClick', open);
+  }
+  public WASWingClick(event: any) {
+    // returns the 'wings' object of the clicked
+    console.log('WASWingClick', event);
   }
 
   get displayMessage() {

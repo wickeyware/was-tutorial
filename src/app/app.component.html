@@ -1,5 +1,6 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <router-outlet></router-outlet>
+<was-menu-container [options]="options" [gutter]="gutter" [startAngles]="startAngles" [wings]="wings" (onMenuBtnClicked)="WASMenuClick($event)" (onWingSelected)="WASWingClick($event)"></was-menu-container>
 <was-spinner [busy]="busy" [message]='"Please wait.."'></was-spinner>
 <wickey-appstore (close)="onWASClose($event)" (update)="wasUpdate($event)"></wickey-appstore>
 <div class="titlebar">
