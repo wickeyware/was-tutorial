@@ -129,13 +129,13 @@ export class MenuOptions {
             'topRight': {
                 'top': this.gutter.top,
                 'left': window.innerWidth - this.menuConfig.buttonWidth - this.gutter.right,
-                'textAnchor': 'end',
+                'textAnchor': 'middle',
                 'textRotate': 180,
             },
             'bottomRight': {
                 'top': window.innerHeight - this.menuConfig.buttonWidth - this.gutter.bottom,
                 'left': window.innerWidth - this.menuConfig.buttonWidth - this.gutter.right,
-                'textAnchor': 'end',
+                'textAnchor': 'middle',
                 'textRotate': 180,
             },
             'bottomLeft': {

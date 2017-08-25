@@ -7,7 +7,6 @@ import {
     ElementRef, Renderer2, HostBinding, ViewChild, AfterViewInit, ChangeDetectionStrategy
 } from '@angular/core';
 import { IMenuWing, MenuOptions } from './menu-options.service';
-// import { SpinService } from './menu-spin.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -19,20 +18,17 @@ import { Subscription } from 'rxjs/Subscription';
     animations: [
         trigger('rotateWing', [
             transition(':enter', [
-                // style({transform: 'rotate({{startAngles}}deg) scale(0)'}),
-                // animate('180ms cubic-bezier(0.680, -0.550, 0.265, 1.550)', style({transform: 'rotate({{startAngles}}deg) scale(1)'})),
-                animate('180ms 100ms cubic-bezier(0.680, -0.550, 0.265, 1.550)', style('*'))
+                animate('180ms 100ms', style('*'))
             ]),
             transition(':leave', [
-                animate('180ms cubic-bezier(0.680, -0.550, 0.265, 1.550)', style({transform: 'rotate({{startAngles}}deg) scale(1)'})),
-                animate('180ms 1ms cubic-bezier(0.680, -0.550, 0.265, 1.550)', style({transform: 'rotate({{startAngles}}deg) scale(0)'}))
+                animate('180ms 100ms', style('*'))
             ]),
         ]),
         trigger('scaleWing', [
-            state('0', style({transform: 'scale(1)'})),
-            state('1', style({transform: 'scale(1.2)'})),
+            state('0', style({ transform: 'scale(1)' })),
+            state('1', style({ transform: 'scale(1.2)' })),
             transition('0<=>1', [
-                animate('180ms cubic-bezier(0.680, -0.550, 0.265, 1.550)')
+                animate('180ms cubic-bezier(.68,-0.55,.26,1.55)')
             ]),
         ]),
     ],
@@ -61,11 +57,11 @@ export class MenuWingComponent implements OnChanges, OnInit, AfterViewInit, OnDe
      * Binding to rotateWing animation
      * */
     @HostBinding('@rotateWing')
-    public rotateWingState: any = {value: '', params: {startAngles: 0}};
+    public rotateWingState: any = { value: '', params: { startAngles: 0 } };
 
-    constructor( private menuOptions: MenuOptions,
-                 private elm: ElementRef,
-                 private renderer: Renderer2 ) {
+    constructor(private menuOptions: MenuOptions,
+        private elm: ElementRef,
+        private renderer: Renderer2) {
         this.menuConfig = this.menuOptions.MenuConfig;
     }
 
@@ -76,7 +72,7 @@ export class MenuWingComponent implements OnChanges, OnInit, AfterViewInit, OnDe
     public ngOnDestroy(): void {
     }
 
-    public ngOnChanges( changes: SimpleChanges ): void {
+    public ngOnChanges(changes: SimpleChanges): void {
 
         // When the menu's position changes,
         // recalculate each wing's and its icon rotation degrees
@@ -86,7 +82,7 @@ export class MenuWingComponent implements OnChanges, OnInit, AfterViewInit, OnDe
             // bottomRight {topLeft: 20, topRight: 130, bottomRight: 186, bottomLeft: 324}
 
             this.startAngles = this.menuOptions.StartAngles[this.position];
-            this.rotateWingState = {value: '', params: {startAngles: this.startAngles}};
+            this.rotateWingState = { value: '', params: { startAngles: this.startAngles } };
             this.rotateDeg = this.startAngles +
                 (this.index * this.menuConfig.angle);
             this.setWingTransformStyle();
@@ -124,6 +120,7 @@ export class MenuWingComponent implements OnChanges, OnInit, AfterViewInit, OnDe
      * Click on the wing
      * */
     public onClick(): void {
+        this.scaleWingState = true;
         this.wingClicked.emit(this.wing);
     }
 
@@ -143,7 +140,7 @@ export class MenuWingComponent implements OnChanges, OnInit, AfterViewInit, OnDe
     /**
      * Set wing icon transform style
      * */
-    private setWingIconTransformStyle( ): void {
+    private setWingIconTransformStyle(): void {
         if (this.menuConfig.showIcons || this.menuConfig.onlyIcons) {
             this.renderer.setStyle(this.wingIconElm.nativeElement, 'transform', 'translate(' + this.iconX + 'px, ' + this.iconY + 'px) rotate(' + (this.rotateDeg) * -1 + 'deg)');
             this.renderer.setStyle(this.wingIconElm.nativeElement, '-webkit-transform', 'translate(' + this.iconX + 'px, ' + this.iconY + 'px) rotate(' + (this.rotateDeg) * -1 + 'deg)');

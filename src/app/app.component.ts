@@ -15,23 +15,28 @@ export class AppComponent implements OnInit {
   public userMessage = '';
   public verifiedUser = false;
   public options = {
-    radius: 260,
-    defaultPosition: 'bottomRight',
+    radius: 240,
+    defaultPosition: 'bottomLeft',
     buttonOpacity: 0.85,
     defaultOpen: false,
     spinable: false,
   };
   public wings = [
     {
-        'title': 'Add Review',
-        'color': '#ea2a29',
-        'icon': {'name': 'fa fa-tablet'},
-        'name': 'review'
-    }, {
-        'title': 'App Store',
-        'color': '#f16729',
-        'icon': {'name': 'fa fa-laptop'},
-        'name': 'store'
+      'title': 'Leave a Review',
+      'color': '#ea2a29',
+      'icon': {
+        'name': 'fa fa-send',
+      },
+      'name': 'review',
+    },
+    {
+      'title': 'Open the Store',
+      'color': '#f16729',
+      'icon': {
+        'name': 'fa fa-shopping-bag'
+      },
+      'name': 'store',
     }
   ];
   public gutter = { top: 30, left: 10, right: 10, bottom: 30 };
@@ -63,10 +68,10 @@ export class AppComponent implements OnInit {
     return this.userService.user.map((usr: User) => {
       let _displayMsg = '';
       if (usr.email) {
-          _displayMsg = 'verified user';
-        } else {
-          _displayMsg = '*unverified*';
-        }
+        _displayMsg = 'verified user';
+      } else {
+        _displayMsg = '*unverified*';
+      }
       return _displayMsg;
     });
   }
@@ -79,7 +84,7 @@ export class AppComponent implements OnInit {
       _app_data = JSON.parse(this.userService.data);
     } catch (error) {
       console.log('WASTutorial playGame: Set initial game value');
-      _app_data = {'score': Math.round(Math.random() * 100)};
+      _app_data = { 'score': Math.round(Math.random() * 100) };
     }
     if (newVal < _app_data.score) {
       let titleMsg = 'Uhoh you lost...';
@@ -131,7 +136,7 @@ export class AppComponent implements OnInit {
 
   updateUser(app_coins?: number, app_data?: string): void {
     console.log('WASTutorial updateUser:');
-    this.busy = this.userService.updateUser({'coins': app_coins, 'data': app_data})
+    this.busy = this.userService.updateUser({ 'coins': app_coins, 'data': app_data })
       .subscribe((usr) => {
         console.log('WASTutorial updateUser: RETURN:', usr);
         // NOTE: all user APIS can return a `special_message`

@@ -84,8 +84,8 @@ export class MenuContainerComponent implements OnInit, OnDestroy {
     public top: number; // for draggingMenu animation
     public left: number; // for draggingMenu animation
 
-    private allowTransition: boolean = true; // a flag to indicate if button text animation finished
-    private isDragging: boolean = false; // A flag to indicate the drag move begins
+    private allowTransition = true; // a flag to indicate if button text animation finished
+    private isDragging = false; // A flag to indicate the drag move begins
 
     /**
      * Binding host element to @menuState animation
@@ -130,7 +130,15 @@ export class MenuContainerComponent implements OnInit, OnDestroy {
      * Emit the wing that has been clicked
      * */
     public clickWing( wing: IMenuWing ): void {
-        this.onWingSelected.emit(wing);
+        // if they click a menu, then close the menu
+        setTimeout(() => {
+            // do stuff
+            this.toggleMenu();
+         }, 200);
+         setTimeout(() => {
+            // do stuff
+            this.onWingSelected.emit(wing);
+         }, 300);
     }
 
     /**
@@ -146,6 +154,7 @@ export class MenuContainerComponent implements OnInit, OnDestroy {
      * Toggle the menu list
      * */
     public toggleMenu() {
+        console.log('toggle Menu');
         if (this.allowTransition) {
             this.wingsState = !this.wingsState;
             this.allowTransition = false;
