@@ -18,10 +18,8 @@ import { Subscription } from 'rxjs/Subscription';
     animations: [
         trigger('rotateWing', [
             transition(':enter', [
-                animate('180ms 100ms', style('*'))
-            ]),
-            transition(':leave', [
-                animate('180ms 100ms', style('*'))
+                style({transform: 'rotate({{startAngles}}deg) scale(.1)'}),
+                animate('100ms 10ms cubic-bezier(.42,0,.58,1)', style('*'))
             ]),
         ]),
         trigger('scaleWing', [
@@ -130,10 +128,6 @@ export class MenuWingComponent implements OnChanges, OnInit, AfterViewInit, OnDe
      * */
     private setWingTransformStyle(): void {
         this.renderer.setStyle(this.elm.nativeElement, 'transform', 'rotate(' + this.rotateDeg + 'deg)');
-        this.renderer.setStyle(this.elm.nativeElement, '-webkit-transform', 'rotate(' + this.rotateDeg + 'deg)');
-        this.renderer.setStyle(this.elm.nativeElement, '-ms-transform', 'rotate(' + this.rotateDeg + 'deg)');
-        this.renderer.setStyle(this.elm.nativeElement, '-moz-transform', 'rotate(' + this.rotateDeg + 'deg)');
-        this.renderer.setStyle(this.elm.nativeElement, '-o-transform', 'rotate(' + this.rotateDeg + 'deg)');
         return;
     }
 
@@ -142,11 +136,8 @@ export class MenuWingComponent implements OnChanges, OnInit, AfterViewInit, OnDe
      * */
     private setWingIconTransformStyle(): void {
         if (this.menuConfig.showIcons || this.menuConfig.onlyIcons) {
-            this.renderer.setStyle(this.wingIconElm.nativeElement, 'transform', 'translate(' + this.iconX + 'px, ' + this.iconY + 'px) rotate(' + (this.rotateDeg) * -1 + 'deg)');
-            this.renderer.setStyle(this.wingIconElm.nativeElement, '-webkit-transform', 'translate(' + this.iconX + 'px, ' + this.iconY + 'px) rotate(' + (this.rotateDeg) * -1 + 'deg)');
-            this.renderer.setStyle(this.wingIconElm.nativeElement, '-ms-transform', 'translate(' + this.iconX + 'px, ' + this.iconY + 'px) rotate(' + (this.rotateDeg) * -1 + 'deg)');
-            this.renderer.setStyle(this.wingIconElm.nativeElement, '-moz-transform', 'translate(' + this.iconX + 'px, ' + this.iconY + 'px) rotate(' + (this.rotateDeg) * -1 + 'deg)');
-            this.renderer.setStyle(this.wingIconElm.nativeElement, '-o-transform', 'translate(' + this.iconX + 'px, ' + this.iconY + 'px) rotate(' + (this.rotateDeg) * -1 + 'deg)');
+            this.renderer.setStyle(this.wingIconElm.nativeElement,
+                'transform', 'translate(' + this.iconX + 'px, ' + this.iconY + 'px) rotate(' + (this.rotateDeg) * -1 + 'deg)');
         }
         return;
     }

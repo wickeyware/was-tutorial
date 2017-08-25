@@ -44,7 +44,7 @@ import { Subscription } from 'rxjs/Subscription';
               style({transform: 'scale(0)'}),
               animate('300ms cubic-bezier(0.680, -0.550, 0.265, 1.550)', style({transform: 'scale(1)'})),
               // Changed line from: `query('@rotateWing', animateChild())`
-              query('@rotateWing', animateChild(), { optional: true })
+            //   query('@rotateWing', animateChild(), { optional: true })
             ]),
             transition(':leave', [
                 animate('300ms cubic-bezier(0.680, -0.550, 0.265, 1.550)', style({transform: 'scale(0)'}))
