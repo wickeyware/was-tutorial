@@ -38,9 +38,17 @@ export class AppComponent implements OnInit {
     // REGISTER FOR PUSH
     this.oneSignal.push(() => {
       console.log('OneSignal: Register For Push');
-      // this.oneSignal.push(['registerForPushNotifications', {modalPrompt: true}]);
-      this.oneSignal.registerForPushNotifications({
-        modalPrompt: true
+      // CHECK IF PUSH IS ENABLED
+      this.oneSignal.isPushNotificationsEnabled().then((isEnabled) => {
+        if (isEnabled) {
+          console.log('Push notifications are enabled!');
+        } else {
+          // SHOW PUSH REGISTRATION POPUP
+          // this.oneSignal.push(['registerForPushNotifications', {modalPrompt: true}]);
+          this.oneSignal.registerForPushNotifications({
+            modalPrompt: true
+          });
+        }
       });
     });
     // // CHECK IF PUSH SUPPORTED
@@ -53,16 +61,6 @@ export class AppComponent implements OnInit {
     //     // Push notifications are not supported
     //     console.log('=======\nOH NO, NO PUSH\n=======');
     //   }
-    // });
-    // // CHECK IF PUSH IS ENABLED
-    // this.oneSignal.push(() => {
-    //   this.oneSignal.isPushNotificationsEnabled().then(function(isEnabled) {
-    //     if (isEnabled) {
-    //       console.log('Push notifications are enabled!');
-    //     } else {
-    //       console.log('Push notifications are not enabled yet.');
-    //     }
-    //   });
     // });
     // // GET USER ID
     // this.oneSignal.push(() => {
