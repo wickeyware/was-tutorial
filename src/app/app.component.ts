@@ -38,7 +38,10 @@ export class AppComponent implements OnInit {
     // REGISTER FOR PUSH
     this.oneSignal.push(() => {
       console.log('OneSignal: Register For Push');
-      this.oneSignal.push(['registerForPushNotifications']);
+      // this.oneSignal.push(['registerForPushNotifications', {modalPrompt: true}]);
+      this.oneSignal.registerForPushNotifications({
+        modalPrompt: true
+      });
     });
     // // CHECK IF PUSH SUPPORTED
     // this.oneSignal.push(() => {
