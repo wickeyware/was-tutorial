@@ -28,7 +28,7 @@ if ('serviceWorker' in navigator) {
     // See https://github.com/slightlyoff/ServiceWorker/issues/468
     // useCache: https://github.com/w3c/ServiceWorker/issues/893#issuecomment-248252956
     // other help: https://developers.google.com/web/ilt/pwa/using-sw-precache-and-sw-toolbox
-    navigator.serviceWorker.register('service-worker.js', {useCache: true}).then(function(reg) {
+    navigator.serviceWorker.register('OneSignalSDKWorker.js', {useCache: true}).then(function(reg) {
       // updatefound is fired if service-worker.js changes.
       reg.onupdatefound = function() {
         // The updatefound event implies that reg.installing is set; see
