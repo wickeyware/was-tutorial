@@ -1,6 +1,6 @@
 {
   "name": "was-tutorial",
-  "version": "0.6.6",
+  "version": "0.7.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -10,7 +10,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "serve:cli": "http-server dist/",
-    "sw": "sw-precache --root=dist --config=sw-precache-config.js",
+    "updatesw": "./updatesw.sh",
+    "sw": "sw-precache --root=dist --config=sw-precache-config.js && npm run updatesw",
     "build:aot": "ng build --aot --prod",
     "buildallsw": "npm run build:aot && npm run sw",
     "buildall": "npm run build:aot",
@@ -36,7 +37,7 @@
     "idb-keyval": "^2.3.0",
     "rxjs": "^5.4.3",
     "web-animations-js": "^2.3.1",
-    "wickeyappstore": "^1.5.8",
+    "wickeyappstore": "^1.5.9",
     "zone.js": "^0.8.16"
   },
   "devDependencies": {

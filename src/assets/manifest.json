@@ -1,6 +1,7 @@
 {
   "name": "WickeyAppStore Tutorial",
   "short_name": "WAS Tutorial",
+  "gcm_sender_id": "482941778795",
   "icons": [
     {
       "src": "https://i.imgur.com/gR8ND7a.png",
@@ -58,8 +59,8 @@
       "type": "image/png"
     }
   ],
-  "theme_color": "#dcedc8",
-  "background_color": "#aabb97",
+  "theme_color": "#DEDEDE",
+  "background_color": "#DEDEDE",
   "start_url": "/was-tutorial/index.html",
   "display": "standalone",
   "orientation": "portrait"

@@ -14,13 +14,120 @@ export class AppComponent implements OnInit {
   private test_alert = 0;
   public userMessage = '';
   public verifiedUser = false;
+  private oneSignal: any;
 
   constructor(
     public userService: UserService
   ) { }
 
+  // PUSH NOTIFICATIONS
+  // STEP 1: Create an account https://onesignal.com
+  // STEP 2: https://documentation.onesignal.com/docs/web-push-sdk-setup-https
+  // OneSignal API: https://documentation.onesignal.com/docs/web-push-sdk
+  doOneSignal() {
+    // INIT PUSH
+    this.oneSignal.push(['init', {
+      appId: '5198c0dc-616c-46df-9357-15830b47ffbc',
+      safari_web_id: 'web.onesignal.auto.48d27e8c-5bf0-4f8f-a083-e09c208eb2cb',
+      autoRegister: false,
+      allowLocalhostAsSecureOrigin: true,
+      notifyButton: {
+        enable: false
+      }
+    }]);
+    // REGISTER FOR PUSH
+    this.oneSignal.push(() => {
+      console.log('OneSignal: Register For Push');
+      this.oneSignal.push(['registerForPushNotifications']);
+    });
+    // // CHECK IF PUSH SUPPORTED
+    // this.oneSignal.push(() => {
+    //   const isPushSupported = this.oneSignal.isPushNotificationsSupported();
+    //   if (isPushSupported) {
+    //     console.log('=======\nPUSH ALLOWED\n=======');
+    //     // Push notifications are supported
+    //   } else {
+    //     // Push notifications are not supported
+    //     console.log('=======\nOH NO, NO PUSH\n=======');
+    //   }
+    // });
+    // // CHECK IF PUSH IS ENABLED
+    // this.oneSignal.push(() => {
+    //   this.oneSignal.isPushNotificationsEnabled().then(function(isEnabled) {
+    //     if (isEnabled) {
+    //       console.log('Push notifications are enabled!');
+    //     } else {
+    //       console.log('Push notifications are not enabled yet.');
+    //     }
+    //   });
+    // });
+    // // GET USER ID
+    // this.oneSignal.push(() => {
+    //   this.oneSignal.getUserId().then((userId) => {
+    //     console.log('OneSignal User ID is', userId);
+    //     alert(`OneSignal User ID is ${userId}`);
+    //     this.updateUserPushId(userId);
+    //   });
+    // });
+    // ADD LISTENER ON SUBSCRIPTION CHANGE
+    this.oneSignal.push(() => {
+      // Occurs when the user's subscription changes to a new value.
+      this.oneSignal.on('subscriptionChange', (isSubscribed) => {
+        console.log(`OneSignal: The user's subscription state is now:`, isSubscribed);
+        this.oneSignal.getUserId().then((userId) => {
+          console.log('OneSignal: User ID is', userId);
+          this.updateUserPushId(userId);
+        });
+      });
+    });
+  }
+
+  loadOneSignal() {
+    console.log('loadOneSignal');
+    // Wait till window has OneSignal, else don't do push stuff
+    // const OneSignal = window['OneSignal'] || [];
+    const myTimer = setInterval(() => {
+      console.log('Check if OneSignal is loaded');
+      if (window.hasOwnProperty('OneSignal')) {
+        clearInterval(myTimer);
+        console.log('OneSignal: READY FOR INIT');
+        this.oneSignal = window['OneSignal'];
+        this.doOneSignal();
+      }
+    }, 500);
+  }
+  // PUSH NOTIFICATIONS
+
   ngOnInit(): void {
     console.log('WASTutorial ngOnInit:');
+    this.loadOneSignal();
+  }
+
+  updateUserPushId(push_id: string) {
+    this.userService.updateUser({'push_id': push_id})
+    .subscribe((usr) => {
+      console.log('WASTutorial updateUserPushId: RETURN:', usr);
+      // NOTE: all user APIS can return a `special_message`
+      if (usr.special_message) {
+        this.error_message = {
+          title: usr.special_message.title, message: usr.special_message.message,
+          button_type: 'btn-info', header_bg: '#29B6F6', header_color: 'black',
+          helpmessage: [],
+          randcookie: `${Math.random()}${Math.random()}${Math.random()}`
+        };
+      }
+    }, (error) => {
+      // <any>error | this casts error to be any
+      // NOTE: Can handle error return messages
+      console.log('WASTutorial updateUserPushId: RETURN ERROR:', error);
+      this.error_message = {
+        title: 'Attention!',
+        message: error,
+        header_bg: '#F44336', header_color: 'black', button_type: 'btn-danger',
+        helpmessage: [],
+        randcookie: `${Math.random()}${Math.random()}${Math.random()}`,
+      };
+    });
   }
 
   get displayMessage() {
