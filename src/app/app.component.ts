@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
     this.oneSignal.push(['init', {
       appId: '5198c0dc-616c-46df-9357-15830b47ffbc',
       safari_web_id: 'web.onesignal.auto.48d27e8c-5bf0-4f8f-a083-e09c208eb2cb',
-      path: 'was-tutorial',
+      path: 'was-tutorial/',
       autoRegister: false,
       allowLocalhostAsSecureOrigin: true,
       notifyButton: {
