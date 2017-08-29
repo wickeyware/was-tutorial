@@ -25,10 +25,11 @@ export class AppComponent implements OnInit {
   // STEP 2: https://documentation.onesignal.com/docs/web-push-sdk-setup-https
   // OneSignal API: https://documentation.onesignal.com/docs/web-push-sdk
   doOneSignal() {
-    // INIT PUSH
+    // INIT PUSH serviceWorkerUpdaterPath: 'was-tutorial',
     this.oneSignal.push(['init', {
       appId: '5198c0dc-616c-46df-9357-15830b47ffbc',
       safari_web_id: 'web.onesignal.auto.48d27e8c-5bf0-4f8f-a083-e09c208eb2cb',
+      path: 'was-tutorial',
       autoRegister: false,
       allowLocalhostAsSecureOrigin: true,
       notifyButton: {
