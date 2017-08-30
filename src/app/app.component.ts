@@ -63,14 +63,6 @@ export class AppComponent implements OnInit {
     //     console.log('=======\nOH NO, NO PUSH\n=======');
     //   }
     // });
-    // // GET USER ID
-    // this.oneSignal.push(() => {
-    //   this.oneSignal.getUserId().then((userId) => {
-    //     console.log('OneSignal User ID is', userId);
-    //     alert(`OneSignal User ID is ${userId}`);
-    //     this.updateUserPushId(userId);
-    //   });
-    // });
     // ADD LISTENER ON SUBSCRIPTION CHANGE
     this.oneSignal.push(() => {
       // Occurs when the user's subscription changes to a new value.
@@ -80,6 +72,13 @@ export class AppComponent implements OnInit {
           console.log('OneSignal: User ID is', userId);
           this.updateUserPushId(userId);
         });
+      });
+    });
+    // GET USER ID
+    this.oneSignal.push(() => {
+      this.oneSignal.getUserId().then((userId) => {
+        console.log('OneSignal User ID is', userId);
+        this.updateUserPushId(userId);
       });
     });
   }
