@@ -7,10 +7,6 @@ wickey-appstore {
   left: 0px;
   bottom: 0px;
   display: inline-block;
-  /* Enable scroll if needed */
-  overflow-x: auto;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
 }
 .was-npm-btn {
   position: fixed;
