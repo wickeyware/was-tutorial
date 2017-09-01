@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs/Rx';
-import { WASAlertPopupComponent, UserService, User, UserParams } from 'wickeyappstore';
+import { WASAlertComponent, UserService, User, UserParams } from 'wickeyappstore';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +8,9 @@ import { WASAlertPopupComponent, UserService, User, UserParams } from 'wickeyapp
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
+  // @ViewChild(WASAlertComponent) wasalert: WASAlertComponent;
   public busy: Subscription;
   title = 'WAS Tutorial';
-  public error_message: any;
   private test_alert = 0;
   public userMessage = '';
   public verifiedUser = false;
@@ -110,24 +110,17 @@ export class AppComponent implements OnInit {
       console.log('WASTutorial updateUserPushId: RETURN:', usr);
       // NOTE: all user APIS can return a `special_message`
       if (usr.special_message) {
-        this.error_message = {
-          title: usr.special_message.title, message: usr.special_message.message,
-          button_type: 'btn-info', header_bg: '#29B6F6', header_color: 'black',
-          helpmessage: [],
-          randcookie: `${Math.random()}${Math.random()}${Math.random()}`
-        };
+        // this.wasalert.open(
+        //   { title: usr.special_message.title, text: usr.special_message.message } // Login error
+        // );
       }
     }, (error) => {
       // <any>error | this casts error to be any
       // NOTE: Can handle error return messages
       console.log('WASTutorial updateUserPushId: RETURN ERROR:', error);
-      this.error_message = {
-        title: 'Attention!',
-        message: error,
-        header_bg: '#F44336', header_color: 'black', button_type: 'btn-danger',
-        helpmessage: [],
-        randcookie: `${Math.random()}${Math.random()}${Math.random()}`,
-      };
+      // this.wasalert.open(
+      //   { title: 'Attention', text: error } // Login error
+      // );
     });
   }
 
@@ -159,26 +152,18 @@ export class AppComponent implements OnInit {
         titleMsg = 'WIN!';
       }
       // SHOW RESULTS IN POPUP
-      this.error_message = {
-        title: titleMsg,
-        message: `New random value ${newVal} < current ${_app_data.score}`,
-        header_bg: '#29B6F6', header_color: 'black', button_type: 'btn-info',
-        helpmessage: [],
-        randcookie: `${Math.random()}${Math.random()}${Math.random()}`,
-      };
+      // this.wasalert.open(
+      //   { title: titleMsg, text: `New random value ${newVal} < current ${_app_data.score}` } // Login error
+      // );
     } else {
       let titleMsg = 'Uhoh you lost...';
       if (_lessThan === false) {
         titleMsg = 'WIN!';
       }
       // SHOW RESULTS IN POPUP
-      this.error_message = {
-        title: titleMsg,
-        message: `New random value ${newVal} >= current ${_app_data.score}`,
-        header_bg: '#29B6F6', header_color: 'black', button_type: 'btn-info',
-        helpmessage: [],
-        randcookie: `${Math.random()}${Math.random()}${Math.random()}`,
-      };
+      // this.wasalert.open(
+      //   { title: titleMsg, text: `New random value ${newVal} >= current ${_app_data.score}` } // Login error
+      // );
     }
     _app_data.score = newVal;
     this.updateUser(this.userService.coins, JSON.stringify(_app_data));
@@ -208,12 +193,9 @@ export class AppComponent implements OnInit {
         console.log('WASTutorial updateUser: RETURN:', usr);
         // NOTE: all user APIS can return a `special_message`
         if (usr.special_message) {
-          this.error_message = {
-            title: usr.special_message.title, message: usr.special_message.message,
-            button_type: 'btn-info', header_bg: '#29B6F6', header_color: 'black',
-            helpmessage: [],
-            randcookie: `${Math.random()}${Math.random()}${Math.random()}`
-          };
+          // this.wasalert.open(
+          //   { title: usr.special_message.title, text: usr.special_message.message } // Login error
+          // );
         }
         // this.busy = null;
         // Add user context in sentry
@@ -222,13 +204,9 @@ export class AppComponent implements OnInit {
         // <any>error | this casts error to be any
         // NOTE: Can handle error return messages
         console.log('WASTutorial updateUser: RETURN ERROR:', error);
-        this.error_message = {
-          title: 'Attention!',
-          message: error,
-          header_bg: '#F44336', header_color: 'black', button_type: 'btn-danger',
-          helpmessage: [],
-          randcookie: `${Math.random()}${Math.random()}${Math.random()}`,
-        };
+        // this.wasalert.open(
+        //   { title: 'Attention', text: error } // Login error
+        // );
       });
   }
   onWASClose(_data: any) {
@@ -238,39 +216,7 @@ export class AppComponent implements OnInit {
       console.log('onWASClose');
     }
   }
-  testAlertBox() {
-    this.error_message = {
-      title: 'Attention!', message: 'Sorry had an oops', helpmessage: [],
-      randcookie: `${Math.random()}${Math.random()}${Math.random()}`
-    };
-    if (this.test_alert === 0) {
-    } else if (this.test_alert === 1) {
-      this.error_message.button_type = 'btn-info';
-      this.error_message.header_color = 'black';
-      this.error_message.header_bg = '#29B6F6';
-    } else if (this.test_alert === 2) {
-      this.error_message.button_type = 'btn-success';
-      this.error_message.header_color = 'black';
-      this.error_message.header_bg = '#66BB6A';
-    } else if (this.test_alert === 3) {
-      this.error_message.button_type = 'btn-warning';
-      this.error_message.header_color = 'black';
-      this.error_message.header_bg = '#FFA726';
-    } else {
-      this.error_message.button_type = 'btn-danger';
-      this.error_message.header_color = 'black';
-      this.error_message.header_bg = '#EF5350';
-      this.test_alert = 0;
-    }
-    this.test_alert += 1;
-  }
-  onAlertClose(data: any): void {
-    if (data) {
-      console.log('onAlertClose', data);
-    } else {
-      console.log('onAlertClose');
-    }
-  }
+
   // POPOVER //
   logoutUser(_data?: any) {
     if (_data) {
