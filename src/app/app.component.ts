@@ -8,7 +8,7 @@ import { WASAlertComponent, UserService, User, UserParams } from 'wickeyappstore
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  // @ViewChild(WASAlertComponent) wasalert: WASAlertComponent;
+  @ViewChild(WASAlertComponent) wasalert: WASAlertComponent;
   public busy: Subscription;
   title = 'WAS Tutorial';
   private test_alert = 0;
@@ -110,17 +110,17 @@ export class AppComponent implements OnInit {
       console.log('WASTutorial updateUserPushId: RETURN:', usr);
       // NOTE: all user APIS can return a `special_message`
       if (usr.special_message) {
-        // this.wasalert.open(
-        //   { title: usr.special_message.title, text: usr.special_message.message } // Login error
-        // );
+        this.wasalert.open(
+          { title: usr.special_message.title, text: usr.special_message.message } // Login error
+        );
       }
     }, (error) => {
       // <any>error | this casts error to be any
       // NOTE: Can handle error return messages
       console.log('WASTutorial updateUserPushId: RETURN ERROR:', error);
-      // this.wasalert.open(
-      //   { title: 'Attention', text: error } // Login error
-      // );
+      this.wasalert.open(
+        { title: 'Attention', text: error } // Login error
+      );
     });
   }
 
@@ -152,18 +152,18 @@ export class AppComponent implements OnInit {
         titleMsg = 'WIN!';
       }
       // SHOW RESULTS IN POPUP
-      // this.wasalert.open(
-      //   { title: titleMsg, text: `New random value ${newVal} < current ${_app_data.score}` } // Login error
-      // );
+      this.wasalert.open(
+        { title: titleMsg, text: `New random value ${newVal} < current ${_app_data.score}` } // Login error
+      );
     } else {
       let titleMsg = 'Uhoh you lost...';
       if (_lessThan === false) {
         titleMsg = 'WIN!';
       }
       // SHOW RESULTS IN POPUP
-      // this.wasalert.open(
-      //   { title: titleMsg, text: `New random value ${newVal} >= current ${_app_data.score}` } // Login error
-      // );
+      this.wasalert.open(
+        { title: titleMsg, text: `New random value ${newVal} >= current ${_app_data.score}` } // Login error
+      );
     }
     _app_data.score = newVal;
     this.updateUser(this.userService.coins, JSON.stringify(_app_data));
@@ -193,9 +193,9 @@ export class AppComponent implements OnInit {
         console.log('WASTutorial updateUser: RETURN:', usr);
         // NOTE: all user APIS can return a `special_message`
         if (usr.special_message) {
-          // this.wasalert.open(
-          //   { title: usr.special_message.title, text: usr.special_message.message } // Login error
-          // );
+          this.wasalert.open(
+            { title: usr.special_message.title, text: usr.special_message.message } // Login error
+          );
         }
         // this.busy = null;
         // Add user context in sentry
@@ -204,9 +204,9 @@ export class AppComponent implements OnInit {
         // <any>error | this casts error to be any
         // NOTE: Can handle error return messages
         console.log('WASTutorial updateUser: RETURN ERROR:', error);
-        // this.wasalert.open(
-        //   { title: 'Attention', text: error } // Login error
-        // );
+        this.wasalert.open(
+          { title: 'Attention', text: error } // Login error
+        );
       });
   }
   onWASClose(_data: any) {
