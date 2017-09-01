@@ -8,6 +8,16 @@ wickey-appstore {
   bottom: 0px;
   display: inline-block;
 }
+
+.content-group {
+  margin-top: 60px;
+  display: block;
+  /*visibility: hidden;*/
+  position: relative;
+  background-color: #E1E4E6; /*#90caf9;*/
+  height: 100%;
+  width: 100%;
+}
 .was-npm-btn {
   position: fixed;
   z-index: 1;

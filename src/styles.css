@@ -113,20 +113,6 @@ input {
   background-color: #5d99c6;
 }
 
-.content-group {
-  margin-top: 60px;
-  display: block;
-  /*visibility: hidden;*/
-  position: relative;
-  background-color: #E1E4E6; /*#90caf9;*/
-  /*left: 0;*/
-  height: 100%;
-  width: 100%;
-  height: -webkit-calc(100% - 100px);
-  height:    -moz-calc(100% - 100px);
-  height:         calc(100% - 100px);
-}
-
 .signon-h1 {
     color: #525f7f;
     display: block;

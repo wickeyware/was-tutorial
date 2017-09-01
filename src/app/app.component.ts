@@ -168,13 +168,6 @@ export class AppComponent implements OnInit {
     _app_data.score = newVal;
     this.updateUser(this.userService.coins, JSON.stringify(_app_data));
   }
-  wasUpdate(_loc_key: any) {
-    if (_loc_key === 'was-user') {
-      console.log('wasUpdate: ', _loc_key);
-    } else {
-      console.log('wasUpdate: ', _loc_key);
-    }
-  }
   private handleError(error: any): Promise<any> {
     // .catch(this.handleError);
     console.error('An error occurred', error);  // for demo purposes
@@ -209,14 +202,6 @@ export class AppComponent implements OnInit {
         );
       });
   }
-  onWASClose(_data: any) {
-    if (_data) {
-      console.log('onWASClose', _data);
-    } else {
-      console.log('onWASClose');
-    }
-  }
-
   // POPOVER //
   logoutUser(_data?: any) {
     if (_data) {

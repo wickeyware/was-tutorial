@@ -1,45 +1,53 @@
-<!--The content below is only a placeholder and can be replaced.-->
+<!--The lines below are REQUIRED-->
 <router-outlet></router-outlet>
 <was-spinner [busy]="busy" [message]='"Please wait.."'></was-spinner>
-<wickey-appstore (close)="onWASClose($event)" (update)="wasUpdate($event)"></wickey-appstore>
-<div class="titlebar">
-  <h3 class="titletext">{{title}}</h3>
-  <was-popover-login #loginpopover (close)="closeLoginScreen($event)"></was-popover-login>
-  <div class="titlebottom"></div>
-</div>
-<div class="content-group">
-  <div class="signon-h1">Welcome {{displayMessage | async}}
-    <span class="signon-info-popover">
-    <was-popover-base type='info' [isModal]="true" html='<div class="popover-title">WickeyAppStore SSO</div>
-      <div class="popover-body">To securely access your saved account from any device using your email to get a token or by entering your pin number, <b>tap the SSO button</b>.</div>'>
-      </was-popover-base>
-    </span>
-  </div>
-  <form *ngIf="userService.user | async as userobj" (ngSubmit)="onSubmit()" #userForm="ngForm">
-    <div class="form-group">
-      <label for="user_id">user_id</label>
-      <input type="text" class="form-control" id="user_id" readonly
-             [(ngModel)]="userobj.user_id" name="user_id"
-             #userIdInput="ngModel">
-    </div>
-  </form>
-  <div *ngIf="userService.user | async as userobj" class="form-group">
-    <label for="app_data">any string data (e.g. JSON)</label>
-    <input type="text" class="form-control" id="app_data" readonly
-           [(ngModel)]="userobj.data" name="app_data"
-           #dataInput="ngModel">
-  </div>
-  <br>
-  <p class="game-text">Will the next value (0-100) be < or >= than last score?</p>
-  <div class="d-flex justify-content-around" style="width:100%">
-    <button class="btn btn-primary" (click)="playGame(true)" alt="Less Than"><</button>
-    <button class="btn btn-primary" (click)="playGame(false)" alt="Greater or equal Than">>=</button>
-  </div>
-  <!-- <button class="btn btn-primary" (click)="loadUser(true)" alt="Get User">Get User</button>
-  <button class="btn btn-primary" (click)="testAlertBox()" alt="Test Alert">Test Alert</button> -->
-
-</div>
-
-<a class="btn was-npm-btn" target="WAS_npm" href="https://www.npmjs.com/package/wickeyappstore">NPM</a>
-<!-- TODO: Possibly bind to userService.messages-->
 <was-alert #wasalert></was-alert>
+<wickey-appstore></wickey-appstore>
+<!--The lines above are REQUIRED-->
+
+
+
+<!--Put your app below -->
+<div class="mainappbody">
+
+
+    <div class="titlebar">
+        <h3 class="titletext">{{title}}</h3>
+        <was-popover-login #loginpopover (close)="closeLoginScreen($event)"></was-popover-login>
+        <div class="titlebottom"></div>
+      </div>
+      <div class="content-group">
+        <div class="signon-h1">Welcome {{displayMessage | async}}
+          <span class="signon-info-popover">
+          <was-popover-base type='info' [isModal]="true" html='<div class="popover-title">WickeyAppStore SSO</div>
+            <div class="popover-body">To securely access your saved account from any device using your email to get a token or by entering your pin number, <b>tap the SSO button</b>.</div>'>
+            </was-popover-base>
+          </span>
+        </div>
+        <form *ngIf="userService.user | async as userobj" (ngSubmit)="onSubmit()" #userForm="ngForm">
+          <div class="form-group">
+            <label for="user_id">user_id</label>
+            <input type="text" class="form-control" id="user_id" readonly
+                   [(ngModel)]="userobj.user_id" name="user_id"
+                   #userIdInput="ngModel">
+          </div>
+        </form>
+        <div *ngIf="userService.user | async as userobj" class="form-group">
+          <label for="app_data">any string data (e.g. JSON)</label>
+          <input type="text" class="form-control" id="app_data" readonly
+                 [(ngModel)]="userobj.data" name="app_data"
+                 #dataInput="ngModel">
+        </div>
+        <br>
+        <p class="game-text">Will the next value (0-100) be < or >= than last score?</p>
+        <div class="d-flex justify-content-around" style="width:100%">
+          <button class="btn btn-primary" (click)="playGame(true)" alt="Less Than"><</button>
+          <button class="btn btn-primary" (click)="playGame(false)" alt="Greater or equal Than">>=</button>
+        </div>
+      </div>
+
+
+
+
+</div>
+
