@@ -1,6 +1,6 @@
 {
   "name": "was-tutorial",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -37,7 +37,7 @@
     "idb-keyval": "^2.3.0",
     "rxjs": "^5.4.3",
     "web-animations-js": "^2.3.1",
-    "wickeyappstore": "^1.7.2",
+    "wickeyappstore": "^1.7.3",
     "zone.js": "^0.8.16"
   },
   "devDependencies": {
