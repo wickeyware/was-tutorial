@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs/Rx';
 import { WASAlertComponent, UserService, User, UserParams } from 'wickeyappstore';
+import { Howl } from 'howler';
 
 @Component({
   selector: 'app-root',
@@ -15,10 +16,29 @@ export class AppComponent implements OnInit {
   public userMessage = '';
   public verifiedUser = false;
   private oneSignal: any;
+  private sound = new Howl({
+    src: ['/assets/sounds/airhorn.mp3']
+  });
 
   constructor(
     public userService: UserService
-  ) { }
+  ) {
+  }
+
+
+  public config: Object = {
+    pagination: '.swiper-pagination',
+    paginationClickable: true,
+    slidesPerView: 'auto',
+    centeredSlides: true,
+    spaceBetween: 20,
+    initialSlide: 1, // slide number which you want to show-- 0 by default
+  };
+
+  playHorn() {
+    console.log('playHorn');
+    this.sound.play();
+  }
 
   // PUSH NOTIFICATIONS
   // STEP 1: Create an account https://onesignal.com
@@ -105,33 +125,33 @@ export class AppComponent implements OnInit {
   }
 
   updateUserPushId(push_id: string) {
-    this.userService.updateUser({'push_id': push_id})
-    .subscribe((usr) => {
-      console.log('WASTutorial updateUserPushId: RETURN:', usr);
-      // NOTE: all user APIS can return a `special_message`
-      if (usr.special_message) {
+    this.userService.updateUser({ 'push_id': push_id })
+      .subscribe((usr) => {
+        console.log('WASTutorial updateUserPushId: RETURN:', usr);
+        // NOTE: all user APIS can return a `special_message`
+        if (usr.special_message) {
+          this.wasalert.open(
+            { title: usr.special_message.title, text: usr.special_message.message } // Login error
+          );
+        }
+      }, (error) => {
+        // <any>error | this casts error to be any
+        // NOTE: Can handle error return messages
+        console.log('WASTutorial updateUserPushId: RETURN ERROR:', error);
         this.wasalert.open(
-          { title: usr.special_message.title, text: usr.special_message.message } // Login error
+          { title: 'Attention', text: error } // Login error
         );
-      }
-    }, (error) => {
-      // <any>error | this casts error to be any
-      // NOTE: Can handle error return messages
-      console.log('WASTutorial updateUserPushId: RETURN ERROR:', error);
-      this.wasalert.open(
-        { title: 'Attention', text: error } // Login error
-      );
-    });
+      });
   }
 
   get displayMessage() {
     return this.userService.user.map((usr: User) => {
       let _displayMsg = '';
       if (usr.email) {
-          _displayMsg = 'verified user';
-        } else {
-          _displayMsg = '*unverified*';
-        }
+        _displayMsg = 'verified user';
+      } else {
+        _displayMsg = '*unverified*';
+      }
       return _displayMsg;
     });
   }
@@ -144,7 +164,7 @@ export class AppComponent implements OnInit {
       _app_data = JSON.parse(this.userService.data);
     } catch (error) {
       console.log('WASTutorial playGame: Set initial game value');
-      _app_data = {'score': Math.round(Math.random() * 100)};
+      _app_data = { 'score': Math.round(Math.random() * 100) };
     }
     if (newVal < _app_data.score) {
       let titleMsg = 'Uhoh you lost...';
@@ -181,7 +201,7 @@ export class AppComponent implements OnInit {
 
   updateUser(app_coins?: number, app_data?: string): void {
     console.log('WASTutorial updateUser:');
-    this.busy = this.userService.updateUser({'coins': app_coins, 'data': app_data})
+    this.busy = this.userService.updateUser({ 'coins': app_coins, 'data': app_data })
       .subscribe((usr) => {
         console.log('WASTutorial updateUser: RETURN:', usr);
         // NOTE: all user APIS can return a `special_message`
@@ -202,19 +222,8 @@ export class AppComponent implements OnInit {
         );
       });
   }
-  // POPOVER //
-  logoutUser(_data?: any) {
-    if (_data) {
-      console.log('logoutUser', _data);
-    } else {
-      console.log('logoutUser');
-    }
-  }
-  closeLoginScreen(_data?: any) {
-    if (_data) {
-      console.log('closeLoginScreen', _data);
-    } else {
-      console.log('closeLoginScreen');
-    }
-  }
+
+
+
+
 }

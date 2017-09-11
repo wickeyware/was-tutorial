@@ -1,17 +1,55 @@
-<!--The lines below are REQUIRED-->
+<!--******************************************
+**
+  IMPORTANT The lines BELOW are REQUIRED
+**
+***********************************************-->
 <router-outlet></router-outlet>
 <was-spinner [busy]="busy" [message]='"Please wait.."'></was-spinner>
 <was-alert #wasalert></was-alert>
-<wickey-appstore></wickey-appstore>
-<!--The lines above are REQUIRED-->
+<wickey-appstore initialPosition="bottomLeft"></wickey-appstore>
+<!--******************************************
+**
+  IMPORTANT The lines ABOVE are REQUIRED
+**
+***********************************************-->
+<!-- 
+WAS elements instructions here:
+    Allow the user to login using WAS Single Sign On.
+    <was-popover-login></was-popover-login> 
 
 
 
-<!--Put your app below -->
-<div class="mainappbody">
 
 
-    <div class="titlebar">
+
+ -->
+<!--******************************************
+**
+  Your app goes below.
+**
+***********************************************-->
+<div class="myapp">
+  <div class="title">
+    <was-popover-login></was-popover-login> 
+    <div class="text">Air Horn</div>
+    <div class="bottom"></div>
+  </div>
+  <!-- <img class="tile" src="https://unsplash.it/100/100" alt="featured-image" (click)="playHorn()"> -->
+</div>
+
+
+<div class="test-div-inner">
+    <swiper [config]="config">
+        <div class="swiper-wrapper">
+            <img class="img-featured swiper-slide" src="https://unsplash.it/200/200" alt="featured-image" (click)="playHorn()">
+        </div>
+    </swiper>
+</div>
+
+
+
+
+<!-- <div class="titlebar">
         <h3 class="titletext">{{title}}</h3>
         <was-popover-login #loginpopover (close)="closeLoginScreen($event)"></was-popover-login>
         <div class="titlebottom"></div>
@@ -44,10 +82,4 @@
           <button class="btn btn-primary" (click)="playGame(true)" alt="Less Than"><</button>
           <button class="btn btn-primary" (click)="playGame(false)" alt="Greater or equal Than">>=</button>
         </div>
-      </div>
-
-
-
-
-</div>
-
+      </div> -->

@@ -1,6 +1,6 @@
 {
-  "name": "WickeyAppStore Tutorial",
-  "short_name": "WAS Tutorial",
+  "name": "Air Horn -  a party noise maker",
+  "short_name": "Air Horn",
   "gcm_sender_id": "482941778795",
   "icons": [
     {
@@ -59,8 +59,8 @@
       "type": "image/png"
     }
   ],
-  "theme_color": "#DEDEDE",
-  "background_color": "#DEDEDE",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
   "start_url": "/was-tutorial/index.html",
   "display": "standalone",
   "orientation": "portrait"

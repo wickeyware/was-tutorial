@@ -1,9 +1,11 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
-  <title>WasTutorial</title>
-  <meta name="description" content="WickeyAppStore tutorial PWA."/>
+  <title>Air Horn</title>
+  <meta name="description" content="Air Horn -  a party noise maker. A demo of a progressive web app using WickeyAppStore"
+  />
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- FAVICONS -->
@@ -25,59 +27,66 @@
   <meta name="theme-color" content="#dcedc8">
 
   <!-- BOOTSTRAP 4 CSS (required by wickeyappstore) -->
-  <link defer rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <!-- <link defer rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"> -->
   <!-- FAST CLICK -->
   <script defer type='application/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js'></script>
   <!-- WICKEYAPPSTORE -->
-  <link defer rel="stylesheet" href="https://unpkg.com/wickeyappstore@1.7.2/styles.css">
+  <link defer rel="stylesheet" href="https://unpkg.com/wickeyappstore@1.7.4/styles.css">
   <!-- WICKEYAPPSTORE DEPENDENCY Home Screen Slider https://www.npmjs.com/package/angular2-useful-swiper -->
   <link defer href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css" rel="stylesheet">
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.js"></script>
   <!-- WICKEYAPPSTORE DEPENDENCY -->
   <link defer rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.6/hammer.min.js"></script>
-  
+  <!-- HOWLER DEPENDENCY For Playing Audio-->
+  <script defer src="https://cdn.jsdelivr.net/npm/howler@2.0.4/dist/howler.min.js"></script>
+
+
   <!-- PUSH NOTIFICATIONS -->
   <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async></script>
 </head>
+
 <body>
   <app-root>
     <!-- https://www.bennadel.com/blog/3105-creating-a-pre-bootstrap-loading-screen-in-angular-2-rc-1.htm -->
     <style type="text/css">
       #pre-bootstrap {
-          background-color: #262626 ;
-          bottom: 0px ;
-          left: 0px ;
-          position: fixed ;
-          right: 0px ;
-          top: 0px ;
-          z-index: 999999 ;
+        background-color: white;
+        bottom: 0px;
+        left: 0px;
+        position: fixed;
+        right: 0px;
+        top: 0px;
+        z-index: 999999;
       }
+
       #pre-bootstrap div.messaging {
-          color: #FFFFFF ;
-          font-family: monospace ;
-          left: 0px ;
-          margin-top: -37px ;
-          position: absolute ;
-          right: 0px ;
-          text-align: center ;
-          top: 50% ;
+        color: black;
+        font-family: monospace;
+        left: 0px;
+        margin-top: -37px;
+        position: absolute;
+        right: 0px;
+        text-align: center;
+        top: 50%;
       }
-      #pre-bootstrap h1 {
-          font-size: 26px ;
-          line-height: 35px ;
-          margin: 0px 0px 20px 0px ;
+
+      #pre-bootstrap h2 {
+        font-size: 26px;
+        line-height: 35px;
+        margin: 0px 0px 20px 0px;
       }
+
       #pre-bootstrap p {
-          font-size: 18px ;
-          line-height: 14px ;
-          margin: 0px 0px 0px 0px ;
+        font-size: 18px;
+        line-height: 14px;
+        margin: 0px 0px 0px 0px;
       }
     </style>
     <div id="pre-bootstrap">
       <div class="messaging">
-        <h1>WickeyAppStore Tutorial is loading...</h1>
-        <p>Please stand by!</p>
+        <h2>Air Horn is pressurizing</h2>
+        <p>Just a moment...</p>
       </div>
     </div>
   </app-root>
@@ -86,9 +95,11 @@
 <script>
   // <!-- TEST FAST CLICK -->
   if ('addEventListener' in document) {
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       FastClick.attach(document.body);
-      }, false);
-      }
+    }, false);
+  }
+
 </script>
+
 </html>

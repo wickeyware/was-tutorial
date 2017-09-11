@@ -157,6 +157,10 @@
     magic-string "^0.22.3"
     source-map "^0.5.6"
 
+"@types/howler@^2.0.3":
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/@types/howler/-/howler-2.0.3.tgz#4adef7852a408b871e82d2a35822c889a00304be"
+
 "@types/jasmine@*", "@types/jasmine@~2.5.53":
   version "2.5.53"
   resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-2.5.53.tgz#4e0cefad09df5ec48c8dd40433512f84b1568d61"
@@ -259,9 +263,17 @@ amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
 
+angular-core@0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/angular-core/-/angular-core-0.0.5.tgz#e2155fc9fc958c1047fe0cc5800fa9dcbdfd7b80"
+
 angular2-useful-swiper@^4.0.6:
   version "4.0.6"
   resolved "https://registry.yarnpkg.com/angular2-useful-swiper/-/angular2-useful-swiper-4.0.6.tgz#1a56f764850cbcdbd771b4b5204222115c932063"
+
+angular@^1.6.6:
+  version "1.6.6"
+  resolved "https://registry.yarnpkg.com/angular/-/angular-1.6.6.tgz#fd5a3cfb437ce382d854ee01120797978527cb64"
 
 ansi-align@^1.1.0:
   version "1.1.0"
@@ -2371,6 +2383,10 @@ hoek@2.x.x:
 hosted-git-info@^2.1.4:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/hosted-git-info/-/hosted-git-info-2.5.0.tgz#6d60e34b3abbc8313062c3b798ef8d901a07af3c"
+
+howler@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/howler/-/howler-2.0.4.tgz#cbd5db875f9833e1aa6084568951d788fc687f92"
 
 hpack.js@^2.1.6:
   version "2.1.6"
@@ -5818,9 +5834,9 @@ which@1, which@^1.2.1, which@^1.2.9:
   dependencies:
     isexe "^2.0.0"
 
-wickeyappstore@^1.7.2:
-  version "1.7.2"
-  resolved "https://registry.yarnpkg.com/wickeyappstore/-/wickeyappstore-1.7.2.tgz#d36dd34bf6051c1b5216ecaa773076da9f872626"
+wickeyappstore@^1.7.4:
+  version "1.7.4"
+  resolved "https://registry.yarnpkg.com/wickeyappstore/-/wickeyappstore-1.7.4.tgz#d8c20cb3dfe236c893ccd0edd4b3bc4b46e9ac52"
 
 wide-align@^1.1.0:
   version "1.1.2"
