@@ -24,45 +24,17 @@
   background-color: #f5f5f7;
 }
 .tile {
-  width: 100px;  /* Or whatever */
-  height: 100px; /* Or whatever */
+  width: 100%;  /* Or whatever */
   margin: auto;  /* Magic! */
-  background-color: pink;
   position: fixed;
-  left: -webkit-calc(50% - 50px)!important;
-  left:    -moz-calc(50% - 50px)!important;
-  left:         calc(50% - 50px)!important; 
-  top: -webkit-calc(50% - 50px)!important;
-  top:    -moz-calc(50% - 50px)!important;
-  top:         calc(50% - 50px)!important; 
-}
-
-
-
-.test-div-inner {
-  /* Padding Bottom = (Image Height / Image Width) * 100% */ 
-  /* http://andyshora.com/css-image-container-padding-hack.html */
-  padding-bottom:42%; 
-  height:0;
-  position:relative;
+  top: 140px;
 }
 
 .img-featured {
-display: inline-block;
-position: relative;
-   /* width: -webkit-calc(80% - 30px)!important;
-  width:    -moz-calc(80% - 30px)!important;
-  width:         calc(80% - 30px)!important; 
-   margin-left: -webkit-calc(10% + 15px);
-  margin-left:    -moz-calc(10% + 15px);
-  margin-left:         calc(10% + 15px);  */
+  display: inline-block;
+  position: relative;
   box-shadow: 0 5px 10px rgba(0, 0, 0,.5);
-  margin-bottom: 10px;
-  margin-top: 10px;
   border-radius: 20px 20px 20px 20px;
-  height: -webkit-calc(100% - 30px)!important;
-  height:    -moz-calc(100% - 30px)!important;
-  height:         calc(100% - 30px)!important; 
 }
 
 swiper {
@@ -71,8 +43,9 @@ swiper {
 .swiper-slide {
   text-align: center;
   font-size: 18px;
-  background: #fff;
-  width: 80%;
+  width: -webkit-calc(100% - 120px);
+  width:    -moz-calc(100% - 120px);
+  width:         calc(100% - 120px);
   /* Center slide text vertically */
   display: -webkit-box;
   display: -ms-flexbox;
@@ -86,4 +59,69 @@ swiper {
   -ms-flex-align: center;
   -webkit-align-items: center;
   align-items: center;
+}
+
+.horn {
+  margin: 10px;
+  padding-right: 5px;
+  /* box-shadow: 0 5px 10px rgba(0, 0, 0,.5); */
+  /* border-radius: 5px 0px 0px 5px; */
+  width: 100%;
+  height: 100%;
+}
+
+.menu {
+  margin: 10px;
+  padding-right: 5px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0,.5);
+  /* border-radius: 5px 0px 0px 5px; */
+  width: 100%;
+  height: 100%;
+}
+.menu .title {
+  display: inline-block;
+  width: 100%;
+  color: black;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: 700;
+  text-shadow: 0 1px 0 white;
+  /*vertical-align: middle;*/
+  line-height: 50px;       /* the same as your div height */
+  /* This dictates the margin above and below the h3 tag, default is 1em and 0 for left/right */
+  -webkit-margin-before: 0em;
+  -webkit-margin-after: 0em;
+}
+.menu .right {
+  text-align: right;
+  display: inline-block;
+  width: 100%;
+  color: black;
+  text-align: right;
+  font-size: 1.2em;
+  font-weight: 700;
+  text-shadow: 0 1px 0 white;
+  /*vertical-align: middle;*/
+  line-height: 50px;       /* the same as your div height */
+  /* This dictates the margin above and below the h3 tag, default is 1em and 0 for left/right */
+  -webkit-margin-before: 0em;
+  -webkit-margin-after: 0em;
+}
+/* Make colored bg with white text */
+.menu .text {
+  display: inline-block;
+  text-align: left;
+  /* color: black; */
+  font-size: 1em;
+  font-weight: 500;
+  color: #5b5b65;
+  text-shadow: 0 1px 0 #fff;
+  /* This dictates the margin above and below the h3 tag, default is 1em and 0 for left/right */
+  -webkit-margin-before: .2em;
+  -webkit-margin-after: .2em;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.menu .accent-text {
+  color: #3fb1eb;
 }

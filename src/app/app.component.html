@@ -5,7 +5,7 @@
 ***********************************************-->
 <router-outlet></router-outlet>
 <was-spinner [busy]="busy" [message]='"Please wait.."'></was-spinner>
-<was-alert #wasalert></was-alert>
+<was-alert #wasalert (close)="closealert($event)"></was-alert>
 <wickey-appstore initialPosition="bottomLeft"></wickey-appstore>
 <!--******************************************
 **
@@ -30,56 +30,34 @@ WAS elements instructions here:
 ***********************************************-->
 <div class="myapp">
   <div class="title">
-    <was-popover-login></was-popover-login> 
+    <was-popover-login></was-popover-login>
     <div class="text">Air Horn</div>
     <div class="bottom"></div>
   </div>
-  <!-- <img class="tile" src="https://unsplash.it/100/100" alt="featured-image" (click)="playHorn()"> -->
-</div>
-
-
-<div class="test-div-inner">
-    <swiper [config]="config">
-        <div class="swiper-wrapper">
-            <img class="img-featured swiper-slide" src="https://unsplash.it/200/200" alt="featured-image" (click)="playHorn()">
-        </div>
-    </swiper>
-</div>
-
-
-
-
-<!-- <div class="titlebar">
-        <h3 class="titletext">{{title}}</h3>
-        <was-popover-login #loginpopover (close)="closeLoginScreen($event)"></was-popover-login>
-        <div class="titlebottom"></div>
-      </div>
-      <div class="content-group">
-        <div class="signon-h1">Welcome {{displayMessage | async}}
-          <span class="signon-info-popover">
-          <was-popover-base type='info' [isModal]="true" html='<div class="popover-title">WickeyAppStore SSO</div>
-            <div class="popover-body">To securely access your saved account from any device using your email to get a token or by entering your pin number, <b>tap the SSO button</b>.</div>'>
-            </was-popover-base>
-          </span>
-        </div>
-        <form *ngIf="userService.user | async as userobj" (ngSubmit)="onSubmit()" #userForm="ngForm">
-          <div class="form-group">
-            <label for="user_id">user_id</label>
-            <input type="text" class="form-control" id="user_id" readonly
-                   [(ngModel)]="userobj.user_id" name="user_id"
-                   #userIdInput="ngModel">
+  <div class="tile">
+    <swiper [config]="config" #usefulSwiper>
+      <div class="swiper-wrapper">
+        <!-- Menu -->
+        <div class="swiper-slide">
+          <div class="menu">
+            <div class="title">Menu</div>
+            <i class="fa fa-bars right" aria-hidden="true"></i>
+            <br>
+            <span><div class="text">{{displayMessage | async}}</div><span class="text accent-text">{{(userService.user | async).email}}</span></span>
+            <br>
           </div>
-        </form>
-        <div *ngIf="userService.user | async as userobj" class="form-group">
-          <label for="app_data">any string data (e.g. JSON)</label>
-          <input type="text" class="form-control" id="app_data" readonly
-                 [(ngModel)]="userobj.data" name="app_data"
-                 #dataInput="ngModel">
         </div>
-        <br>
-        <p class="game-text">Will the next value (0-100) be < or >= than last score?</p>
-        <div class="d-flex justify-content-around" style="width:100%">
-          <button class="btn btn-primary" (click)="playGame(true)" alt="Less Than"><</button>
-          <button class="btn btn-primary" (click)="playGame(false)" alt="Greater or equal Than">>=</button>
+        <!-- Main Horn -->
+        <div class="swiper-slide">
+            <div class="horn" (click)="playHorn()">
+                <img class="img-featured" src="https://unsplash.it/200/200" alt="featured-image">
+            </div>
         </div>
-      </div> -->
+        <!-- <img class="img-featured swiper-slide" src="https://unsplash.it/200/200" alt="featured-image" (click)="playHorn()"> -->
+      </div>
+      <br>
+      <!-- Add Pagination -->
+      <div class="swiper-pagination"></div>
+    </swiper>
+  </div>
+</div>

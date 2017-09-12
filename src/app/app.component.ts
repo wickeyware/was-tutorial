@@ -39,6 +39,9 @@ export class AppComponent implements OnInit {
     console.log('playHorn');
     this.sound.play();
   }
+  closealert(action: any) {
+    console.log('close alert');
+  }
 
   // PUSH NOTIFICATIONS
   // STEP 1: Create an account https://onesignal.com
@@ -148,13 +151,15 @@ export class AppComponent implements OnInit {
     return this.userService.user.map((usr: User) => {
       let _displayMsg = '';
       if (usr.email) {
-        _displayMsg = 'verified user';
+        _displayMsg = 'Welcome back';
       } else {
-        _displayMsg = '*unverified*';
+        _displayMsg = 'Use SSO to sign into your Wickey App Store account';
       }
       return _displayMsg;
     });
   }
+
+
 
   playGame(_lessThan: boolean) {
     // This gets a random integer and compares it to last value
