@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
   public verifiedUser = false;
   private oneSignal: any;
   private sound = new Howl({
-    src: ['/assets/sounds/airhorn.mp3']
+    src: ['assets/sounds/airhorn.mp3']
   });
 
   constructor(
