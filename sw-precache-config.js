@@ -7,6 +7,7 @@ module.exports = {
     'dist/index.html',
     'dist/**.js',
     'dist/assets/**.*',
+    'dist/assets/sounds/**.*',
     'dist/**.css'
   ],
   runtimeCaching: [{
