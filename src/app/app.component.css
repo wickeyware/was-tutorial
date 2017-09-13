@@ -1,7 +1,6 @@
 .myapp {
   height: 100%;
   width: 100%;
-  display: flex;
 }
 .title {
   padding-top: 8px; 
@@ -34,6 +33,10 @@
   height: -webkit-calc(100% - 140px);
   height:    -moz-calc(100% - 140px);
   height:         calc(100% - 140px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
 }
 swiper {
   width: 100%; 
