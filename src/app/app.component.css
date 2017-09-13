@@ -23,29 +23,53 @@
   width: 100%;
   background-color: #f5f5f7;
 }
+
+
+
 .tile {
   width: 100%;  /* Or whatever */
   margin: auto;  /* Magic! */
   position: fixed;
   top: 140px;
+  height: -webkit-calc(100% - 140px);
+  height:    -moz-calc(100% - 140px);
+  height:         calc(100% - 140px);
 }
-
-.img-featured {
-  display: inline-block;
-  position: relative;
-  box-shadow: 0 5px 10px rgba(0, 0, 0,.5);
-  border-radius: 20px 20px 20px 20px;
-}
-
 swiper {
   width: 100%; 
+  height: 100%;
 }
+
+.horn-item {
+  margin: auto;  /* Magic! */
+  width: 200px;
+  height: 200px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0,.5);
+  border-radius: 125px;
+  /* background-color: #d2d2d3; */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+.horn-item:active {
+  /* border-radius: 5px; */
+  box-shadow: inset 0 5px 10px rgba(0, 0, 0,.5);
+}
+.svg-icon {
+  width: 90%;
+  height: 90%;
+  margin: auto; 
+}
+
+
 .swiper-slide {
   text-align: center;
   font-size: 18px;
   width: -webkit-calc(100% - 120px);
   width:    -moz-calc(100% - 120px);
   width:         calc(100% - 120px);
+  height: 100%;
   /* Center slide text vertically */
   display: -webkit-box;
   display: -ms-flexbox;
@@ -62,23 +86,15 @@ swiper {
 }
 
 .horn {
-  margin: 10px;
-  padding-right: 5px;
-  /* box-shadow: 0 5px 10px rgba(0, 0, 0,.5); */
-  /* border-radius: 5px 0px 0px 5px; */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  box-shadow: 0 5px 10px rgba(0, 0, 0,.25);
   width: 100%;
   height: 100%;
 }
-
-.menu {
-  margin: 10px;
-  padding-right: 5px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0,.5);
-  /* border-radius: 5px 0px 0px 5px; */
-  width: 100%;
-  height: 100%;
-}
-.menu .title {
+.title-text {
   display: inline-block;
   width: 100%;
   color: black;
@@ -92,6 +108,14 @@ swiper {
   -webkit-margin-before: 0em;
   -webkit-margin-after: 0em;
 }
+
+.menu {
+  padding-right: 5px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0,.25);
+  width: 100%;
+  height: 100%;
+}
+
 .menu .right {
   text-align: right;
   display: inline-block;

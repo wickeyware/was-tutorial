@@ -35,9 +35,17 @@ export class AppComponent implements OnInit {
     initialSlide: 1, // slide number which you want to show-- 0 by default
   };
 
-  playHorn() {
-    console.log('playHorn');
-    this.sound.play();
+  playHorn(horn: number) {
+    console.log('playHorn', horn);
+    if (horn === 1) {
+      this.sound.play();
+    } else {
+      // check if locked
+      console.log('this horn is locked');
+      this.wasalert.open(
+        { title: 'Locked', text: 'This sound is locked' } // Login error
+      );
+    }
   }
   closealert(action: any) {
     console.log('close alert');

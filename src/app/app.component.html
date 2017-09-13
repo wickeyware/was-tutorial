@@ -40,7 +40,7 @@ WAS elements instructions here:
         <!-- Menu -->
         <div class="swiper-slide">
           <div class="menu">
-            <div class="title">Menu</div>
+            <div class="title-text">Menu</div>
             <i class="fa fa-bars right" aria-hidden="true"></i>
             <br>
             <span><div class="text">{{displayMessage | async}}</div><span class="text accent-text">{{(userService.user | async).email}}</span></span>
@@ -49,12 +49,32 @@ WAS elements instructions here:
         </div>
         <!-- Main Horn -->
         <div class="swiper-slide">
-            <div class="horn" (click)="playHorn()">
-                <img class="img-featured" src="https://unsplash.it/200/200" alt="featured-image">
+          <div class="horn">
+            <div class="horn-item" (click)="playHorn(1)">
+              <div class="svg-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="80%" height="80%" viewBox="0 0 32 18">
+                  <path d="M8 20c-4.4 0-8-3.6-8-8s3.6-8 8-8v16zm4-16l8-4v24l-8-4m12 0v-4h1c1.8-.6 3-2.2 3-4s-1.2-3.4-3-4h-1V4c.7 0 1.3 0 2 .2 3.5 1 6 4 6 7.8 0 3.7-2.5 7-6 7.8l-2 .2z"
+                    fill="#231F20" />
+                </svg>
+              </div>
             </div>
+          </div>
         </div>
-        <!-- <img class="img-featured swiper-slide" src="https://unsplash.it/200/200" alt="featured-image" (click)="playHorn()"> -->
+        <!-- Locked Horn -->
+        <div class="swiper-slide">
+          <div class="horn">
+            <div class="horn-item" (click)="playHorn(2)">
+              <div class="svg-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="80%" height="80%" viewBox="0 0 24 32">
+                  <path d="M14 0C8.5 0 4 4.5 4 10v2H0v14c0 3.3 2.7 6 6 6h12c3.3 0 6-2.7 6-6V10c0-5.5-4.5-10-10-10zM8 10c0-3.3 2.7-6 6-6s6 2.7 6 6v2H8v-2zm10 18H6c-1 0-2-1-2-2V16h16v10c0 1-1 2-2 2z"/>
+                  <path d="M14 22c0 1-1 2-2 2s-2-1-2-2 1-2 2-2 2 1 2 2z" fill="#231F20" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+      <br>
       <br>
       <!-- Add Pagination -->
       <div class="swiper-pagination"></div>
