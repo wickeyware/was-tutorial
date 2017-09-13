@@ -37,7 +37,7 @@
 /* eslint-disable indent, no-unused-vars, no-multiple-empty-lines, max-nested-callbacks, space-before-function-paren, quotes, comma-spacing */
 'use strict';
 
-var precacheConfig = [["/was-tutorial/OneSignalSDKUpdaterWorker.js","5214c68a4570cc96eb7342fcbf27f02f"],["/was-tutorial/OneSignalSDKWorker.js","5214c68a4570cc96eb7342fcbf27f02f"],["/was-tutorial/assets/IEconfig.xml","d2b556ea28025785d368c00b5fdb7943"],["/was-tutorial/assets/favicon-16x16.png","4b2b62eb6f48e2c5a1f418803f9bdbec"],["/was-tutorial/assets/favicon-32x32.png","aac129d682aa40928f8245ffd633dc24"],["/was-tutorial/assets/favicon.ico","a80d55341ce0104f821424491bfa823a"],["/was-tutorial/assets/manifest.json","5c9448ac1d7159c04adac5b74cf440f3"],["/was-tutorial/assets/safari-pinned-tab.svg","b822a20bd6bc6cab636efc352b944f48"],["/was-tutorial/index.html","15215bfdc23301c8ce0ef44f8f2c221f"],["/was-tutorial/inline.15be17c418b8d25ec790.bundle.js","90ddfcf3442e89a0a7118d5d04b3becd"],["/was-tutorial/main.268c95d6bce1a2cb76dd.bundle.js","039969a69b73750c49866a3ab57689b5"],["/was-tutorial/polyfills.e60b08dbd7fdc28045c2.bundle.js","b7391d6839910c4f4c946be9102b7dfd"],["/was-tutorial/service-worker-registration.js","bc051f45d0cd644c89f4160e99c32de7"],["/was-tutorial/styles.ea93f2c3307f1df31af7.bundle.css","ea93f2c3307f1df31af77e841b4832bd"],["/was-tutorial/vendor.fc61b8385e49ab80efda.bundle.js","49d2208673dde9bee256ba8120d43476"]];
+var precacheConfig = [["/was-tutorial/OneSignalSDKUpdaterWorker.js","5214c68a4570cc96eb7342fcbf27f02f"],["/was-tutorial/OneSignalSDKWorker.js","5214c68a4570cc96eb7342fcbf27f02f"],["/was-tutorial/assets/IEconfig.xml","d2b556ea28025785d368c00b5fdb7943"],["/was-tutorial/assets/favicon-16x16.png","4b2b62eb6f48e2c5a1f418803f9bdbec"],["/was-tutorial/assets/favicon-32x32.png","aac129d682aa40928f8245ffd633dc24"],["/was-tutorial/assets/favicon.ico","a80d55341ce0104f821424491bfa823a"],["/was-tutorial/assets/manifest.json","5c9448ac1d7159c04adac5b74cf440f3"],["/was-tutorial/assets/safari-pinned-tab.svg","b822a20bd6bc6cab636efc352b944f48"],["/was-tutorial/assets/sounds/airhorn.mp3","acacbe38ddbd81ece992610fa625126a"],["/was-tutorial/index.html","15215bfdc23301c8ce0ef44f8f2c221f"],["/was-tutorial/inline.15be17c418b8d25ec790.bundle.js","90ddfcf3442e89a0a7118d5d04b3becd"],["/was-tutorial/main.268c95d6bce1a2cb76dd.bundle.js","039969a69b73750c49866a3ab57689b5"],["/was-tutorial/polyfills.e60b08dbd7fdc28045c2.bundle.js","b7391d6839910c4f4c946be9102b7dfd"],["/was-tutorial/service-worker-registration.js","bc051f45d0cd644c89f4160e99c32de7"],["/was-tutorial/styles.ea93f2c3307f1df31af7.bundle.css","ea93f2c3307f1df31af77e841b4832bd"],["/was-tutorial/vendor.fc61b8385e49ab80efda.bundle.js","49d2208673dde9bee256ba8120d43476"]];
 var cacheName = 'sw-precache-v3-sw-precache-' + (self.registration ? self.registration.scope : '');
 
 
@@ -176,10 +176,10 @@ self.addEventListener('install', function(event) {
         );
       });
     }).then(function() {
-      
+
       // Force the SW to transition from installing -> active state
       return self.skipWaiting();
-      
+
     })
   );
 });
@@ -199,9 +199,9 @@ self.addEventListener('activate', function(event) {
         );
       });
     }).then(function() {
-      
+
       return self.clients.claim();
-      
+
     })
   );
 });
@@ -262,7 +262,7 @@ self.addEventListener('fetch', function(event) {
 
 
 // *** Start of auto-included sw-toolbox code. ***
-/* 
+/*
  Copyright 2016 Google Inc. All Rights Reserved.
 
  Licensed under the Apache License, Version 2.0 (the "License");
