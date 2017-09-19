@@ -30,10 +30,10 @@
   width: 100%;  /* Or whatever */
   margin: auto;  /* Magic! */
   position: fixed;
-  top: 140px;
-  height: -webkit-calc(100% - 140px);
-  height:    -moz-calc(100% - 140px);
-  height:         calc(100% - 140px);
+  top: 75px;
+  height: -webkit-calc(100% - 75px);
+  height:    -moz-calc(100% - 75px);
+  height:         calc(100% - 75px);
   display: -webkit-box;
   display: -ms-flexbox;
   display: -webkit-flex;
