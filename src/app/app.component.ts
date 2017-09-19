@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
   }
 
 
-  public config: Object = {
+  public tutorial_config: Object = {
     pagination: '.swiper-pagination',
     paginationClickable: true,
     slidesPerView: 'auto',

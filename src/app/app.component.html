@@ -3,7 +3,6 @@
   IMPORTANT The lines BELOW are REQUIRED
 **
 ***********************************************-->
-<router-outlet></router-outlet>
 <was-spinner [busy]="busy" [message]='"Please wait.."'></was-spinner>
 <was-alert #wasalert (close)="closealert($event)"></was-alert>
 <wickey-appstore initialPosition="bottomLeft"></wickey-appstore>
@@ -35,7 +34,7 @@ WAS elements instructions here:
     <div class="bottom"></div>
   </div>
   <div class="tile">
-    <swiper [config]="config" #usefulSwiper>
+    <swiper [config]="tutorial_config" #usefulSwiper>
       <div class="swiper-wrapper">
         <!-- Menu -->
         <div class="swiper-slide">
