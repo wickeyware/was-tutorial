@@ -1,6 +1,6 @@
 {
   "name": "was-tutorial",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -12,14 +12,14 @@
     "serve:cli": "http-server dist/",
     "updatesw": "./updatesw.sh",
     "sw": "sw-precache --root=dist --config=sw-precache-config.js && npm run updatesw",
-    "build:aot": "ng build --aot --prod",
+    "build:aot": "ng build --aot --prod --build-optimizer",
     "buildallsw": "npm run build:aot && npm run sw",
     "buildall": "npm run build:aot",
     "buildall:yarn": "yarn run build:aot && yarn run sw",
     "buildrun:yarn": "yarn run buildall:yarn && yarn run serve:cli",
     "buildrun": "npm run buildall && npm run serve:cli",
     "buildrunsw": "npm run buildallsw && npm run serve:cli",
-    "buildgh": "ng build --aot --prod --progress false --base-href \"/was-tutorial/\"",
+    "buildgh": "ng build --aot --prod --build-optimizer --progress false --base-href \"/was-tutorial/\"",
     "buildswgh": "npm run buildgh && npm run sw"
   },
   "private": true,
@@ -33,8 +33,6 @@
     "@angular/platform-browser-dynamic": "^4.4.3",
     "@angular/router": "^4.4.3",
     "@types/howler": "^2.0.3",
-    "angular": "^1.6.6",
-    "angular-core": "0.0.5",
     "angular2-useful-swiper": "^4.0.6",
     "core-js": "^2.4.1",
     "howler": "^2.0.4",

@@ -276,17 +276,9 @@ amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
 
-angular-core@0.0.5:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/angular-core/-/angular-core-0.0.5.tgz#e2155fc9fc958c1047fe0cc5800fa9dcbdfd7b80"
-
 angular2-useful-swiper@^4.0.6:
   version "4.0.6"
   resolved "https://registry.yarnpkg.com/angular2-useful-swiper/-/angular2-useful-swiper-4.0.6.tgz#1a56f764850cbcdbd771b4b5204222115c932063"
-
-angular@^1.6.6:
-  version "1.6.6"
-  resolved "https://registry.yarnpkg.com/angular/-/angular-1.6.6.tgz#fd5a3cfb437ce382d854ee01120797978527cb64"
 
 ansi-align@^1.1.0:
   version "1.1.0"
