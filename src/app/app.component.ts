@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Subscription } from 'rxjs/Rx';
+import { Subscription } from 'rxjs/Subscription';
 import { WASAlertComponent, UserService, User, UserParams } from 'wickeyappstore';
 import { Howl } from 'howler';
 
