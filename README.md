@@ -34,7 +34,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## QuickStart
 
-1. `npm install -g angular-cli@1.3.0` you can SKIP if you already have this installed
+1. `npm install -g @angular/cli@1.4.4` you can SKIP if you already have this installed
 2. Clone project `git clone https://github.com/wickeyware/was-tutorial.git`
 3. `cd was-tutorial`
 4. `npm install` or if you have yarn `yarn`
@@ -43,7 +43,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Help Installing via npm or yarn
 
-- `npm install -g angular-cli@latest` GLOBAL npm angular cli
+- `npm install -g @angular/cli@1.4.4` GLOBAL npm angular cli
 - `npm install --save <package>` or as dev `npm install --save-dev <package>`
 - `yarn add <package>` as dev `--dev`
 - `npm install` if all packages are already in packages.json
