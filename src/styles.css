@@ -20,7 +20,7 @@ body {
         -ms-user-select: auto; /* Internet Explorer/Edge */
             user-select: auto; /* Non-prefixed version, currently supported by Chrome and Opera */
 }
-input {
+input, textarea {
 font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
 -webkit-touch-callout: auto; /* iOS Safari */
   -webkit-user-select: auto; /* Safari */
@@ -32,7 +32,7 @@ font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
 /* everything else */
 * {
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-  /* By default, Don't allow text selection anywhere. This is an app environment */ 
+  /* By default, Don't allow text selection anywhere. This is an app environment */
   -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
        -moz-user-select: none; /* Firefox */
