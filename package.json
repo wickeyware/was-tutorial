@@ -1,6 +1,6 @@
 {
   "name": "was-tutorial",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -28,13 +28,13 @@
     "@angular/platform-browser-dynamic": "^4.4.6",
     "@angular/router": "^4.4.6",
     "@types/howler": "^2.0.3",
-    "angular2-useful-swiper": "^5.0.0",
+    "angular2-useful-swiper": "^5.0.1",
     "core-js": "^2.4.1",
     "howler": "^2.0.4",
     "idb-keyval": "^2.3.0",
     "rxjs": "^5.4.3",
     "web-animations-js": "^2.3.1",
-    "wickeyappstore": "^1.9.14",
+    "wickeyappstore": "^1.9.15",
     "zone.js": "^0.8.18"
   },
   "devDependencies": {
