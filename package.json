@@ -1,6 +1,6 @@
 {
   "name": "was-tutorial",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -34,7 +34,7 @@
     "idb-keyval": "^2.3.0",
     "rxjs": "^5.4.3",
     "web-animations-js": "^2.3.1",
-    "wickeyappstore": "^1.9.15",
+    "wickeyappstore": "^1.9.16",
     "zone.js": "^0.8.18"
   },
   "devDependencies": {
@@ -44,7 +44,7 @@
     "@types/jasmine": "~2.5.53",
     "@types/jasminewd2": "~2.0.2",
     "@types/node": "~6.0.60",
-    "angular2-useful-swiper": "^5.0.0",
+    "angular2-useful-swiper": "^5.0.1",
     "codelyzer": "~3.1.2",
     "http-server": "^0.10.0",
     "jasmine-core": "~2.6.2",
