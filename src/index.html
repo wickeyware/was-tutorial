@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <title>Air Horn</title>
@@ -26,8 +25,6 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="theme-color" content="#dcedc8">
 
-  <!-- FAST CLICK -->
-  <script defer type='application/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js'></script>
   <!-- WICKEYAPPSTORE -->
   <link defer rel="stylesheet" href="https://unpkg.com/wickeyappstore@1.9.16/styles.css">
   <!-- WICKEYAPPSTORE DEPENDENCY Home Screen Slider https://www.npmjs.com/package/angular2-useful-swiper -->
@@ -37,7 +34,6 @@
   <link defer rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.6/hammer.min.js"></script>
 
-
   <!-- PUSH NOTIFICATIONS -->
   <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async></script>
 </head>
@@ -46,38 +42,10 @@
   <app-root>
     <!-- https://www.bennadel.com/blog/3105-creating-a-pre-bootstrap-loading-screen-in-angular-2-rc-1.htm -->
     <style type="text/css">
-      #pre-bootstrap {
-        background-color: white;
-        bottom: 0px;
-        left: 0px;
-        position: fixed;
-        right: 0px;
-        top: 0px;
-        z-index: 999999;
-      }
-
-      #pre-bootstrap div.messaging {
-        color: black;
-        font-family: monospace;
-        left: 0px;
-        margin-top: -37px;
-        position: absolute;
-        right: 0px;
-        text-align: center;
-        top: 50%;
-      }
-
-      #pre-bootstrap h2 {
-        font-size: 26px;
-        line-height: 35px;
-        margin: 0px 0px 20px 0px;
-      }
-
-      #pre-bootstrap p {
-        font-size: 18px;
-        line-height: 14px;
-        margin: 0px 0px 0px 0px;
-      }
+      #pre-bootstrap {background-color: white;bottom: 0px;left: 0px;position: fixed;right: 0px;top: 0px;z-index: 999999;}
+      #pre-bootstrap div.messaging {color: black;font-family: monospace;left: 0px;margin-top: -37px;position: absolute;right: 0px;text-align: center;top: 50%;}
+      #pre-bootstrap h2 {font-size: 26px;line-height: 35px;margin: 0px 0px 20px 0px;}
+      #pre-bootstrap p {font-size: 18px;line-height: 14px;margin: 0px 0px 0px 0px;}
     </style>
     <div id="pre-bootstrap">
       <div class="messaging">
@@ -88,14 +56,4 @@
   </app-root>
   <script src="service-worker-registration.js"></script>
 </body>
-<script>
-  // <!-- TEST FAST CLICK -->
-  if ('addEventListener' in document) {
-    document.addEventListener('DOMContentLoaded', function () {
-      FastClick.attach(document.body);
-    }, false);
-  }
-
-</script>
-
 </html>
