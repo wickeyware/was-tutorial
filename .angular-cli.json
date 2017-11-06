@@ -23,9 +23,14 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css"
+        "styles.css",
+        "../node_modules/wickeyappstore/styles.css",
+        "../node_modules/swiper/dist/css/swiper.min.css"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/swiper/dist/js/swiper.min.js",
+        "../node_modules/hammerjs/hammer.min.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

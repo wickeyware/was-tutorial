@@ -10,7 +10,7 @@ body {
   font-size:100%;
   min-width: 300px;
   background-color: #e8e9eb;
-  overflow: auto;
+  /* overflow: auto; */
 }
 /* Use this to make any text selectable */
 .canselecttext {
