@@ -23,6 +23,12 @@ export class AppComponent implements OnInit {
   constructor(
     public userService: UserService
   ) {
+    // Wait for user service to load
+    this.userService.user.subscribe((usr: User) => {
+      console.log('USER LOADED: usr.user_id', usr.user_id);
+      // This initiate the Push Service, and asks to enable push on load
+      this.loadOneSignal();
+    });
   }
 
 
@@ -55,6 +61,7 @@ export class AppComponent implements OnInit {
   // STEP 1: Create an account https://onesignal.com
   // STEP 2: https://documentation.onesignal.com/docs/web-push-sdk-setup-https
   // OneSignal API: https://documentation.onesignal.com/docs/web-push-sdk
+  // https://documentation.onesignal.com/v3.0/docs/customize-permission-messages
   doOneSignal() {
     // INIT PUSH serviceWorkerUpdaterPath: 'was-tutorial',
     this.oneSignal.push(['init', {
@@ -65,7 +72,23 @@ export class AppComponent implements OnInit {
       allowLocalhostAsSecureOrigin: true,
       notifyButton: {
         enable: false
-      }
+      },
+      promptOptions: {
+        /* Change bold title, limited to 30 characters */
+        siteName: 'AirHorner',
+        /* Subtitle, limited to 90 characters */
+        actionMessage: `We'd like to show you push notifications for new app content and important news.`,
+        /* Example notification title */
+        exampleNotificationTitle: 'New App Content!',
+        /* Example notification message */
+        exampleNotificationMessage: 'New horn sounds are here, honk honk!',
+        /* Text below example notification, limited to 50 characters */
+        exampleNotificationCaption: 'You can unsubscribe anytime',
+        /* Accept button text, limited to 15 characters */
+        acceptButtonText: 'ALLOW',
+        /* Cancel button text, limited to 15 characters */
+        cancelButtonText: 'NO THANKS'
+    }
     }]);
     // REGISTER FOR PUSH
     this.oneSignal.push(() => {
@@ -105,13 +128,13 @@ export class AppComponent implements OnInit {
         });
       });
     });
-    // GET USER ID
-    this.oneSignal.push(() => {
-      this.oneSignal.getUserId().then((userId) => {
-        console.log('OneSignal User ID is', userId);
-        this.updateUserPushId(userId);
-      });
-    });
+    // // GET USER ID
+    // this.oneSignal.push(() => {
+    //   this.oneSignal.getUserId().then((userId) => {
+    //     console.log('OneSignal User ID is', userId);
+    //     this.updateUserPushId(userId);
+    //   });
+    // });
   }
 
   loadOneSignal() {
@@ -124,6 +147,7 @@ export class AppComponent implements OnInit {
         clearInterval(myTimer);
         console.log('OneSignal: READY FOR INIT');
         this.oneSignal = window['OneSignal'];
+        // This asks user to enable push
         this.doOneSignal();
       }
     }, 500);
@@ -132,7 +156,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('WASTutorial ngOnInit:');
-    this.loadOneSignal();
   }
 
   updateUserPushId(push_id: string) {
@@ -167,40 +190,6 @@ export class AppComponent implements OnInit {
     });
   }
 
-
-
-  playGame(_lessThan: boolean) {
-    // This gets a random integer and compares it to last value
-    const newVal = Math.round(Math.random() * 100);
-    let _app_data;
-    try {
-      _app_data = JSON.parse(this.userService.data);
-    } catch (error) {
-      console.log('WASTutorial playGame: Set initial game value');
-      _app_data = { 'score': Math.round(Math.random() * 100) };
-    }
-    if (newVal < _app_data.score) {
-      let titleMsg = 'Uhoh you lost...';
-      if (_lessThan === true) {
-        titleMsg = 'WIN!';
-      }
-      // SHOW RESULTS IN POPUP
-      this.wasalert.open(
-        { title: titleMsg, text: `New random value ${newVal} < current ${_app_data.score}` } // Login error
-      );
-    } else {
-      let titleMsg = 'Uhoh you lost...';
-      if (_lessThan === false) {
-        titleMsg = 'WIN!';
-      }
-      // SHOW RESULTS IN POPUP
-      this.wasalert.open(
-        { title: titleMsg, text: `New random value ${newVal} >= current ${_app_data.score}` } // Login error
-      );
-    }
-    _app_data.score = newVal;
-    this.updateUser(this.userService.coins, JSON.stringify(_app_data));
-  }
   private handleError(error: any): Promise<any> {
     // .catch(this.handleError);
     console.error('An error occurred', error);  // for demo purposes
@@ -235,6 +224,46 @@ export class AppComponent implements OnInit {
         );
       });
   }
+
+  ///////////////////////////////
+  // WAS DATA STORE //
+  ///////////////////////////////
+  getStore(key: string) {
+    const _mykeys = [key];
+    this.userService.getStore(_mykeys).subscribe((res) => {
+      // console.log('WAS: getStore RETURN:', res);
+    }, (error) => {
+      // console.log('WAS: getStore ERROR:', error);
+      this.wasalert.open(
+        { title: 'Attention', text: error } // Login error
+      );
+    });
+  }
+  setStore(data) {
+    const _was_data = data; // { 'key1': 'my value' };
+    this.userService.setStore(_was_data).subscribe((res) => {
+      // console.log('WAS: setStore RETURN:', res);
+    }, (error) => {
+      // console.log('WAS: setStore ERROR:', error);
+      this.wasalert.open(
+        { title: 'Attention', text: error } // Login error
+      );
+    });
+  }
+  deleteStore() {
+    const _mykeys = ['key1'];
+    this.userService.deleteStore(_mykeys).subscribe((res) => {
+      // console.log('WAS: deleteStore RETURN:', res);
+    }, (error) => {
+      // console.log('WAS: deleteStore ERROR:', error);
+      this.wasalert.open(
+        { title: 'Attention', text: error } // Login error
+      );
+    });
+  }
+  ///////////////////////////////
+  // WAS DATA STORE //
+  ///////////////////////////////
 
 
 

@@ -11,10 +11,10 @@
   IMPORTANT The lines ABOVE are REQUIRED
 **
 ***********************************************-->
-<!-- 
+<!--
 WAS elements instructions here:
     Allow the user to login using WAS Single Sign On.
-    <was-popover-login></was-popover-login> 
+    <was-popover-login></was-popover-login>
 
 
 
@@ -42,7 +42,7 @@ WAS elements instructions here:
             <div class="title-text">Menu</div>
             <i class="fa fa-bars right" aria-hidden="true"></i>
             <br>
-            <span><div class="text">{{displayMessage | async}}</div><span class="text accent-text">{{(userService.user | async).email}}</span></span>
+            <span><div class="text">{{displayMessage | async}}</div><span *ngIf="(userService.user | async) as _usr" class="text accent-text">{{_usr.email}}</span></span>
             <br>
           </div>
         </div>
