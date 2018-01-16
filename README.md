@@ -25,17 +25,17 @@ Apps on the WickeyAppStore must meet quality and security requirements:
 
 If you have an app you want to submit, email us at [wickeyappstore@gmail.com](mailto:wickeyappstore@gmail.com).
 
+Can also submit apps here: [Developer Portal](https://developer.wickeyappstore.com) (NOTE: this is still a work in progress, so not everything is finished)
+
 **NOTE**: Please check back frequently. We will keep this document updated all the time.
 
 # WasTutorial
 
 This project shows a small Angular app that implements the WickeyAppStore npm (https://www.npmjs.com/package/wickeyappstore).
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.1.
-
 ## QuickStart
 
-1. `npm install -g @angular/cli@1.4.4` you can SKIP if you already have this installed
+1. `npm install -g @angular/cli@latest` you can SKIP if you already have this installed
 2. Clone project `git clone https://github.com/wickeyware/was-tutorial.git`
 3. `cd was-tutorial`
 4. `npm install` or if you have yarn `yarn`
@@ -44,19 +44,19 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Help Installing via npm or yarn
 
-- `npm install -g @angular/cli@1.4.4` GLOBAL npm angular cli
+- `npm install -g @angular/cli@latest` The `-g` installs globally
 - `npm install --save <package>` or as dev `npm install --save-dev <package>`
 - `yarn add <package>` as dev `--dev`
 - `npm install` if all packages are already in packages.json
 - `yarn` if all packages are already in packages.json
 
-## Angular Cli Help
+## New to Angular
+
+New to Angular, check out their [QuickStart](https://angular.io/guide/quickstart)
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|module`.
 
-### Generating Components, Directives, Pipes and Services
-
-[CLI GENERATE OPTIONS](https://github.com/angular/angular-cli#generating-components-directives-pipes-and-services)
+[All Options](https://github.com/angular/angular-cli#generating-components-directives-pipes-and-services)
 
 ## Running unit tests
 
