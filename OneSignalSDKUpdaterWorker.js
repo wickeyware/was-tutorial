@@ -1,4 +1,4 @@
-// <do not remove line>[8fcfccfc-5f77-4dc7-bfa3-e54700ebc31d]
+// <do not remove line>[6bc21345-6ea6-4f69-abf1-554025356f99]
 // IMPORT PROJECT SERVICE WORKER
 importScripts('service-worker.js');
 // IMPORT OneSignal FOR PUSH NOTIFICATIONS
