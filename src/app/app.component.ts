@@ -45,6 +45,7 @@ export class AppComponent implements OnInit {
     console.log('playHorn', horn);
     if (horn === 1) {
       this.sound.play();
+      this.askForPush();
     } else {
       // check if locked
       console.log('this horn is locked');
@@ -90,22 +91,6 @@ export class AppComponent implements OnInit {
         cancelButtonText: 'NO THANKS'
     }
     }]);
-    // REGISTER FOR PUSH
-    this.oneSignal.push(() => {
-      console.log('OneSignal: Register For Push');
-      // CHECK IF PUSH IS ENABLED
-      this.oneSignal.isPushNotificationsEnabled().then((isEnabled) => {
-        if (isEnabled) {
-          console.log('Push notifications are enabled!');
-        } else {
-          // SHOW PUSH REGISTRATION POPUP
-          // this.oneSignal.push(['registerForPushNotifications', {modalPrompt: true}]);
-          this.oneSignal.registerForPushNotifications({
-            modalPrompt: true
-          });
-        }
-      });
-    });
     // // CHECK IF PUSH SUPPORTED
     // this.oneSignal.push(() => {
     //   const isPushSupported = this.oneSignal.isPushNotificationsSupported();
@@ -135,6 +120,28 @@ export class AppComponent implements OnInit {
     //     this.updateUserPushId(userId);
     //   });
     // });
+    // NOTE: To immediately ask for push, uncomment following line
+    // this.askForPush();
+  }
+
+  askForPush() {
+    try {
+      // REGISTER FOR PUSH
+      this.oneSignal.push(() => {
+        console.log('OneSignal: Register For Push');
+        // CHECK IF PUSH IS ENABLED
+        this.oneSignal.isPushNotificationsEnabled().then((isEnabled) => {
+          if (isEnabled) {
+            console.log('Push notifications are enabled!');
+          } else {
+            // SHOW PUSH REGISTRATION POPUP
+            this.oneSignal.registerForPushNotifications({modalPrompt: true});
+          }
+        });
+      });
+    } catch (pusherror) {
+      console.error('askForPush', pusherror);
+    }
   }
 
   loadOneSignal() {
