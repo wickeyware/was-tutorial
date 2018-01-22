@@ -21,6 +21,7 @@ This shows all commits since last release.
 * **package** Add new WAS Angular Material dependency.
 * **PUSH** Wait to ask to allow push notifications till after horn use.
 * **MANIFEST** Updated start_url to denote that app started from home screen.
+* **app** Center tab bar.
 
 ## [1.1.11](https://github.com/wickeyware/was-tutorial/releases/tag/1.1.11) - 2018-16-01
 
