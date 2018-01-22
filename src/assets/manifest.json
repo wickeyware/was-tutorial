@@ -3,52 +3,52 @@
   "short_name": "Air Horn",
   "icons": [
     {
-      "src": "https://s3.us-east-2.amazonaws.com/wickeyappstore/was-tutorial/icon36.png",
+      "src": "/assets/icon36.png",
       "type": "image/png",
       "sizes": "36x36"
     },
     {
-      "src": "https://s3.us-east-2.amazonaws.com/wickeyappstore/was-tutorial/icon48.png",
+      "src": "/assets/icon48.png",
       "type": "image/png",
       "sizes": "48x48"
     },
     {
-      "src": "https://s3.us-east-2.amazonaws.com/wickeyappstore/was-tutorial/icon60.png",
+      "src": "/assets/icon60.png",
       "type": "image/png",
       "sizes": "60x60"
     },
     {
-      "src": "https://s3.us-east-2.amazonaws.com/wickeyappstore/was-tutorial/icon72.png",
+      "src": "/assets/icon72.png",
       "type": "image/png",
       "sizes": "72x72"
     },
     {
-      "src": "https://s3.us-east-2.amazonaws.com/wickeyappstore/was-tutorial/icon76.png",
+      "src": "/assets/icon76.png",
       "type": "image/png",
       "sizes": "76x76"
     },
     {
-      "src": "https://s3.us-east-2.amazonaws.com/wickeyappstore/was-tutorial/icon96.png",
+      "src": "/assets/icon96.png",
       "type": "image/png",
       "sizes": "96x96"
     },
     {
-      "src": "https://s3.us-east-2.amazonaws.com/wickeyappstore/was-tutorial/icon120.png",
+      "src": "/assets/icon120.png",
       "type": "image/png",
       "sizes": "120x120"
     },
     {
-      "src": "https://s3.us-east-2.amazonaws.com/wickeyappstore/was-tutorial/icon180.png",
+      "src": "/assets/icon180.png",
       "type": "image/png",
       "sizes": "180x180"
     },
     {
-      "src": "https://s3.us-east-2.amazonaws.com/wickeyappstore/was-tutorial/icon192.png",
+      "src": "/assets/icon192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "https://s3.us-east-2.amazonaws.com/wickeyappstore/was-tutorial/icon512.png",
+      "src": "/assets/icon512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
