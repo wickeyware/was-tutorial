@@ -15,6 +15,8 @@ export class AppComponent implements OnInit {
   private test_alert = 0;
   public userMessage = '';
   public verifiedUser = false;
+  public version = '1.2.0';
+  public whats_new = 'Better layout, three page tab, instead of a swiper.';
   private oneSignal: any;
   private sound = new Howl({
     src: ['assets/sounds/airhorn.mp3']

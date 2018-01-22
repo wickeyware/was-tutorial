@@ -33,50 +33,57 @@ WAS elements instructions here:
     <div class="text">Air Horn</div>
     <div class="bottom"></div>
   </div>
-  <div class="tile">
-    <swiper [config]="tutorial_config" #usefulSwiper>
-      <div class="swiper-wrapper">
-        <!-- Menu -->
-        <div class="swiper-slide">
-          <div class="menu">
-            <div class="title-text">Menu</div>
-            <i class="fa fa-bars right" aria-hidden="true"></i>
-            <br>
-            <span><div class="text">{{displayMessage | async}}</div><span *ngIf="(userService.user | async) as _usr" class="text accent-text">{{_usr.email}}</span></span>
-            <br>
-          </div>
-        </div>
-        <!-- Main Horn -->
-        <div class="swiper-slide">
-          <div class="horn">
-            <div class="horn-item" (click)="playHorn(1)">
-              <div class="svg-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="80%" height="80%" viewBox="0 0 32 18">
-                  <path d="M8 20c-4.4 0-8-3.6-8-8s3.6-8 8-8v16zm4-16l8-4v24l-8-4m12 0v-4h1c1.8-.6 3-2.2 3-4s-1.2-3.4-3-4h-1V4c.7 0 1.3 0 2 .2 3.5 1 6 4 6 7.8 0 3.7-2.5 7-6 7.8l-2 .2z"
-                    fill="#231F20" />
-                </svg>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Locked Horn -->
-        <div class="swiper-slide">
-          <div class="horn">
-            <div class="horn-item" (click)="playHorn(2)">
-              <div class="svg-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="80%" height="80%" viewBox="0 0 24 32">
-                  <path d="M14 0C8.5 0 4 4.5 4 10v2H0v14c0 3.3 2.7 6 6 6h12c3.3 0 6-2.7 6-6V10c0-5.5-4.5-10-10-10zM8 10c0-3.3 2.7-6 6-6s6 2.7 6 6v2H8v-2zm10 18H6c-1 0-2-1-2-2V16h16v10c0 1-1 2-2 2z"/>
-                  <path d="M14 22c0 1-1 2-2 2s-2-1-2-2 1-2 2-2 2 1 2 2z" fill="#231F20" />
-                </svg>
-              </div>
-            </div>
+  <mat-tab-group selectedIndex=1 class="apptab">
+    <!-- Menu -->
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon>menu</mat-icon>MENU
+      </ng-template>
+      <div class="add-padding">
+        <div class="title-text">AirHorn Menu (v{{version}})</div>
+        <br>
+        <mat-card>
+          <div class="menu-text">{{displayMessage | async}}</div>
+          <span *ngIf="(userService.user | async) as _usr" class="menu-accent-text">{{_usr.email}}</span>
+        </mat-card>
+        <br>
+        <br>
+        <div class="description-TitleText">New in version {{version}}</div>
+        <br>
+        <div class="menu-text">{{whats_new}}</div>
+      </div>
+    </mat-tab>
+    <!-- Main Horn -->
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon>play_arrow</mat-icon>HORN
+      </ng-template>
+      <div class="add-padding">
+        <div class="horn-item" (click)="playHorn(1)">
+          <div class="svg-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="80%" height="80%" viewBox="0 0 32 18">
+              <path d="M8 20c-4.4 0-8-3.6-8-8s3.6-8 8-8v16zm4-16l8-4v24l-8-4m12 0v-4h1c1.8-.6 3-2.2 3-4s-1.2-3.4-3-4h-1V4c.7 0 1.3 0 2 .2 3.5 1 6 4 6 7.8 0 3.7-2.5 7-6 7.8l-2 .2z"
+                fill="#231F20" />
+            </svg>
           </div>
         </div>
       </div>
-      <br>
-      <br>
-      <!-- Add Pagination -->
-      <div class="swiper-pagination"></div>
-    </swiper>
-  </div>
+    </mat-tab>
+    <!-- Locked Horn -->
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon>extension</mat-icon>MORE
+      </ng-template>
+      <div class="add-padding">
+        <div class="horn-item" (click)="playHorn(2)">
+          <div class="svg-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="80%" height="80%" viewBox="0 0 24 32">
+              <path d="M14 0C8.5 0 4 4.5 4 10v2H0v14c0 3.3 2.7 6 6 6h12c3.3 0 6-2.7 6-6V10c0-5.5-4.5-10-10-10zM8 10c0-3.3 2.7-6 6-6s6 2.7 6 6v2H8v-2zm10 18H6c-1 0-2-1-2-2V16h16v10c0 1-1 2-2 2z"/>
+              <path d="M14 22c0 1-1 2-2 2s-2-1-2-2 1-2 2-2 2 1 2 2z" fill="#231F20" />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
 </div>

@@ -4,7 +4,7 @@
   overflow: none;
 }
 .title {
-  padding-top: 8px; 
+  padding-top: 8px;
   width: 100%;
 }
 .title .text {
@@ -22,26 +22,6 @@
   box-shadow: 0 -1px 0 0 #d2d2d3;
   width: 100%;
   background-color: #f5f5f7;
-}
-
-
-
-.tile {
-  width: 100%;  /* Or whatever */
-  margin: auto;  /* Magic! */
-  position: fixed;
-  top: 75px;
-  height: -webkit-calc(100% - 75px);
-  height:    -moz-calc(100% - 75px);
-  height:         calc(100% - 75px);
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-}
-swiper {
-  width: 100%; 
-  height: 100%;
 }
 
 .horn-item {
@@ -63,41 +43,9 @@ swiper {
 .svg-icon {
   width: 90%;
   height: 90%;
-  margin: auto; 
+  margin: auto;
 }
 
-
-.swiper-slide {
-  text-align: center;
-  font-size: 18px;
-  width: -webkit-calc(100% - 120px);
-  width:    -moz-calc(100% - 120px);
-  width:         calc(100% - 120px);
-  height: 100%;
-  /* Center slide text vertically */
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
-  align-items: center;
-}
-
-.horn {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  box-shadow: 0 5px 10px rgba(0, 0, 0,.25);
-  width: 100%;
-  height: 100%;
-}
 .title-text {
   display: inline-block;
   width: 100%;
@@ -113,30 +61,8 @@ swiper {
   -webkit-margin-after: 0em;
 }
 
-.menu {
-  padding-right: 5px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0,.25);
-  width: 100%;
-  height: 100%;
-}
-
-.menu .right {
-  text-align: right;
-  display: inline-block;
-  width: 100%;
-  color: black;
-  text-align: right;
-  font-size: 1.2em;
-  font-weight: 700;
-  text-shadow: 0 1px 0 white;
-  /*vertical-align: middle;*/
-  line-height: 50px;       /* the same as your div height */
-  /* This dictates the margin above and below the h3 tag, default is 1em and 0 for left/right */
-  -webkit-margin-before: 0em;
-  -webkit-margin-after: 0em;
-}
 /* Make colored bg with white text */
-.menu .text {
+.text {
   display: inline-block;
   text-align: left;
   /* color: black; */
@@ -150,6 +76,10 @@ swiper {
   padding-left: 5px;
   padding-right: 5px;
 }
-.menu .accent-text {
+.menu-accent-text {
   color: #3fb1eb;
+}
+
+.add-padding {
+  padding: 5px;
 }
