@@ -57,5 +57,7 @@
   "background_color": "#ffffff",
   "start_url": "/index.html?utm_source=homescreen",
   "display": "standalone",
+  "gcm_sender_id_comment": "For OneSignal Web Push Notifications, Do Not Change ID",
+  "gcm_sender_id": "482941778795",
   "orientation": "portrait"
 }

@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 This shows all commits since last release.
 
+## [1.2.1](https://github.com/wickeyware/was-tutorial/compare/1.2.1...1.2.0) - 2018-25-01
+
+### Fixed
+
+* **Push** Add OneSignal gcm id to manifest.
+
 ## [1.2.0](https://github.com/wickeyware/was-tutorial/compare/1.2.0...1.1.11) - 2018-19-01
 
 ### Changed
