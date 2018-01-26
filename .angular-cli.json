@@ -10,7 +10,6 @@
       "assets": [
         "assets",
         "favicon.ico",
-        "service-worker-registration.js",
         "service-worker.js",
         "OneSignalSDKUpdaterWorker.js",
         "OneSignalSDKWorker.js"
@@ -22,6 +21,7 @@
       "tsconfig": "tsconfig.app.json",
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
+      "serviceWorker": true,
       "styles": [
         "styles.css",
         "../node_modules/wickeyappstore/styles.css",
@@ -64,6 +64,7 @@
   },
   "defaults": {
     "styleExt": "css",
-    "component": {}
+    "component": {
+    }
   }
 }

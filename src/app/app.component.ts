@@ -1,6 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material';
+import { SwUpdate } from '@angular/service-worker';
 import { Subscription } from 'rxjs/Subscription';
-import { WASAlertComponent, UserService, User, UserParams } from 'wickeyappstore';
+import {
+  UserService, User, UserParams,
+  WasUp, WasAlert
+} from 'wickeyappstore';
 import { Howl } from 'howler';
 
 @Component({
@@ -9,21 +14,22 @@ import { Howl } from 'howler';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  @ViewChild(WASAlertComponent) wasalert: WASAlertComponent;
   public busy: Subscription;
   title = 'WAS Tutorial';
   private test_alert = 0;
   public userMessage = '';
   public verifiedUser = false;
-  public version = '1.2.2';
-  public whats_new = 'Better layout, three page tab, instead of a swiper.';
+  public version = '1.3.0';
+  public whats_new = 'Added ability to catch new site versions and ask to update in an app modal.';
   private oneSignal: any;
   private sound = new Howl({
     src: ['assets/sounds/airhorn.mp3']
   });
 
   constructor(
-    public userService: UserService
+    public userService: UserService,
+    updates: SwUpdate,
+    public dialog: MatDialog
   ) {
     // Wait for user service to load
     this.userService.user.subscribe((usr: User) => {
@@ -31,6 +37,44 @@ export class AppComponent implements OnInit {
       // This initiate the Push Service, and asks to enable push on load
       this.loadOneSignal();
     });
+
+    // LISTEN/HANDLE FOR NEW SITE VERSION //
+    updates.available.subscribe(event => {
+      console.log('promptUser: NEW CONTENT', event);
+      // event.available.name/description/version
+      let app_title = 'New Content';
+      let app_description = 'New or updated content is available! Please refresh your page.';
+      let app_version = null;
+      let app_askToUpdate = true;
+      if (event.available.appData) {
+        if (event.available.appData.hasOwnProperty('title') && event.available.appData['title'] !== null) {
+          app_title = event.available.appData['title'];
+        }
+        if (event.available.appData.hasOwnProperty('description') && event.available.appData['description'] !== null) {
+          app_description = event.available.appData['description'];
+        }
+        if (event.available.appData.hasOwnProperty('version') && event.available.appData['version'] !== null) {
+          app_version = event.available.appData['version'];
+        }
+        if (event.available.appData.hasOwnProperty('askToUpdate') && event.available.appData['askToUpdate'] !== null) {
+          app_askToUpdate = event.available.appData['askToUpdate'];
+        }
+      }
+      if (app_version !== null) {
+        app_description += ` [v${app_version}]`;
+      }
+      if (app_askToUpdate) {
+        this.dialog.open(WasAlert, {
+          data: { title: app_title, body: app_description, buttons: ['Refresh', 'No'] }
+        }).afterClosed().subscribe(result => {
+          // result is the index of the button pressed
+          if (result === 0) {
+            updates.activateUpdate().then(() => document.location.reload());
+          }
+        });
+      }
+    });
+    // LISTEN/HANDLE FOR NEW SITE VERSION //
   }
 
 
@@ -51,9 +95,9 @@ export class AppComponent implements OnInit {
     } else {
       // check if locked
       console.log('this horn is locked');
-      this.wasalert.open(
-        { title: 'Locked', text: 'This sound is locked' } // Login error
-      );
+      this.dialog.open(WasAlert, {
+        data: { title: 'Locked', body: 'This sound is locked' }
+      });
     }
   }
   closealert(action: any) {
@@ -173,17 +217,17 @@ export class AppComponent implements OnInit {
         console.log('WASTutorial updateUserPushId: RETURN:', usr);
         // NOTE: all user APIS can return a `special_message`
         if (usr.special_message) {
-          this.wasalert.open(
-            { title: usr.special_message.title, text: usr.special_message.message } // Login error
-          );
+          this.dialog.open(WasAlert, {
+            data: { title: usr.special_message.title, body: usr.special_message.message }
+          });
         }
       }, (error) => {
         // <any>error | this casts error to be any
         // NOTE: Can handle error return messages
         console.log('WASTutorial updateUserPushId: RETURN ERROR:', error);
-        this.wasalert.open(
-          { title: 'Attention', text: error } // Login error
-        );
+        this.dialog.open(WasAlert, {
+          data: { title: 'Attention', body: error }
+        });
       });
   }
 
@@ -217,9 +261,9 @@ export class AppComponent implements OnInit {
         console.log('WASTutorial updateUser: RETURN:', usr);
         // NOTE: all user APIS can return a `special_message`
         if (usr.special_message) {
-          this.wasalert.open(
-            { title: usr.special_message.title, text: usr.special_message.message } // Login error
-          );
+          this.dialog.open(WasAlert, {
+            data: { title: usr.special_message.title, body: usr.special_message.message }
+          });
         }
         // this.busy = null;
         // Add user context in sentry
@@ -228,9 +272,9 @@ export class AppComponent implements OnInit {
         // <any>error | this casts error to be any
         // NOTE: Can handle error return messages
         console.log('WASTutorial updateUser: RETURN ERROR:', error);
-        this.wasalert.open(
-          { title: 'Attention', text: error } // Login error
-        );
+        this.dialog.open(WasAlert, {
+          data: { title: 'Attention', body: error }
+        });
       });
   }
 
@@ -243,9 +287,9 @@ export class AppComponent implements OnInit {
       // console.log('WAS: getStore RETURN:', res);
     }, (error) => {
       // console.log('WAS: getStore ERROR:', error);
-      this.wasalert.open(
-        { title: 'Attention', text: error } // Login error
-      );
+      this.dialog.open(WasAlert, {
+        data: { title: 'Attention', body: error }
+      });
     });
   }
   setStore(data) {
@@ -254,9 +298,9 @@ export class AppComponent implements OnInit {
       // console.log('WAS: setStore RETURN:', res);
     }, (error) => {
       // console.log('WAS: setStore ERROR:', error);
-      this.wasalert.open(
-        { title: 'Attention', text: error } // Login error
-      );
+      this.dialog.open(WasAlert, {
+        data: { title: 'Attention', body: error }
+      });
     });
   }
   deleteStore() {
@@ -265,9 +309,9 @@ export class AppComponent implements OnInit {
       // console.log('WAS: deleteStore RETURN:', res);
     }, (error) => {
       // console.log('WAS: deleteStore ERROR:', error);
-      this.wasalert.open(
-        { title: 'Attention', text: error } // Login error
-      );
+      this.dialog.open(WasAlert, {
+        data: { title: 'Attention', body: error }
+      });
     });
   }
   ///////////////////////////////

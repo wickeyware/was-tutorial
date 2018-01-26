@@ -164,6 +164,12 @@
   dependencies:
     tslib "^1.7.1"
 
+"@angular/service-worker@^5.2.2":
+  version "5.2.2"
+  resolved "https://registry.yarnpkg.com/@angular/service-worker/-/service-worker-5.2.2.tgz#bb0f174292bfce953af6ff971499c846e4d4f991"
+  dependencies:
+    tslib "^1.7.1"
+
 "@ngtools/json-schema@1.1.0", "@ngtools/json-schema@^1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@ngtools/json-schema/-/json-schema-1.1.0.tgz#c3a0c544d62392acc2813a42c8a0dc6f58f86922"
@@ -6920,9 +6926,9 @@ which@1, which@^1.2.1, which@^1.2.9:
   dependencies:
     isexe "^2.0.0"
 
-wickeyappstore@^1.13.1:
-  version "1.13.1"
-  resolved "https://registry.yarnpkg.com/wickeyappstore/-/wickeyappstore-1.13.1.tgz#6c01b820367a062d9e2908c32de6d6a6a56d785c"
+wickeyappstore@^1.14.0:
+  version "1.14.0"
+  resolved "https://registry.yarnpkg.com/wickeyappstore/-/wickeyappstore-1.14.0.tgz#62940d05859c4d98a5739d06c9470ba03b78dfaf"
 
 wide-align@^1.1.0:
   version "1.1.2"

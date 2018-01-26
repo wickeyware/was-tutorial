@@ -9,6 +9,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 This shows all commits since last release.
 
+## [1.3.0](https://github.com/wickeyware/was-tutorial/compare/1.3.0...1.2.1) - 2018-26-01
+
+### Changed
+
+* **ServiceWorker** Switch to angular service worker.
+* **WAS** Update to new WAS alert modals.
+
 ## [1.2.1](https://github.com/wickeyware/was-tutorial/compare/1.2.1...1.2.0) - 2018-25-01
 
 ### Fixed
