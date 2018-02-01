@@ -19,8 +19,8 @@ export class AppComponent implements OnInit {
   private test_alert = 0;
   public userMessage = '';
   public verifiedUser = false;
-  public version = '1.3.0';
-  public whats_new = 'Added ability to catch new site versions and ask to update in an app modal.';
+  public version = '1.3.1';
+  public whats_new = 'Update to WAS lib.';
   private oneSignal: any;
   private sound = new Howl({
     src: ['assets/sounds/airhorn.mp3']

@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 This shows all commits since last release.
 
+## [1.3.1](https://github.com/wickeyware/was-tutorial/compare/1.3.1...1.3.0) - 2018-01-02
+
+### Fixed
+
+* **package** Update to latest WAS to fix UserService bug.
+
 ## [1.3.0](https://github.com/wickeyware/was-tutorial/compare/1.3.0...1.2.1) - 2018-26-01
 
 ### Changed
