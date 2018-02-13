@@ -9,6 +9,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 This shows all commits since last release.
 
+## [1.3.2](https://github.com/wickeyware/was-tutorial/compare/1.3.2...1.3.1) - 2018-13-02
+
+### Fixed
+
+* **App** Fix push ID not always saving.
+* **package** Update to latest WAS lib (new SSO).
+
+
 ## [1.3.1](https://github.com/wickeyware/was-tutorial/compare/1.3.1...1.3.0) - 2018-01-02
 
 ### Fixed

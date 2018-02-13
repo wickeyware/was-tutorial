@@ -16,11 +16,8 @@ import { Howl } from 'howler';
 export class AppComponent implements OnInit {
   public busy: Subscription;
   title = 'WAS Tutorial';
-  private test_alert = 0;
-  public userMessage = '';
-  public verifiedUser = false;
-  public version = '1.3.1';
-  public whats_new = 'Update to WAS lib.';
+  public version = '1.3.2';
+  public whats_new = 'Fix push ID not always saving, update to latest WAS lib.';
   private oneSignal: any;
   private sound = new Howl({
     src: ['assets/sounds/airhorn.mp3']
@@ -179,6 +176,12 @@ export class AppComponent implements OnInit {
         this.oneSignal.isPushNotificationsEnabled().then((isEnabled) => {
           if (isEnabled) {
             console.log('Push notifications are enabled!');
+            this.oneSignal.push(() => {
+              this.oneSignal.getUserId().then((userId) => {
+                console.log('OneSignal User ID is', userId);
+                this.updateUserPushId(userId);
+              });
+            });
           } else {
             // SHOW PUSH REGISTRATION POPUP
             this.oneSignal.registerForPushNotifications({modalPrompt: true});
@@ -276,6 +279,15 @@ export class AppComponent implements OnInit {
           data: { title: 'Attention', body: error }
         });
       });
+  }
+
+  closeLoginScreen(_data?: any) {
+    if (_data) {
+      // Logged in
+      console.log('closeLoginScreen', _data);
+    } else {
+      console.log('closeLoginScreen');
+    }
   }
 
   ///////////////////////////////
