@@ -32,6 +32,7 @@ Can also submit apps here: [Developer Portal](https://developer.wickeyappstore.c
 # WasTutorial
 
 This project shows a small Angular app that implements the WickeyAppStore npm (https://www.npmjs.com/package/wickeyappstore).
+It shows an implementation of Service Workers, and Push notifications using [OneSignal](https://onesignal.com/) (create a free account to setup/use).
 
 ## QuickStart
 

@@ -16,9 +16,10 @@ import { Howl } from 'howler';
 export class AppComponent implements OnInit {
   public busy: Subscription;
   title = 'WAS Tutorial';
-  public version = '1.3.2';
-  public whats_new = 'Fix push ID not always saving, update to latest WAS lib.';
+  public version = '1.3.3';
+  public whats_new = 'Update to latest WAS menu button, showcase new features.';
   private oneSignal: any;
+  private oneSignalInited = false;
   private sound = new Howl({
     src: ['assets/sounds/airhorn.mp3']
   });
@@ -28,10 +29,15 @@ export class AppComponent implements OnInit {
     updates: SwUpdate,
     public dialog: MatDialog
   ) {
-    // Wait for user service to load
-    this.userService.user.subscribe((usr: User) => {
-      console.log('USER LOADED: usr.user_id', usr.user_id);
-      // This initiate the Push Service, and asks to enable push on load
+    // Pushes update on all login status changes (also pushes status on initial load)
+    this.userService.loginChange.subscribe( (_isLogged: boolean) => {
+      console.log('USER LOADED:', this.userService.userObject.user_id);
+      if (_isLogged) {
+        console.warn('LOGGED IN');
+      } else {
+        console.warn('LOGGED OUT');
+      }
+      // This initiate the Push Service. Do on login status changes
       this.loadOneSignal();
     });
 
@@ -97,9 +103,6 @@ export class AppComponent implements OnInit {
       });
     }
   }
-  closealert(action: any) {
-    console.log('close alert');
-  }
 
   // PUSH NOTIFICATIONS
   // STEP 1: Create an account https://onesignal.com
@@ -108,32 +111,34 @@ export class AppComponent implements OnInit {
   // https://documentation.onesignal.com/v3.0/docs/customize-permission-messages
   doOneSignal() {
     // INIT PUSH serviceWorkerUpdaterPath: 'was-tutorial',
-    this.oneSignal.push(['init', {
-      appId: '5198c0dc-616c-46df-9357-15830b47ffbc',
-      safari_web_id: 'web.onesignal.auto.48d27e8c-5bf0-4f8f-a083-e09c208eb2cb',
-      path: '/',
-      autoRegister: false,
-      allowLocalhostAsSecureOrigin: true,
-      notifyButton: {
-        enable: false
-      },
-      promptOptions: {
-        /* Change bold title, limited to 30 characters */
-        siteName: 'AirHorner',
-        /* Subtitle, limited to 90 characters */
-        actionMessage: `We'd like to show you push notifications for new app content and important news.`,
-        /* Example notification title */
-        exampleNotificationTitle: 'New App Content!',
-        /* Example notification message */
-        exampleNotificationMessage: 'New horn sounds are here, honk honk!',
-        /* Text below example notification, limited to 50 characters */
-        exampleNotificationCaption: 'You can unsubscribe anytime',
-        /* Accept button text, limited to 15 characters */
-        acceptButtonText: 'ALLOW',
-        /* Cancel button text, limited to 15 characters */
-        cancelButtonText: 'NO THANKS'
+    if (this.oneSignalInited === false) {
+      this.oneSignal.push(['init', {
+        appId: '5198c0dc-616c-46df-9357-15830b47ffbc',
+        safari_web_id: 'web.onesignal.auto.48d27e8c-5bf0-4f8f-a083-e09c208eb2cb',
+        path: '/',
+        autoRegister: false,
+        allowLocalhostAsSecureOrigin: true,
+        notifyButton: {
+          enable: false
+        },
+        promptOptions: {
+          /* Change bold title, limited to 30 characters */
+          siteName: 'AirHorner',
+          /* Subtitle, limited to 90 characters */
+          actionMessage: `We'd like to show you push notifications for new app content and important news.`,
+          /* Example notification title */
+          exampleNotificationTitle: 'New App Content!',
+          /* Example notification message */
+          exampleNotificationMessage: 'New horn sounds are here, honk honk!',
+          /* Text below example notification, limited to 50 characters */
+          exampleNotificationCaption: 'You can unsubscribe anytime',
+          /* Accept button text, limited to 15 characters */
+          acceptButtonText: 'ALLOW',
+          /* Cancel button text, limited to 15 characters */
+          cancelButtonText: 'NO THANKS'
+      }
+      }]);
     }
-    }]);
     // // CHECK IF PUSH SUPPORTED
     // this.oneSignal.push(() => {
     //   const isPushSupported = this.oneSignal.isPushNotificationsSupported();
@@ -150,19 +155,21 @@ export class AppComponent implements OnInit {
       // Occurs when the user's subscription changes to a new value.
       this.oneSignal.on('subscriptionChange', (isSubscribed) => {
         console.log(`OneSignal: The user's subscription state is now:`, isSubscribed);
-        this.oneSignal.getUserId().then((userId) => {
-          console.log('OneSignal: User ID is', userId);
-          this.updateUserPushId(userId);
+        this.oneSignal.getUserId().then((pushId) => {
+          console.log('OneSignal: User ID is', pushId);
+          this.userService.updateUserPushId(pushId);
         });
       });
     });
-    // // GET USER ID
-    // this.oneSignal.push(() => {
-    //   this.oneSignal.getUserId().then((userId) => {
-    //     console.log('OneSignal User ID is', userId);
-    //     this.updateUserPushId(userId);
-    //   });
-    // });
+    // GET USER ID
+    this.oneSignal.push(() => {
+      this.oneSignal.isPushNotificationsEnabled().then((isEnabled) => {
+        this.oneSignal.getUserId().then((pushId) => {
+          console.log('OneSignal User ID is', pushId);
+          this.userService.updateUserPushId(pushId);
+        });
+      });
+    });
     // NOTE: To immediately ask for push, uncomment following line
     // this.askForPush();
   }
@@ -177,9 +184,9 @@ export class AppComponent implements OnInit {
           if (isEnabled) {
             console.log('Push notifications are enabled!');
             this.oneSignal.push(() => {
-              this.oneSignal.getUserId().then((userId) => {
-                console.log('OneSignal User ID is', userId);
-                this.updateUserPushId(userId);
+              this.oneSignal.getUserId().then((pushId) => {
+                console.log('OneSignal User ID is', pushId);
+                this.userService.updateUserPushId(pushId);
               });
             });
           } else {
@@ -212,26 +219,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('WASTutorial ngOnInit:');
-  }
-
-  updateUserPushId(push_id: string) {
-    this.userService.updateUser({ 'push_id': push_id })
-      .subscribe((usr) => {
-        console.log('WASTutorial updateUserPushId: RETURN:', usr);
-        // NOTE: all user APIS can return a `special_message`
-        if (usr.special_message) {
-          this.dialog.open(WasAlert, {
-            data: { title: usr.special_message.title, body: usr.special_message.message }
-          });
-        }
-      }, (error) => {
-        // <any>error | this casts error to be any
-        // NOTE: Can handle error return messages
-        console.log('WASTutorial updateUserPushId: RETURN ERROR:', error);
-        this.dialog.open(WasAlert, {
-          data: { title: 'Attention', body: error }
-        });
-      });
   }
 
   get displayMessage() {
@@ -279,15 +266,6 @@ export class AppComponent implements OnInit {
           data: { title: 'Attention', body: error }
         });
       });
-  }
-
-  closeLoginScreen(_data?: any) {
-    if (_data) {
-      // Logged in
-      console.log('closeLoginScreen', _data);
-    } else {
-      console.log('closeLoginScreen');
-    }
   }
 
   ///////////////////////////////
