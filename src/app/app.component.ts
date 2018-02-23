@@ -16,7 +16,7 @@ import { Howl } from 'howler';
 export class AppComponent implements OnInit {
   public busy: Subscription;
   title = 'WAS Tutorial';
-  public version = '1.3.3';
+  public version = '1.3.4';
   public whats_new = 'Update to latest WAS menu button, showcase new features.';
   private oneSignal: any;
   private oneSignalInited = false;

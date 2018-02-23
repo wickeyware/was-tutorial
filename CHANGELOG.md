@@ -9,6 +9,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 This shows all commits since last release.
 
+## [1.3.4](https://github.com/wickeyware/was-tutorial/compare/1.3.4...1.3.3) - 2018-23-02
+
+### Fixed
+
+* **package** Update to latest WAS lib 2.0.0, this removes many old deprecated popovers in favor of the dialog based ones.
+* **README** Fix the build and start example commands.
+
 ## [1.3.3](https://github.com/wickeyware/was-tutorial/compare/1.3.3...1.3.2) - 2018-21-02
 
 ### Fixed
@@ -21,7 +28,6 @@ This shows all commits since last release.
 
 * **App** Fix push ID not always saving.
 * **package** Update to latest WAS lib (new SSO).
-
 
 ## [1.3.1](https://github.com/wickeyware/was-tutorial/compare/1.3.1...1.3.0) - 2018-01-02
 

@@ -40,8 +40,8 @@ It shows an implementation of Service Workers, and Push notifications using [One
 2. Clone project `git clone https://github.com/wickeyware/was-tutorial.git`
 3. `cd was-tutorial`
 4. `npm install` or if you have yarn `yarn`
-6. `npm start` or `yarn start` @ `http://localhost:4200/` Development server (reloads on file change)
-7. ONE LINER BUILD/SERVE: `npm run buildrunsw` @ `http://localhost:8080/`
+6. `npm start` or `yarn start` @ `http://localhost:4204/` Development server (reloads on file change)
+7. ONE LINER BUILD/SERVE: `npm run build` @ `http://localhost:8080/`
 
 ## Help Installing via npm or yarn
 
