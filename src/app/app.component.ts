@@ -138,6 +138,7 @@ export class AppComponent implements OnInit {
           cancelButtonText: 'NO THANKS'
       }
       }]);
+      this.oneSignalInited = true;
     }
     // // CHECK IF PUSH SUPPORTED
     // this.oneSignal.push(() => {
