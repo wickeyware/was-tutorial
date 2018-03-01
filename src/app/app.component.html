@@ -1,87 +1,67 @@
-<!--******************************************
-**
-  IMPORTANT The lines BELOW are REQUIRED
-**
-***********************************************-->
-<was-spinner [busy]="busy" [message]='"Please wait.."'></was-spinner>
+<!-- Add the Wickey Appstore to top of the bootstrapped component -->
 <was-menu-btn></was-menu-btn>
-<!--******************************************
-**
-  IMPORTANT The lines ABOVE are REQUIRED
-**
-***********************************************-->
-<!--
-WAS elements instructions here:
-    Allow the user to login using WAS Single Sign On.
-    <was-popover-login></was-popover-login>
 
-
-
-
-
-
- -->
-<!--******************************************
-**
-  Your app goes below.
-**
-***********************************************-->
+<!--Now your app. Thats it.-->
 <div class="myapp">
-  <div class="title">
-    <div class="text">Air Horn</div>
-    <div class="bottom"></div>
-  </div>
+  <header>
+    <mat-toolbar role="header" class="my-title-bar" color="accent">
+      <span class="my-header-sidebar"></span>
+      <span class="my-header-text">AIR HORN</span>
+      <span class="my-header-sidebar"></span>
+    </mat-toolbar>
+  </header>
   <mat-tab-group selectedIndex=1 class="apptab">
     <!-- Menu -->
     <mat-tab>
       <ng-template mat-tab-label>
-        <mat-icon>menu</mat-icon>MENU
+        <mat-icon>menu</mat-icon>
       </ng-template>
-      <div class="add-padding">
-        <div class="title-text">AirHorn Menu (v{{version}})</div>
-        <br>
-        <mat-card>
-          <div class="menu-text">{{displayMessage | async}}</div>
-          <span *ngIf="(userService.user | async) as _usr" class="menu-accent-text">{{_usr.email}}</span>
-        </mat-card>
-        <br>
-        <br>
-        <div class="description-TitleText">New in version {{version}}</div>
-        <br>
-        <div class="menu-text">{{whats_new}}</div>
-      </div>
+      <div class="my-title-text">AirHorn Menu (v{{version}})</div>
+      <mat-card class="my-profile-card">
+        <mat-card-header>
+          <div mat-card-avatar>
+            <mat-icon color="primary" style="font-size:40px;">person_pin</mat-icon>
+          </div>
+          <mat-card-title>{{displayMessage | async}}</mat-card-title>
+          <mat-card-subtitle *ngIf="(userService.user | async) as _usr">{{_usr.email}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>New in version {{version}}</p>
+          <p>{{whats_new}}</p>
+          <mat-divider></mat-divider>
+            <mat-chip-list>
+              <mat-chip style="margin-top:25px;" color="accent" selected="true">You have honked: {{horn_presses}} times!</mat-chip>
+            </mat-chip-list>
+        </mat-card-content>
+      </mat-card>
     </mat-tab>
     <!-- Main Horn -->
     <mat-tab>
       <ng-template mat-tab-label>
-        <mat-icon>play_arrow</mat-icon>HORN
+        <mat-icon>volume_up</mat-icon>
       </ng-template>
-      <div class="add-padding">
-        <div class="horn-item" (click)="playHorn(1)">
-          <div class="svg-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="80%" height="80%" viewBox="0 0 32 18">
-              <path d="M8 20c-4.4 0-8-3.6-8-8s3.6-8 8-8v16zm4-16l8-4v24l-8-4m12 0v-4h1c1.8-.6 3-2.2 3-4s-1.2-3.4-3-4h-1V4c.7 0 1.3 0 2 .2 3.5 1 6 4 6 7.8 0 3.7-2.5 7-6 7.8l-2 .2z"
-                fill="#231F20" />
-            </svg>
-          </div>
-        </div>
-      </div>
+      <mat-card class="my-panel-container">
+        <mat-card-content>
+          <button color="accent" class="horn-button fab-button-resizer" mat-fab (click)="playHorn(1)">
+            <mat-icon class="fab-button-resizer" aria-label="locked">volume_up</mat-icon>
+          </button>
+          <h3 style="text-align:center;width:100%;">Classic Air Horn</h3>
+        </mat-card-content>
+      </mat-card>
     </mat-tab>
     <!-- Locked Horn -->
     <mat-tab>
       <ng-template mat-tab-label>
-        <mat-icon>extension</mat-icon>MORE
+        <mat-icon>lock</mat-icon>
       </ng-template>
-      <div class="add-padding">
-        <div class="horn-item" (click)="playHorn(2)">
-          <div class="svg-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="80%" height="80%" viewBox="0 0 24 32">
-              <path d="M14 0C8.5 0 4 4.5 4 10v2H0v14c0 3.3 2.7 6 6 6h12c3.3 0 6-2.7 6-6V10c0-5.5-4.5-10-10-10zM8 10c0-3.3 2.7-6 6-6s6 2.7 6 6v2H8v-2zm10 18H6c-1 0-2-1-2-2V16h16v10c0 1-1 2-2 2z"/>
-              <path d="M14 22c0 1-1 2-2 2s-2-1-2-2 1-2 2-2 2 1 2 2z" fill="#231F20" />
-            </svg>
-          </div>
-        </div>
-      </div>
+      <mat-card class="my-panel-container">
+        <mat-card-content>
+          <button color="warn" class="horn-button fab-button-resizer" mat-fab (click)="playHorn(2)">
+            <mat-icon class="fab-button-resizer" aria-label="locked">lock_outline</mat-icon>
+          </button>
+          <h3 style="text-align:center;width:100%;">Sad Trombone</h3>
+        </mat-card-content>
+      </mat-card>
     </mat-tab>
   </mat-tab-group>
 </div>

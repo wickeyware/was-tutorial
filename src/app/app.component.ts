@@ -1,28 +1,32 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { SwUpdate } from '@angular/service-worker';
-import { Subscription } from 'rxjs/Subscription';
+// import { Subscription } from 'rxjs/Subscription';
 import {
   UserService, User, UserParams,
   WasUp, WasAlert
 } from 'wickeyappstore';
 import { Howl } from 'howler';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnInit {
-  public busy: Subscription;
-  title = 'WAS Tutorial';
-  public version = '1.3.4';
-  public whats_new = 'Update to latest WAS menu button, showcase new features.';
+export class AppComponent {
+  public title = 'WAS Tutorial';
+  public version = '1.4.0';
+  public whats_new = 'Using Material. Updated to latest WAS.';
   private oneSignal: any;
   private oneSignalInited = false;
   private sound = new Howl({
     src: ['assets/sounds/airhorn.mp3']
   });
+
+  // stat to save
+  public horn_presses = 0;
+
 
   constructor(
     public userService: UserService,
@@ -37,6 +41,8 @@ export class AppComponent implements OnInit {
       } else {
         console.warn('LOGGED OUT');
       }
+      // load save data from server
+      this.getGame();
       // This initiate the Push Service. Do on login status changes
       this.loadOneSignal();
     });
@@ -78,30 +84,6 @@ export class AppComponent implements OnInit {
       }
     });
     // LISTEN/HANDLE FOR NEW SITE VERSION //
-  }
-
-
-  public tutorial_config: Object = {
-    pagination: '.swiper-pagination',
-    paginationClickable: true,
-    slidesPerView: 'auto',
-    centeredSlides: true,
-    spaceBetween: 20,
-    initialSlide: 1, // slide number which you want to show-- 0 by default
-  };
-
-  playHorn(horn: number) {
-    console.log('playHorn', horn);
-    if (horn === 1) {
-      this.sound.play();
-      this.askForPush();
-    } else {
-      // check if locked
-      console.log('this horn is locked');
-      this.dialog.open(WasAlert, {
-        data: { title: 'Locked', body: 'This sound is locked' }
-      });
-    }
   }
 
   // PUSH NOTIFICATIONS
@@ -218,55 +200,56 @@ export class AppComponent implements OnInit {
   }
   // PUSH NOTIFICATIONS
 
-  ngOnInit(): void {
-    console.log('WASTutorial ngOnInit:');
+// Play the air horn sound
+  playHorn(horn: number) {
+    console.log('playHorn', horn);
+    if (horn === 1) {
+      this.sound.play();
+      this.horn_presses = this.horn_presses + 1;
+      this.saveGame();
+      this.askForPush();
+    } else {
+      // check if locked
+      console.log('this horn is locked');
+      this.dialog.open(WasAlert, {
+        data: { title: 'Locked', body: 'This sound is locked' }
+      });
+    }
   }
 
+//  Return the login message
   get displayMessage() {
     return this.userService.user.map((usr: User) => {
       let _displayMsg = '';
       if (usr.email) {
-        _displayMsg = 'Welcome back';
+        _displayMsg = 'Welcome Back!';
       } else {
-        _displayMsg = 'Use SSO to sign into your Wickey App Store account';
+        _displayMsg = 'Sign in with the WickeyAppStore button';
       }
       return _displayMsg;
     });
   }
 
-  private handleError(error: any): Promise<any> {
-    // .catch(this.handleError);
-    console.error('An error occurred', error);  // for demo purposes
-    return Promise.reject(error.message || error);
+  ////////////////////////////////////////////
+  // AIR HORN SAVE/GET
+  // This uses getStore and setStore...
+  // just added as convenience methods
+  ////////////////////////////////////////////
+  saveGame() {
+    this.setStore({'horn_key': this.horn_presses});
   }
-  onSubmit() {
-    console.log('onSubmit: Save user locally and to server');
-    // Call WAS save user function, this saves locally and to server
-    // this.updateUser();
-  }
-
-  updateUser(app_coins?: number, app_data?: string): void {
-    console.log('WASTutorial updateUser:');
-    this.busy = this.userService.updateUser({ 'coins': app_coins, 'data': app_data })
-      .subscribe((usr) => {
-        console.log('WASTutorial updateUser: RETURN:', usr);
-        // NOTE: all user APIS can return a `special_message`
-        if (usr.special_message) {
-          this.dialog.open(WasAlert, {
-            data: { title: usr.special_message.title, body: usr.special_message.message }
-          });
-        }
-        // this.busy = null;
-        // Add user context in sentry
-        // Raven.setUserContext({email: usr.email, id: usr.user_id});
-      }, (error) => {
-        // <any>error | this casts error to be any
-        // NOTE: Can handle error return messages
-        console.log('WASTutorial updateUser: RETURN ERROR:', error);
-        this.dialog.open(WasAlert, {
-          data: { title: 'Attention', body: error }
-        });
+  getGame() {
+    const _mykey = 'horn_key';
+    this.userService.getStore([_mykey]).subscribe((res) => {
+      console.log('WAS: getMetaData RETURN:', res);
+      if (res[_mykey]) {
+        this.horn_presses = Number(res[_mykey]);
+      }
+    }, (error) => {
+      this.dialog.open(WasAlert, {
+        data: { title: 'Attention', body: error }
       });
+    });
   }
 
   ///////////////////////////////

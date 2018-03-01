@@ -10,7 +10,7 @@ body {
   margin: auto;
   font-size: 100%;
   min-width: 300px;
-  background-color: #e8e9eb;
+  background-color: white;
   /* overflow: auto */
 }
 
@@ -33,7 +33,6 @@ body {
   -ms-user-select: none;
   user-select: none
 }
-
 .mat-tab-labels{
   justify-content: center; /* align items in Main Axis */
 }
