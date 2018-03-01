@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { SwUpdate } from '@angular/service-worker';
-// import { Subscription } from 'rxjs/Subscription';
 import {
   UserService, User, UserParams,
   WasUp, WasAlert
