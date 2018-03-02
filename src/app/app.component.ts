@@ -14,9 +14,9 @@ import { Howl } from 'howler';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  public title = 'WAS Tutorial';
-  public version = '1.4.0';
-  public whats_new = 'Using Material. Updated to latest WAS.';
+  public title = 'Air Horn';
+  public version = '1.4.4';
+  public whats_new = 'Now using Material. Updated to latest WAS. Updated Icon';
   private oneSignal: any;
   private oneSignalInited = false;
   private sound = new Howl({
