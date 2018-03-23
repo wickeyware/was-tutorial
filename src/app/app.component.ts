@@ -15,7 +15,7 @@ import { Howl } from 'howler';
 })
 export class AppComponent {
   public title = 'Air Horn';
-  public version = '1.4.4';
+  public version = '1.4.5';
   public whats_new = 'Now using Material. Updated to latest WAS. Updated Icon';
   private oneSignal: any;
   private oneSignalInited = false;

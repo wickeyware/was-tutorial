@@ -9,6 +9,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 This shows all commits since last release.
 
+## [1.4.5](https://github.com/wickeyware/was-tutorial/compare/1.4.5...1.3.4) - 2018-23-02
+
+### Fixed
+
+* **package** Update to latest angular libs.
+
+### Removed
+
+* **swprecache** Remove old sw precache config.
+
 ## [1.3.4](https://github.com/wickeyware/was-tutorial/compare/1.3.4...1.3.3) - 2018-23-02
 
 ### Fixed
