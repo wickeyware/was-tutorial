@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <title>Air Horn</title>
@@ -29,18 +30,46 @@
   <!-- WICKEYAPPSTORE DEPENDENCY -->
   <!-- PUSH NOTIFICATIONS -->
   <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async></script>
-    <!-- Vast Player -->
-    <script defer src="https://cdn.jsdelivr.net/npm/vast-player@0.2/dist/vast-player.min.js"></script>
+  <!-- Vast Player -->
+  <script defer src="https://cdn.jsdelivr.net/npm/vast-player@0.2/dist/vast-player.min.js"></script>
 </head>
 
 <body>
   <app-root>
     <!-- https://www.bennadel.com/blog/3105-creating-a-pre-bootstrap-loading-screen-in-angular-2-rc-1.htm -->
     <style type="text/css">
-      #pre-bootstrap {background-color: white;bottom: 0px;left: 0px;position: fixed;right: 0px;top: 0px;z-index: 999999;}
-      #pre-bootstrap div.messaging {color: black;font-family: monospace;left: 0px;margin-top: -37px;position: absolute;right: 0px;text-align: center;top: 50%;}
-      #pre-bootstrap h2 {font-size: 26px;line-height: 35px;margin: 0px 0px 20px 0px;}
-      #pre-bootstrap p {font-size: 18px;line-height: 14px;margin: 0px 0px 0px 0px;}
+      #pre-bootstrap {
+        background-color: white;
+        bottom: 0px;
+        left: 0px;
+        position: fixed;
+        right: 0px;
+        top: 0px;
+        z-index: 999999;
+      }
+
+      #pre-bootstrap div.messaging {
+        color: black;
+        font-family: monospace;
+        left: 0px;
+        margin-top: -37px;
+        position: absolute;
+        right: 0px;
+        text-align: center;
+        top: 50%;
+      }
+
+      #pre-bootstrap h2 {
+        font-size: 26px;
+        line-height: 35px;
+        margin: 0px 0px 20px 0px;
+      }
+
+      #pre-bootstrap p {
+        font-size: 18px;
+        line-height: 14px;
+        margin: 0px 0px 0px 0px;
+      }
     </style>
     <div id="pre-bootstrap">
       <div class="messaging">
@@ -50,4 +79,5 @@
     </div>
   </app-root>
 </body>
+
 </html>
