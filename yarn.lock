@@ -2803,9 +2803,9 @@ iconv-lite@0.4.19:
   version "0.4.19"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.19.tgz#f7468f60135f5e5dad3399c0a81be9a1603a082b"
 
-idb-keyval@^2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/idb-keyval/-/idb-keyval-2.3.0.tgz#4d444b80c3f86fcbcd51321b4dcbc9247c5948c0"
+idb-keyval@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/idb-keyval/-/idb-keyval-3.0.2.tgz#54d49cb6b7d50d7b60a9cf7e25409c9bbdcf29fa"
 
 ieee754@^1.1.4:
   version "1.1.8"
@@ -4919,9 +4919,9 @@ rxjs@^5.5.6:
   dependencies:
     symbol-observable "1.0.1"
 
-rxjs@^5.5.7:
-  version "5.5.7"
-  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-5.5.7.tgz#afb3d1642b069b2fbf203903d6501d1acb4cda27"
+rxjs@^5.5.8:
+  version "5.5.8"
+  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-5.5.8.tgz#b2b0809a57614ad6254c03d7446dea0d83ca3791"
   dependencies:
     symbol-observable "1.0.1"
 
@@ -6186,9 +6186,9 @@ which@1, which@^1.2.1, which@^1.2.9:
   dependencies:
     isexe "^2.0.0"
 
-wickeyappstore@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/wickeyappstore/-/wickeyappstore-2.0.1.tgz#f20eb718a41b138fa6af1f46f873be8957f02bd7"
+wickeyappstore@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/wickeyappstore/-/wickeyappstore-2.1.1.tgz#f236de084d367f381a4cddead4cca6f61f961849"
 
 wide-align@^1.1.0:
   version "1.1.2"
