@@ -11,6 +11,10 @@ This shows all commits since last release.
 
 ## [1.4.5](https://github.com/wickeyware/was-tutorial/compare/1.4.5...1.3.4) - 2018-23-02
 
+### Added
+
+* **Vast** Add new WAS dependency Vast Player.
+
 ### Fixed
 
 * **package** Update to latest angular libs.
