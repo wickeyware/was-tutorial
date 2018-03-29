@@ -9,7 +9,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 This shows all commits since last release.
 
-## [1.4.5](https://github.com/wickeyware/was-tutorial/compare/1.4.5...1.3.4) - 2018-23-02
+## [1.4.6](https://github.com/wickeyware/was-tutorial/compare/1.4.6...1.4.5) - 2018-03-29
+
+### Fixed
+
+* **package** Update to latest WAS to fix SSO login. 
+
+## [1.4.5](https://github.com/wickeyware/was-tutorial/compare/1.4.5...1.3.4) - 2018-03-23
 
 ### Added
 
@@ -23,46 +29,46 @@ This shows all commits since last release.
 
 * **swprecache** Remove old sw precache config.
 
-## [1.3.4](https://github.com/wickeyware/was-tutorial/compare/1.3.4...1.3.3) - 2018-23-02
+## [1.3.4](https://github.com/wickeyware/was-tutorial/compare/1.3.4...1.3.3) - 2018-02-23
 
 ### Fixed
 
 * **package** Update to latest WAS lib 2.0.0, this removes many old deprecated popovers in favor of the dialog based ones.
 * **README** Fix the build and start example commands.
 
-## [1.3.3](https://github.com/wickeyware/was-tutorial/compare/1.3.3...1.3.2) - 2018-21-02
+## [1.3.3](https://github.com/wickeyware/was-tutorial/compare/1.3.3...1.3.2) - 2018-02-21
 
 ### Fixed
 
 * **package** Update to latest WAS lib (new UI), showcase new features.
 
-## [1.3.2](https://github.com/wickeyware/was-tutorial/compare/1.3.2...1.3.1) - 2018-13-02
+## [1.3.2](https://github.com/wickeyware/was-tutorial/compare/1.3.2...1.3.1) - 2018-02-13
 
 ### Fixed
 
 * **App** Fix push ID not always saving.
 * **package** Update to latest WAS lib (new SSO).
 
-## [1.3.1](https://github.com/wickeyware/was-tutorial/compare/1.3.1...1.3.0) - 2018-01-02
+## [1.3.1](https://github.com/wickeyware/was-tutorial/compare/1.3.1...1.3.0) - 2018-02-01
 
 ### Fixed
 
 * **package** Update to latest WAS to fix UserService bug.
 
-## [1.3.0](https://github.com/wickeyware/was-tutorial/compare/1.3.0...1.2.1) - 2018-26-01
+## [1.3.0](https://github.com/wickeyware/was-tutorial/compare/1.3.0...1.2.1) - 2018-01-26
 
 ### Changed
 
 * **ServiceWorker** Switch to angular service worker.
 * **WAS** Update to new WAS alert modals.
 
-## [1.2.1](https://github.com/wickeyware/was-tutorial/compare/1.2.1...1.2.0) - 2018-25-01
+## [1.2.1](https://github.com/wickeyware/was-tutorial/compare/1.2.1...1.2.0) - 2018-01-25
 
 ### Fixed
 
 * **Push** Add OneSignal gcm id to manifest.
 
-## [1.2.0](https://github.com/wickeyware/was-tutorial/compare/1.2.0...1.1.11) - 2018-19-01
+## [1.2.0](https://github.com/wickeyware/was-tutorial/compare/1.2.0...1.1.11) - 2018-01-19
 
 ### Changed
 
@@ -76,7 +82,7 @@ This shows all commits since last release.
 * **MANIFEST** Updated start_url to denote that app started from home screen.
 * **app** Center tab bar.
 
-## [1.1.11](https://github.com/wickeyware/was-tutorial/releases/tag/1.1.11) - 2018-16-01
+## [1.1.11](https://github.com/wickeyware/was-tutorial/releases/tag/1.1.11) - 2018-01-16
 
 ### Fixed
 
