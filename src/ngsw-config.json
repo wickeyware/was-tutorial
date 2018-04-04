@@ -1,6 +1,6 @@
 {
   "index": "/index.html",
-  "appData": {"title": "New UI", "description": "Update to latest WAS menu button, showcase new features.", "version": "1.4.6", "askToUpdate": true},
+  "appData": {"title": "New UI", "description": "Update to latest WAS menu button, show shop on apps with inapps.", "version": "1.4.7", "askToUpdate": true},
   "assetGroups": [{
     "name": "app",
     "installMode": "prefetch",

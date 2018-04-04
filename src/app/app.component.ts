@@ -15,8 +15,8 @@ import { Howl } from 'howler';
 })
 export class AppComponent {
   public title = 'Air Horn';
-  public version = '1.4.6';
-  public whats_new = 'Update to latest WAS menu button, showcase new features.';
+  public version = '1.4.7';
+  public whats_new = 'Update to latest WAS menu button, show shop on apps with inapps.';
   private oneSignal: any;
   private oneSignalInited = false;
   private sound = new Howl({

@@ -1,6 +1,6 @@
 {
   "name": "was-tutorial",
-  "version": "1.4.6",
+  "version": "1.4.7",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -40,8 +40,8 @@
     "rxjs": "^5.5.8",
     "swiper": "3.4.2",
     "web-animations-js": "^2.3.1",
-    "wickeyappstore": "^2.2.1",
-    "zone.js": "^0.8.20"
+    "wickeyappstore": "^2.2.2",
+    "zone.js": "^0.8.24"
   },
   "devDependencies": {
     "@angular/cli": "1.7.3",
