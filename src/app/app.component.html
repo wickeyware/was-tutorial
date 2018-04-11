@@ -43,7 +43,7 @@
       <mat-card class="my-panel-container">
         <mat-card-content>
           <button color="accent" class="horn-button fab-button-resizer" mat-fab (click)="playHorn(1)">
-            <mat-icon class="fab-button-resizer" aria-label="locked">volume_up</mat-icon>
+            <mat-icon class="fab-button-resizer" aria-label="airhorn">volume_up</mat-icon>
           </button>
           <h3 style="text-align:center;width:100%;">Classic Air Horn</h3>
         </mat-card-content>
@@ -57,7 +57,8 @@
       <mat-card class="my-panel-container">
         <mat-card-content>
           <button color="warn" class="horn-button fab-button-resizer" mat-fab (click)="playHorn(2)">
-            <mat-icon class="fab-button-resizer" aria-label="locked">lock_outline</mat-icon>
+            <mat-icon class="fab-button-resizer" aria-label="trombone" *ngIf="(userService.checkIfPurchased(trombonePurchaseId) | async); else lockedBlock">sentiment_very_dissatisfied</mat-icon>
+            <ng-template #lockedBlock><mat-icon class="fab-button-resizer" aria-label="locked">lock_outline</mat-icon></ng-template>
           </button>
           <h3 style="text-align:center;width:100%;">Sad Trombone</h3>
         </mat-card-content>

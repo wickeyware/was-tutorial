@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material';
-import { SwUpdate } from '@angular/service-worker';
 import {
   UserService, User, UserParams,
-  WasUp, WasAlert
+  WasUp, WasAlert, WasPay, PromptUpdateService
 } from 'wickeyappstore';
 import { Howl } from 'howler';
 
@@ -15,21 +14,25 @@ import { Howl } from 'howler';
 })
 export class AppComponent {
   public title = 'Air Horn';
-  public version = '1.4.9';
-  public whats_new = 'Update to latest WickeyAppStore library.';
+  public version = '1.5.0';
+  public whats_new = 'Added ability to purchase other sound.';
   private oneSignal: any;
   private oneSignalInited = false;
   private sound = new Howl({
     src: ['assets/sounds/airhorn.mp3']
   });
+  private trombonesound = new Howl({
+    src: ['assets/sounds/sad-trombone.mp3']
+  });
 
   // stat to save
   public horn_presses = 0;
+  public trombonePurchaseId = 1;  // This is from the developer.wickeyappstore.com panel after inapps are added.
 
 
   constructor(
     public userService: UserService,
-    updates: SwUpdate,
+    private promptUpdateService: PromptUpdateService,
     public dialog: MatDialog
   ) {
     // Pushes update on all login status changes (also pushes status on initial load)
@@ -45,47 +48,6 @@ export class AppComponent {
       // This initiate the Push Service. Do on login status changes
       this.loadOneSignal();
     });
-
-    // LISTEN/HANDLE FOR NEW SITE VERSION //
-    updates.available.subscribe(event => {
-      console.log('promptUser: NEW CONTENT', event);
-      // event.available.name/description/version
-      let app_title = 'New Content';
-      let app_description = 'New or updated content is available! Please refresh your page.';
-      let app_version = null;
-      let app_askToUpdate = true;
-      if (event.available.appData) {
-        if (event.available.appData.hasOwnProperty('title') && event.available.appData['title'] !== null) {
-          app_title = event.available.appData['title'];
-        }
-        if (event.available.appData.hasOwnProperty('description') && event.available.appData['description'] !== null) {
-          app_description = event.available.appData['description'];
-        }
-        if (event.available.appData.hasOwnProperty('version') && event.available.appData['version'] !== null) {
-          app_version = event.available.appData['version'];
-        }
-        if (event.available.appData.hasOwnProperty('askToUpdate') && event.available.appData['askToUpdate'] !== null) {
-          app_askToUpdate = event.available.appData['askToUpdate'];
-        }
-      }
-      if (app_version !== null) {
-        app_description += ` [v${app_version}]`;
-      }
-      if (app_askToUpdate) {
-        const dialogRef = this.dialog.open(WasAlert, {
-          data: {
-            title: app_title, body: app_description,
-            buttons: ['Cancel', 'Refresh'], button_icons: ['cancel', 'refresh'], button_colors: ['warning', 'primary']
-          }
-        }).afterClosed().subscribe(result => {
-          // result is the index of the button pressed
-          if (result === 1) {
-            updates.activateUpdate().then(() => document.location.reload());
-          }
-        });
-      }
-    });
-    // LISTEN/HANDLE FOR NEW SITE VERSION //
   }
 
   // PUSH NOTIFICATIONS
@@ -211,11 +173,19 @@ export class AppComponent {
       this.saveGame();
       this.askForPush();
     } else {
+      // TODO: Need to change to different icon if unlocked <i class="material-icons">sentiment_very_dissatisfied</i>
+      const _tromboneInapp = this.userService.getInapp(this.trombonePurchaseId);
       // check if locked
-      console.log('this horn is locked');
-      this.dialog.open(WasAlert, {
-        data: { title: 'Locked', body: 'This sound is locked' }
-      });
+      if (_tromboneInapp && _tromboneInapp.isOwned === true) {
+        this.trombonesound.play();
+      } else {
+        console.log('this horn is locked');
+        this.dialog.open(WasPay, {data: _tromboneInapp}).afterClosed().subscribe(_isSuccess => {
+          if (_isSuccess === true) {
+            this.playHorn(horn);
+          }
+        });
+      }
     }
   }
 
