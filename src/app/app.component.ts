@@ -15,8 +15,8 @@ import { Howl } from 'howler';
 })
 export class AppComponent {
   public title = 'Air Horn';
-  public version = '1.4.7';
-  public whats_new = 'Update to latest WAS menu button, show shop on apps with inapps.';
+  public version = '1.4.9';
+  public whats_new = 'Update to latest WickeyAppStore library.';
   private oneSignal: any;
   private oneSignalInited = false;
   private sound = new Howl({
@@ -33,7 +33,7 @@ export class AppComponent {
     public dialog: MatDialog
   ) {
     // Pushes update on all login status changes (also pushes status on initial load)
-    this.userService.loginChange.subscribe( (_isLogged: boolean) => {
+    this.userService.loginChange.subscribe((_isLogged: boolean) => {
       console.log('USER LOADED:', this.userService.userObject.user_id);
       if (_isLogged) {
         console.warn('LOGGED IN');
@@ -72,11 +72,14 @@ export class AppComponent {
         app_description += ` [v${app_version}]`;
       }
       if (app_askToUpdate) {
-        this.dialog.open(WasAlert, {
-          data: { title: app_title, body: app_description, buttons: ['Refresh', 'No'] }
+        const dialogRef = this.dialog.open(WasAlert, {
+          data: {
+            title: app_title, body: app_description,
+            buttons: ['Cancel', 'Refresh'], button_icons: ['cancel', 'refresh'], button_colors: ['warning', 'primary']
+          }
         }).afterClosed().subscribe(result => {
           // result is the index of the button pressed
-          if (result === 0) {
+          if (result === 1) {
             updates.activateUpdate().then(() => document.location.reload());
           }
         });
@@ -117,7 +120,7 @@ export class AppComponent {
           acceptButtonText: 'ALLOW',
           /* Cancel button text, limited to 15 characters */
           cancelButtonText: 'NO THANKS'
-      }
+        }
       }]);
       this.oneSignalInited = true;
     }
@@ -173,7 +176,7 @@ export class AppComponent {
             });
           } else {
             // SHOW PUSH REGISTRATION POPUP
-            this.oneSignal.registerForPushNotifications({modalPrompt: true});
+            this.oneSignal.registerForPushNotifications({ modalPrompt: true });
           }
         });
       });
@@ -199,7 +202,7 @@ export class AppComponent {
   }
   // PUSH NOTIFICATIONS
 
-// Play the air horn sound
+  // Play the air horn sound
   playHorn(horn: number) {
     console.log('playHorn', horn);
     if (horn === 1) {
@@ -216,7 +219,7 @@ export class AppComponent {
     }
   }
 
-//  Return the login message
+  //  Return the login message
   get displayMessage() {
     return this.userService.user.map((usr: User) => {
       let _displayMsg = '';
@@ -235,7 +238,7 @@ export class AppComponent {
   // just added as convenience methods
   ////////////////////////////////////////////
   saveGame() {
-    this.setStore({'horn_key': this.horn_presses});
+    this.setStore({ 'horn_key': this.horn_presses });
   }
   getGame() {
     const _mykey = 'horn_key';
