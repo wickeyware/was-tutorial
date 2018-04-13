@@ -27,7 +27,7 @@ export class AppComponent {
 
   // stat to save
   public horn_presses = 0;
-  public trombonePurchaseId = 1;  // This is from the developer.wickeyappstore.com panel after inapps are added.
+  public trombonePurchaseId = 10;  // This is from the developer.wickeyappstore.com panel after inapps are added.
 
 
   constructor(
