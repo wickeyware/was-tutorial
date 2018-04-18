@@ -1,6 +1,6 @@
 {
   "index": "/index.html",
-  "appData": {"title": "Update Available", "description": "Add ability to purchase other sound.", "version": "1.5.0", "askToUpdate": true},
+  "appData": {"title": "Update Available", "description": "Added ability to purchase other sound. Updated libraries.", "version": "1.6.0", "askToUpdate": true},
   "assetGroups": [{
     "name": "app",
     "installMode": "prefetch",

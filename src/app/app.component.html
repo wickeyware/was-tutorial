@@ -29,9 +29,9 @@
           <p>New in version {{version}}</p>
           <p>{{whats_new}}</p>
           <mat-divider></mat-divider>
-            <mat-chip-list>
-              <mat-chip style="margin-top:25px;" color="accent" selected="true">You have honked: {{horn_presses}} times!</mat-chip>
-            </mat-chip-list>
+          <mat-chip-list>
+            <mat-chip style="margin-top:25px;" color="accent" selected="true">You have honked: {{horn_presses}} times!</mat-chip>
+          </mat-chip-list>
         </mat-card-content>
       </mat-card>
     </mat-tab>
@@ -52,13 +52,18 @@
     <!-- Locked Horn -->
     <mat-tab>
       <ng-template mat-tab-label>
-        <mat-icon>lock</mat-icon>
+        <mat-icon *ngIf="(userService.checkIfPurchased(trombonePurchaseId) | async); else lockedIcon">sentiment_very_dissatisfied</mat-icon>
+        <ng-template #lockedIcon>
+          <mat-icon>lock</mat-icon>
+        </ng-template>
       </ng-template>
       <mat-card class="my-panel-container">
         <mat-card-content>
           <button color="warn" class="horn-button fab-button-resizer" mat-fab (click)="playHorn(2)">
             <mat-icon class="fab-button-resizer" aria-label="trombone" *ngIf="(userService.checkIfPurchased(trombonePurchaseId) | async); else lockedBlock">sentiment_very_dissatisfied</mat-icon>
-            <ng-template #lockedBlock><mat-icon class="fab-button-resizer" aria-label="locked">lock_outline</mat-icon></ng-template>
+            <ng-template #lockedBlock>
+              <mat-icon class="fab-button-resizer" aria-label="locked">lock_outline</mat-icon>
+            </ng-template>
           </button>
           <h3 style="text-align:center;width:100%;">Sad Trombone</h3>
         </mat-card-content>
