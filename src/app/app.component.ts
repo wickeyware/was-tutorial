@@ -14,7 +14,7 @@ import { Howl } from 'howler';
 })
 export class AppComponent {
   public title = 'Air Horn';
-  public version = '1.6.0';
+  public version = '1.6.1';
   public whats_new = 'Added ability to purchase other sound. Updated libraries.';
   private oneSignal: any;
   private oneSignalInited = false;

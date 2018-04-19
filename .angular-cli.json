@@ -24,11 +24,9 @@
       "serviceWorker": true,
       "styles": [
         "styles.css",
-        "../node_modules/wickeyappstore/styles.css",
-        "../node_modules/swiper/dist/css/swiper.min.css"
+        "../node_modules/wickeyappstore/styles.css"
       ],
       "scripts": [
-        "../node_modules/swiper/dist/js/swiper.min.js",
         "../node_modules/hammerjs/hammer.min.js"
       ],
       "environmentSource": "environments/environment.ts",
