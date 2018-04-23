@@ -12,20 +12,25 @@ import { Howl } from 'howler';
 export class AppComponent {
   // (1) SET THESE VALUES FOR YOUR APP ****************************
   public title = 'Air Horn';
-  public version = '1.7.0';
-  public whats_new = 'Updated libraries & organized push notifications';
+  public version = '1.8.0';
+  public whats_new = 'Updated libraries & organized push notifications. Add configurations.';
   // (2) UPDATE the version to match in package.json ****************************
   //     UPDATE the version & whats_new in ngsw-config.json
   //
   //
   // (3) SET THESE VALUES FOR YOUR APP ****************************
-  // IF YOU DO NOT HAVE PUSH NOTIFICATIONS set these id's to empty strings ''
-  private oneSignalController = new OneSignalController;
+  // IF YOU DO NOT HAVE PUSH NOTIFICATIONS just set ONESIGNAL_ENABLED = FALSE
+  private ONESIGNAL_ENABLED = true;
   private oneSignalAppId = '5198c0dc-616c-46df-9357-15830b47ffbc';
   private oneSignalSafariWebId = 'web.onesignal.auto.48d27e8c-5bf0-4f8f-a083-e09c208eb2cb';
+  private oneSignalConfig = { title: this.title, exampleNotificationMessage: 'New horn sounds are here, get em now!' };
   //
 
 
+
+  // Variables //
+  // push controller
+  private oneSignalController = new OneSignalController;
   // declare the air horn sounds
   private classicsound = new Howl({ src: ['assets/sounds/airhorn.mp3'] });
   private trombonesound = new Howl({ src: ['assets/sounds/sad-trombone.mp3'] });
@@ -53,7 +58,8 @@ export class AppComponent {
         this.horn_presses = 0;
       }
       // This initiate the Push Service. Do on login status changes
-      this.oneSignalController.loadPushSystem(this.oneSignalAppId, this.oneSignalSafariWebId);
+      this.oneSignalController.loadPushSystem(this.userService, this.oneSignalAppId, this.oneSignalSafariWebId,
+        this.oneSignalConfig, this.ONESIGNAL_ENABLED);
     });
   }
 

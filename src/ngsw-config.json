@@ -1,6 +1,6 @@
 {
   "index": "/index.html",
-  "appData": {"title": "Update Available", "description": "Updated libs & organized push notifcations.", "version": "1.7.0", "askToUpdate": true},
+  "appData": {"title": "Update Available", "description": "Updated libraries & organized push notifications. Add configurations.", "version": "1.8.0", "askToUpdate": true},
   "assetGroups": [{
     "name": "app",
     "installMode": "prefetch",

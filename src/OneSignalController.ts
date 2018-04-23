@@ -1,5 +1,5 @@
 // This is Was-Tutorial implementation of OneSignal
-import {UserService} from 'wickeyappstore';
+import { UserService } from 'wickeyappstore';
 
 /**
     STEP 1: Create an account https://onesignal.com
@@ -13,24 +13,29 @@ export class OneSignalController {
 
     private appId;
     private safari_web_id;
+    private oneSignalConfig = { title: 'Air Horn', exampleNotificationMessage: 'New horn sounds are here, get em now!' };
+    private ENABLED = true;
 
-
-    public userService: UserService;
+    private userService: UserService;
 
     /**
      * This initiate the Push Service. Do this on login status changes
      * @param appId The app id from onesignal
      * @param safari_web_id The safari web id from onesignal
      */
-    public loadPushSystem(appId: string, safari_web_id: string) {
+    public loadPushSystem(userService: UserService, appId: string, safari_web_id: string,
+        oneSignalConfig: { title: string, exampleNotificationMessage: string }, ENABLED: boolean) {
         console.log('OneSignalController', 'loadPushSystem');
-        if (appId && safari_web_id) {
+        this.ENABLED = ENABLED;
+        if (this.ENABLED) {
             console.log('OneSignalController', appId, safari_web_id);
+            this.userService = userService;
             this.appId = appId;
             this.safari_web_id = safari_web_id;
+            this.oneSignalConfig = oneSignalConfig;
             this.loadOneSignal();
         } else {
-            console.log('OneSignalController', 'appId or safari_web_id is invalid');
+            console.log('OneSignalController', 'NOT ENABLED');
         }
     }
 
@@ -39,28 +44,32 @@ export class OneSignalController {
      * For instance, if you ask the user if they want to be notified about updates and they say yes. Then askForPush()
      */
     public askForPush() {
-        try {
-            // REGISTER FOR PUSH
-            this.oneSignal.push(() => {
-                console.log('OneSignal: Register For Push');
-                // CHECK IF PUSH IS ENABLED
-                this.oneSignal.isPushNotificationsEnabled().then((isEnabled) => {
-                    if (isEnabled) {
-                        console.log('Push notifications are enabled!');
-                        this.oneSignal.push(() => {
-                            this.oneSignal.getUserId().then((pushId) => {
-                                console.log('OneSignal User ID is', pushId);
-                                this.userService.updateUserPushId(pushId);
+        if (this.ENABLED) {
+            try {
+                // REGISTER FOR PUSH
+                this.oneSignal.push(() => {
+                    console.log('OneSignal: Register For Push');
+                    // CHECK IF PUSH IS ENABLED
+                    this.oneSignal.isPushNotificationsEnabled().then((isEnabled) => {
+                        if (isEnabled) {
+                            console.log('Push notifications are enabled!');
+                            this.oneSignal.push(() => {
+                                this.oneSignal.getUserId().then((pushId) => {
+                                    console.log('OneSignal User ID is', pushId);
+                                    this.userService.updateUserPushId(pushId);
+                                });
                             });
-                        });
-                    } else {
-                        // SHOW PUSH REGISTRATION POPUP
-                        this.oneSignal.registerForPushNotifications({ modalPrompt: true });
-                    }
+                        } else {
+                            // SHOW PUSH REGISTRATION POPUP
+                            this.oneSignal.registerForPushNotifications({ modalPrompt: true });
+                        }
+                    });
                 });
-            });
-        } catch (pusherror) {
-            console.error('askForPush', pusherror);
+            } catch (pusherror) {
+                console.error('askForPush', pusherror);
+            }
+        }{
+            console.log('OneSignalController', 'NOT ENABLED');
         }
     }
 
@@ -84,13 +93,13 @@ export class OneSignalController {
                 },
                 promptOptions: {
                     /* Change bold title, limited to 30 characters */
-                    siteName: 'AirHorner',
+                    siteName: this.oneSignalConfig.title,
                     /* Subtitle, limited to 90 characters */
                     actionMessage: `We'd like to show you push notifications for new app content and important news.`,
                     /* Example notification title */
                     exampleNotificationTitle: 'New App Content!',
                     /* Example notification message */
-                    exampleNotificationMessage: 'New horn sounds are here, honk honk!',
+                    exampleNotificationMessage: this.oneSignalConfig.exampleNotificationMessage,
                     /* Text below example notification, limited to 50 characters */
                     exampleNotificationCaption: 'You can unsubscribe anytime',
                     /* Accept button text, limited to 15 characters */
