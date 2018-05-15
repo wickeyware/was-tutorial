@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material';
+import { map } from 'rxjs/operators';
 import { OneSignalController } from '../OneSignalController';
 import { UserService, User, UserParams, WasUp, WasAlert, WasPay, PromptUpdateService } from 'wickeyappstore';
 import { Howl } from 'howler';
@@ -12,8 +13,8 @@ import { Howl } from 'howler';
 export class AppComponent {
   // (1) SET THESE VALUES FOR YOUR APP ****************************
   public title = 'Air Horn';
-  public version = '1.8.0';
-  public whats_new = 'Updated libraries & organized push notifications. Add configurations.';
+  public version = '1.9.0';
+  public whats_new = 'Updated to Angular 6.';
   // (2) UPDATE the version to match in package.json ****************************
   //     UPDATE the version & whats_new in ngsw-config.json
   //
@@ -99,7 +100,7 @@ export class AppComponent {
 
   //  Return the login message
   get displayMessage() {
-    return this.userService.user.map((usr: User) => {
+    return this.userService.user.pipe(map((usr: User) => {
       let _displayMsg = '';
       if (usr.email) {
         _displayMsg = 'Welcome Back!';
@@ -107,7 +108,7 @@ export class AppComponent {
         _displayMsg = 'Sign in with the WickeyAppStore button';
       }
       return _displayMsg;
-    });
+    }));
   }
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

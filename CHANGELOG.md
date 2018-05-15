@@ -5,9 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/wickeyware/was-tutorial/compare/1.2.0...HEAD)
+## [Unreleased](https://github.com/wickeyware/was-tutorial/compare/1.9.0...HEAD)
 
 This shows all commits since last release.
+
+## [1.9.0](https://github.com/wickeyware/was-tutorial/compare/1.6.1...1.9.0) - 2018-05-15
+
+### Changed
+
+* **packages** [BREAKING] Update to Angular 6 and rxjs 6, these are breaking changes. [how to update](https://update.angular.io/)
 
 ## [1.6.1](https://github.com/wickeyware/was-tutorial/compare/1.6.1...1.2.0) - 2018-04-19
 
