@@ -2,8 +2,8 @@
   "index": "/index.html",
   "appData": {
     "title": "Update Available",
-    "description": "Updated to Angular 6.",
-    "version": "1.9.0",
+    "description": "Remove un-used dependencies. Update packages.",
+    "version": "1.9.1",
     "askToUpdate": true
   },
   "assetGroups": [{
@@ -15,11 +15,6 @@
         "/index.html",
         "/*.css",
         "/*.js"
-      ],
-      "versionedFiles": [
-        "/*.bundle.css",
-        "/*.bundle.js",
-        "/*.chunk.js"
       ]
     }
   }, {

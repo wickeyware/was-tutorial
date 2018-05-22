@@ -13,8 +13,8 @@ import { Howl } from 'howler';
 export class AppComponent {
   // (1) SET THESE VALUES FOR YOUR APP ****************************
   public title = 'Air Horn';
-  public version = '1.9.0';
-  public whats_new = 'Updated to Angular 6.';
+  public version = '1.9.1';
+  public whats_new = 'Remove un-used dependencies. Update packages.';
   // (2) UPDATE the version to match in package.json ****************************
   //     UPDATE the version & whats_new in ngsw-config.json
   //
