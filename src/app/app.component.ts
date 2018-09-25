@@ -4,6 +4,7 @@ import { map } from 'rxjs/operators';
 import { OneSignalController } from '../OneSignalController';
 import { UserService, User, UserParams, WasUp, WasAlert, WasPay, PromptUpdateService } from 'wickeyappstore';
 import { Howl } from 'howler';
+import { SupportPopupComponent } from './support-popup/support-popup.component';
 
 @Component({
   selector: 'app-root',
@@ -109,6 +110,16 @@ export class AppComponent {
       }
       return _displayMsg;
     }));
+  }
+
+  // open the support popup
+  supportPopUp() {
+    this.dialog.open(SupportPopupComponent, {
+      width: '80%',
+      data: {
+        title: 'Contact Us'
+      }
+    });
   }
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

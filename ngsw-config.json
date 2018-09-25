@@ -3,7 +3,7 @@
   "appData": {
     "title": "Update Available",
     "description": "Remove un-used dependencies. Update packages.",
-    "version": "1.9.1",
+    "version": "1.9.2",
     "askToUpdate": true
   },
   "assetGroups": [{
