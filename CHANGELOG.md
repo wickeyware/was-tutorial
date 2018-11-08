@@ -5,9 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/wickeyware/was-tutorial/compare/1.9.0...HEAD)
+## [Unreleased](https://github.com/wickeyware/was-tutorial/compare/1.10.0...HEAD)
 
 This shows all commits since last release.
+
+## [1.10.0](https://github.com/wickeyware/was-tutorial/compare/1.9.2...1.10.0) - 2018-11-08
+
+### Fixed
+
+* **package** Update to latest Angular and WickeyAppStore.
 
 ## [1.9.2](https://github.com/wickeyware/was-tutorial/compare/1.9.1...1.9.2) - 2018-9-25
 

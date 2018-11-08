@@ -2,8 +2,8 @@
   "index": "/index.html",
   "appData": {
     "title": "Update Available",
-    "description": "Remove un-used dependencies. Update packages.",
-    "version": "1.9.2",
+    "description": "Update to latest Angular and WickeyAppStore.",
+    "version": "1.10.0",
     "askToUpdate": true
   },
   "assetGroups": [{
