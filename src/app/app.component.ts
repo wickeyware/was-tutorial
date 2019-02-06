@@ -15,9 +15,9 @@ export class AppComponent {
   // (1) SET THESE VALUES FOR YOUR APP ****************************
   public title = 'Air Horn';
   public version = '1.10.1';
-  public whats_new = 'Update to latest Angular and WickeyAppStore.';
+  public whatsNew = 'Update to latest Angular and WickeyAppStore.';
   // (2) UPDATE the version to match in package.json ****************************
-  //     UPDATE the version & whats_new in ngsw-config.json
+  //     UPDATE the version & description in ngsw-config.json
   //
   //
   // (3) SET THESE VALUES FOR YOUR APP ****************************
@@ -32,13 +32,13 @@ export class AppComponent {
 
   // Variables //
   // push controller
-  private oneSignalController = new OneSignalController;
+  private oneSignalController = new OneSignalController();
   // declare the air horn sounds
   private classicsound = new Howl({ src: ['assets/sounds/airhorn.mp3'] });
   private trombonesound = new Howl({ src: ['assets/sounds/sad-trombone.mp3'] });
 
   // stat to save
-  public horn_presses = 0;
+  public hornPresses = 0;
   public trombonePurchaseId = 10;  // This is from the developer.wickeyappstore.com panel after inapps are added.
 
 
@@ -48,16 +48,16 @@ export class AppComponent {
     public dialog: MatDialog
   ) {
     // Pushes update on all login status changes (also pushes status on initial load)
-    this.userService.loginChange.subscribe((_isLogged: boolean) => {
+    this.userService.loginChange.subscribe((isLogged: boolean) => {
       console.log('USER LOADED:', this.userService.userObject.user_id);
-      if (_isLogged) {
+      if (isLogged) {
         console.warn('LOGGED IN');
         // load save data from server
         this.getFromCloud();
       } else {
         console.warn('LOGGED OUT');
         // reset progress
-        this.horn_presses = 0;
+        this.hornPresses = 0;
       }
       // This initiate the Push Service. Do on login status changes
       this.oneSignalController.loadPushSystem(this.userService, this.oneSignalAppId, this.oneSignalSafariWebId,
@@ -74,15 +74,15 @@ export class AppComponent {
       this.classicsound.play();
     } else {
       // TODO: Need to change to different icon if unlocked <i class="material-icons">sentiment_very_dissatisfied</i>
-      const _tromboneInapp = this.userService.getInapp(this.trombonePurchaseId);
+      const tromboneInapp = this.userService.getInapp(this.trombonePurchaseId);
       // check if locked
-      if (_tromboneInapp && _tromboneInapp.isOwned === true) {
+      if (tromboneInapp && tromboneInapp.isOwned === true) {
         DIDSOUNDPLAY = true;
         this.trombonesound.play();
       } else {
         console.log('this horn is locked');
-        this.dialog.open(WasPay, { data: _tromboneInapp }).afterClosed().subscribe(_isSuccess => {
-          if (_isSuccess === true) {
+        this.dialog.open(WasPay, { data: tromboneInapp }).afterClosed().subscribe(isSuccess => {
+          if (isSuccess === true) {
             DIDSOUNDPLAY = true;
             this.playHorn(horn);
           }
@@ -91,9 +91,9 @@ export class AppComponent {
     }
     // check if sound played
     if (DIDSOUNDPLAY) {
-      this.horn_presses = this.horn_presses + 1;
+      this.hornPresses = this.hornPresses + 1;
       this.saveToCloud();
-      if (this.horn_presses === 5) {
+      if (this.hornPresses === 5) {
         this.oneSignalController.askForPush();
       }
     }
@@ -102,13 +102,11 @@ export class AppComponent {
   //  Return the login message
   get displayMessage() {
     return this.userService.user.pipe(map((usr: User) => {
-      let _displayMsg = '';
       if (usr.email) {
-        _displayMsg = 'Welcome Back!';
+        return 'Welcome Back!';
       } else {
-        _displayMsg = 'Sign in with the WickeyAppStore button';
+        return 'Sign in with the WickeyAppStore button';
       }
-      return _displayMsg;
     }));
   }
 
@@ -127,22 +125,22 @@ export class AppComponent {
   // We are using 'horn_key' as our identifier. Any key is valid - if you set it, you can update it and read from it.
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   saveToCloud() {
-    this.userService.setStore({ 'horn_key': this.horn_presses });
+    this.userService.setStore({ horn_key: this.hornPresses });
   }
   getFromCloud() {
-    const _mykey = 'horn_key';
-    this.userService.getStore([_mykey]).subscribe((res) => {
+    const mykey = 'horn_key';
+    this.userService.getStore([mykey]).subscribe((res) => {
       // console.log('WAS: getMetaData RETURN:', res);
-      if (res[_mykey]) {
-        this.horn_presses = Number(res[_mykey]);
+      if (res[mykey]) {
+        this.hornPresses = Number(res[mykey]);
       }
     }, (error) => {
       // may want to deal with the error - or ignore and try it again
     });
   }
   deleteKeyStoreCloud(key: string) {
-    const _mykeys = [key];
-    this.userService.deleteStore(_mykeys).subscribe((res) => {
+    const mykeys = [key];
+    this.userService.deleteStore(mykeys).subscribe((res) => {
       // console.log('WAS: deleteStore RETURN:', res);
     }, (error) => {
       // may want to deal with the error - or ignore and try it again

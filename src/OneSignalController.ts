@@ -2,8 +2,8 @@
 import { UserService } from 'wickeyappstore';
 
 /**
-    STEP 1: Create an account https://onesignal.com
-    STEP 2: https://documentation.onesignal.com/docs/web-push-sdk-setup-https
+ * STEP 1: Create an account https://onesignal.com
+ * STEP 2: https://documentation.onesignal.com/docs/web-push-sdk-setup-https
  */
 export class OneSignalController {
 
@@ -12,7 +12,7 @@ export class OneSignalController {
     private oneSignalInited = false;
 
     private appId;
-    private safari_web_id;
+    private safariWebId;
     private oneSignalConfig = { title: 'Air Horn', exampleNotificationMessage: 'New horn sounds are here, get em now!' };
     private ENABLED = true;
 
@@ -21,17 +21,17 @@ export class OneSignalController {
     /**
      * This initiate the Push Service. Do this on login status changes
      * @param appId The app id from onesignal
-     * @param safari_web_id The safari web id from onesignal
+     * @param safariWebId The safari web id from onesignal
      */
-    public loadPushSystem(userService: UserService, appId: string, safari_web_id: string,
-        oneSignalConfig: { title: string, exampleNotificationMessage: string }, ENABLED: boolean) {
+    public loadPushSystem(userService: UserService, appId: string, safariWebId: string,
+                          oneSignalConfig: { title: string, exampleNotificationMessage: string }, ENABLED: boolean) {
         console.log('OneSignalController', 'loadPushSystem');
         this.ENABLED = ENABLED;
         if (this.ENABLED) {
-            console.log('OneSignalController', appId, safari_web_id);
+            console.log('OneSignalController', appId, safariWebId);
             this.userService = userService;
             this.appId = appId;
-            this.safari_web_id = safari_web_id;
+            this.safariWebId = safariWebId;
             this.oneSignalConfig = oneSignalConfig;
             this.loadOneSignal();
         } else {
@@ -68,7 +68,7 @@ export class OneSignalController {
             } catch (pusherror) {
                 console.error('askForPush', pusherror);
             }
-        }{
+        } else {
             console.log('OneSignalController', 'NOT ENABLED');
         }
     }
@@ -84,7 +84,7 @@ export class OneSignalController {
         if (this.oneSignalInited === false) {
             this.oneSignal.push(['init', {
                 appId: this.appId,
-                safari_web_id: this.safari_web_id,
+                safari_web_id: this.safariWebId,
                 path: '/',
                 autoRegister: false,
                 allowLocalhostAsSecureOrigin: true,

@@ -40,4 +40,4 @@
 # mv temp_file2.js dist/OneSignalSDKUpdaterWorker.js
 
 echo "copy index.html to 404.html (github pages 404 hack)"
-cp dist/index.html dist/404.html
+cp dist/was-tutorial/index.html dist/was-tutorial/404.html

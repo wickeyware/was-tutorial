@@ -17,6 +17,7 @@ This shows all commits since last release.
 * **deploy** Remove unused deploy script.
 * **manifest** Remove reference to deploy script.
 * **manifest** Set manifest start url to only a slash.
+* **project** Update to latest Angular project standards.
 
 ## [1.10.0](https://github.com/wickeyware/was-tutorial/compare/1.9.2...1.10.0) - 2018-11-08
 

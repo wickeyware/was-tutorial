@@ -15,7 +15,7 @@ import { environment } from '../environments/environment';
   ],
   imports: [
     BrowserModule,
-    ServiceWorkerModule.register('/OneSignalSDKWorker.js', {enabled: environment.production}),
+    ServiceWorkerModule.register('OneSignalSDKWorker.js', {enabled: environment.production}),
     FormsModule,
     WickeyAppStoreModule
   ],
