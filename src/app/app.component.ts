@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { map } from 'rxjs/operators';
 import { OneSignalController } from '../OneSignalController';
-import { UserService, User, UserParams, WasUp, WasAlert, WasPay, PromptUpdateService } from 'wickeyappstore';
+import { UserService, User, WasDataService, WasUp, WasAlert, WasPay, PromptUpdateService } from 'wickeyappstore';
 import { Howl } from 'howler';
 import { SupportPopupComponent } from './support-popup/support-popup.component';
 
@@ -14,7 +14,7 @@ import { SupportPopupComponent } from './support-popup/support-popup.component';
 export class AppComponent {
   // (1) SET THESE VALUES FOR YOUR APP ****************************
   public title = 'Air Horn';
-  public version = '1.10.1';
+  public version = '1.10.2';
   public whatsNew = 'Update to latest Angular and WickeyAppStore.';
   // (2) UPDATE the version to match in package.json ****************************
   //     UPDATE the version & description in ngsw-config.json
@@ -44,6 +44,7 @@ export class AppComponent {
 
   constructor(
     public userService: UserService,
+    public wasDataService: WasDataService,
     private promptUpdateService: PromptUpdateService,
     public dialog: MatDialog
   ) {
@@ -52,13 +53,11 @@ export class AppComponent {
       console.log('USER LOADED:', this.userService.userObject.user_id);
       if (isLogged) {
         console.warn('LOGGED IN');
-        // load save data from server
-        this.getFromCloud();
       } else {
         console.warn('LOGGED OUT');
-        // reset progress
-        this.hornPresses = 0;
       }
+      // On login change, re-get saved data.
+      this.getFromCloud();
       // This initiate the Push Service. Do on login status changes
       this.oneSignalController.loadPushSystem(this.userService, this.oneSignalAppId, this.oneSignalSafariWebId,
         this.oneSignalConfig, this.ONESIGNAL_ENABLED);
@@ -125,27 +124,42 @@ export class AppComponent {
   // We are using 'horn_key' as our identifier. Any key is valid - if you set it, you can update it and read from it.
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   saveToCloud() {
-    this.userService.setStore({ horn_key: this.hornPresses });
+    // NOTE: save/get/del are only updating an object internally, so they are fast (i.e. use often).
+    this.wasDataService.save('horn_key', this.hornPresses);
+    // NOTE: To save this to the cloud use persist.
+    // NOTE: Use this a few times as necessary (e.g. if used in a game, only call after gameover or at save checkpoints).
+    this.wasDataService.persist();
   }
   getFromCloud() {
-    const mykey = 'horn_key';
-    this.userService.getStore([mykey]).subscribe((res) => {
-      // console.log('WAS: getMetaData RETURN:', res);
-      if (res[mykey]) {
-        this.hornPresses = Number(res[mykey]);
+    // Always keep the cloud save if it exists (default gets latest save time)
+    function onSaveConflict(localSave, cloudSave) {
+      let keepSave = localSave;
+      if (localSave && cloudSave && cloudSave.hasOwnProperty('horn_key') && localSave.hasOwnProperty('horn_key')) {
+        if (cloudSave.horn_key > localSave.horn_key) {
+          // If cloud has higher horn_key count, keep that.
+          keepSave = cloudSave;
+        }
+      } else if (cloudSave && cloudSave.hasOwnProperty('horn_key')) {
+        // If only cloudsave, keep that save.
+        keepSave = cloudSave;
       }
-    }, (error) => {
-      // may want to deal with the error - or ignore and try it again
+      return keepSave;
+    }
+    this.wasDataService.restore(onSaveConflict).subscribe(mydata => {
+      console.log('wasDataService.restore', mydata);
+      // WasDataService is now loaded and restored (ready for use).
+      // NOTE: save/get/del are only updating an object internally, so they are fast (i.e. use often).
+      const hornPressCnt = this.wasDataService.get('horn_key');
+      if (hornPressCnt) {
+        this.hornPresses = hornPressCnt;
+      } else {
+        this.hornPresses = 0;
+      }
     });
   }
   deleteKeyStoreCloud(key: string) {
-    const mykeys = [key];
-    this.userService.deleteStore(mykeys).subscribe((res) => {
-      // console.log('WAS: deleteStore RETURN:', res);
-    }, (error) => {
-      // may want to deal with the error - or ignore and try it again
-      // this.dialog.open(WasAlert, {data: { title: 'Attention', body: error }});
-    });
+    // NOTE: save/get/del are only updating an object internally, so they are fast (i.e. use often).
+    // this.wasDataService.del('horn_key');
   }
 
 }

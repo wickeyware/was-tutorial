@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 This shows all commits since last release.
 
+## [1.10.2](https://github.com/wickeyware/was-tutorial/compare/1.10.1...1.10.2) - 2019-02-13
+
+### Fixed
+
+* **wasData** Use WasDataService instead of deprecated UserService.get/setStore.
+
 ## [1.10.1](https://github.com/wickeyware/was-tutorial/compare/1.10.0...1.10.1) - 2019-02-05
 
 ### Fixed
