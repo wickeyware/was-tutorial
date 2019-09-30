@@ -14,7 +14,7 @@ import { SupportPopupComponent } from './support-popup/support-popup.component';
 export class AppComponent {
   // (1) SET THESE VALUES FOR YOUR APP ****************************
   public title = 'Air Horn';
-  public version = '1.10.2';
+  public version = '1.10.3';
   public whatsNew = 'Update to latest Angular and WickeyAppStore.';
   // (2) UPDATE the version to match in package.json ****************************
   //     UPDATE the version & description in ngsw-config.json

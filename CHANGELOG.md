@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 This shows all commits since last release.
 
+## [1.10.3](https://github.com/wickeyware/was-tutorial/compare/1.10.2...1.10.3) - 2019-09-30
+
+### Fixed
+
+* **package** Update to latest Angular and WickeyAppStore.
+
 ## [1.10.2](https://github.com/wickeyware/was-tutorial/compare/1.10.1...1.10.2) - 2019-02-13
 
 ### Fixed
