@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import { trigger, style, animate, transition, AnimationEvent } from '@angular/animations';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 
 @Component({

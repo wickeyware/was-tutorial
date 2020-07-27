@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { map } from 'rxjs/operators';
 import { OneSignalController } from '../OneSignalController';
 import { UserService, User, WasDataService, WasUp, WasAlert, WasPay, PromptUpdateService } from 'wickeyappstore';
