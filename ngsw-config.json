@@ -3,7 +3,7 @@
   "appData": {
     "title": "Update Available",
     "description": "Update to latest Angular and WickeyAppStore.",
-    "version": "1.10.3",
+    "version": "1.11.0",
     "askToUpdate": true
   },
   "assetGroups": [
