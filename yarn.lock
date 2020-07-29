@@ -8986,10 +8986,10 @@ which@^1.2.1, which@^1.2.9, which@^1.3.1:
   dependencies:
     isexe "^2.0.0"
 
-wickeyappstore@2.20.0:
-  version "2.20.0"
-  resolved "https://registry.yarnpkg.com/wickeyappstore/-/wickeyappstore-2.20.0.tgz#de14e7a1a6bb9741eee4a5e6185cbd1886862d47"
-  integrity sha512-Xnjl2gDQ+XxvTPvcLx0SLrKbqJqM7dXGLhz35SdhPNF1PssSCmJOPfR5levhII/Ax96yOFGL01EPFQobJ596rQ==
+wickeyappstore@2.20.2:
+  version "2.20.2"
+  resolved "https://registry.yarnpkg.com/wickeyappstore/-/wickeyappstore-2.20.2.tgz#5da7eb4f95e2c4c5f62347d2f1b01d3e350df317"
+  integrity sha512-rMOf8Ep3BoawSPFJU18LLZRDPghJUB/I1t3sx8yJOV36jp3hCA3u6mzOUWW8qZIogX7hVgNfye6tWYoMWe7tnw==
   dependencies:
     tslib "^2.0.0"
 

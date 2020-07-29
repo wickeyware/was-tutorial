@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 This shows all commits since last release.
 
+## [1.11.1](https://github.com/wickeyware/was-tutorial/compare/1.10.3...1.11.1) - 2019-07-29
+
+### Fixed
+
+* **package** Update to latest WickeyAppStore.
+
 ## [1.11.0](https://github.com/wickeyware/was-tutorial/compare/1.10.3...1.11.0) - 2019-07-27
 
 ### Fixed
